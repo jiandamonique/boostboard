@@ -168,5 +168,22 @@
     "pinReason": "",
     "reported": false,
     "imageUrl": "./campaign-aubry.webp"
+  },
+  {
+    "id": "c011",
+    "name": "Help WIKIF Build Community Water Taps in Buea, Cameroon",
+    "communities": [],
+    "description": "WIKIF's fund makes community water taps possible for families across Buea, Cameroon.",
+    "link": "https://www.gofundme.com/f/help-wikif-build-community-water-taps-in-buea-cameroon",
+    "donationCount": 1,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-wikif.webp",
+    "pinReason": "",
+    "amountRaised": 5,
+    "goalAmount": 1200,
+    "lowEngagementFlag": false
   }
 ]
