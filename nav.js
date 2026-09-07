@@ -10,12 +10,9 @@
 (function () {
   const links = [
     { href: './index.html', label: 'Boost Board' },
-    { href: './submit.html', label: 'Share Your Page' },
     { href: './board.html', label: 'The Board' },
-    { href: './about.html', label: 'About' },
-    { href: './success-stories.html', label: 'Success Stories' },
-    { href: './archive.html', label: 'General Archive' },
-    { href: './roadmap.html', label: 'Roadmap' },
+    { href: './how-you-can-help.html', label: 'How You Can Help' },
+    { href: './mods.html', label: "Moderators' Picks" },
     // Coalesced (v64): was three separate top-level links (Helpful
     // Fundraising Ideas, Fundraising Platforms, Emergency & Mutual Aid
     // Help) -- now one entry pointing to resources.html, which links out
@@ -28,10 +25,20 @@
     { href: './resources.html', label: 'Resources', alsoActiveFor: [
       'helpful-fundraising-ideas.html', 'emergency-help.html'
     ] },
-    { href: './overlay-generator.html', label: 'Campaign Tools' },
+    { href: './success-stories.html', label: 'Success Stories' },
+    { href: './about.html', label: 'About' },
     { href: './blog.html', label: 'Blog' },
-    { href: './mods.html', label: "Moderators' Picks" },
+    { href: './overlay-generator.html', label: 'Campaign Tools' },
     { href: './credits.html', label: 'Credits & Support' },
+    // Reordered + trimmed (v80): "Share Your Page" moved into Credits &
+    // Support (bottommost section there) instead of its own nav slot;
+    // "General Archive" dropped from nav for now (still reachable via a
+    // link from the Blog page, and the existing link from
+    // success-stories.html), being re-approached per the roadmap;
+    // "Roadmap" folded into a section on Credits & Support instead of
+    // its own page/nav slot. None of the three pages were deleted --
+    // submit.html, archive.html, and roadmap.html still exist at their
+    // same URLs.
   ];
 
   window.BOOST_BOARD_PAGES = links;
