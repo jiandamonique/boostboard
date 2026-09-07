@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boost Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root {
+    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
+    --border: rgba(40,80,45,0.18); --shadow: 0 6px 32px rgba(22,36,24,0.1);
+    --t-seed: #9b6e9e; --pin: #b5762c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
+  .intro { max-width: 560px; margin: 0 auto 2.5rem; text-align: center; }
+  .intro h1 { font-family: 'Lora', serif; font-size: 2rem; margin-bottom: 0.6rem; }
+  .intro p { font-size: 0.98rem; line-height: 1.6; color: var(--muted); }
+
+  /* Hero -- deliberately the largest, most prominent thing on this page,
+     since nothing else competes with it here. */
+  .hero { max-width: 640px; margin: 0 auto 2.5rem; background: #fff; border: 2px solid var(--t-seed);
+    border-radius: 20px; padding: 2.25rem; box-shadow: var(--shadow); }
+  .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--t-seed); display: flex; align-items: center; gap: 0.4rem;
+    justify-content: center; margin-bottom: 0.8rem; }
+  .hero-eyebrow::before { content: "●"; font-size: 0.6rem; }
+  .hero-image { width: 100%; aspect-ratio: 700 / 819; max-height: 340px; object-fit: cover;
+    border-radius: 14px; margin-bottom: 1.4rem; }
+  .hero-headline { font-family: 'Lora', serif; font-size: 1.85rem; text-align: center; margin-bottom: 0.8rem; }
+  .hero-pin-reason { font-size: 0.9rem; color: var(--pin); font-style: italic; text-align: center; margin-bottom: 1rem; }
+  .hero-pitch { background: var(--warm); border-radius: 12px; padding: 1.1rem 1.3rem; font-size: 1rem;
+    line-height: 1.6; margin-bottom: 1.3rem; }
+  .hero-desc { line-height: 1.65; font-size: 1.05rem; margin-bottom: 1.2rem; text-align: center; }
+  .hero-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.6rem; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; background: var(--warm);
+    border: 1px solid var(--border); border-radius: 999px; padding: 0.18rem 0.55rem; color: var(--muted); }
+  .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+  a.hero-cta { display: inline-block; background: var(--deep); color: var(--cream); text-decoration: none;
+    font-weight: 600; padding: 0.85rem 2rem; border-radius: 12px; font-size: 1.05rem; }
+  a.hero-cta:hover { opacity: 0.9; }
+  a.hero-more { font-size: 0.88rem; color: var(--muted); text-decoration: underline; }
+  .hero-empty { max-width: 640px; margin: 0 auto 2.5rem; text-align: center; color: var(--muted);
+    font-family: 'Lora', serif; font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>Boost Board</h1>
+  <p>Every day, algorithms bury good fundraisers just because they haven't gotten their first
+  donation yet. Boost Board puts one of them front and center — reviewed by real volunteers,
+  rotated daily so no one waits forever. It's not a charity, just an app, and it never touches
+  anyone's donations.</p>
+</div>
+
+<div id="hero"></div>
+
+<script src="./board-data.js"></script>
+<script>
+  const { hero } = computeToday();
+  const heroEl = document.getElementById('hero');
+
+  function tierOfLocal(c) { return tierOf(c); }
+
+  if (!hero) {
+    heroEl.innerHTML = `<p class="hero-empty">No campaigns on the board right now — check back soon, or submit one.</p>`;
+  } else {
+    const isSeed = tierOf(hero) === 'seed';
+    heroEl.innerHTML = `
+      <div class="hero">
+        <div class="hero-eyebrow">Today's featured campaign</div>
+        <img class="hero-image" src="${hero.imageUrl || './standin-image.jpg'}" alt=""
+             onerror="this.src='./standin-image.jpg'">
+        <h2 class="hero-headline">${hero.name}</h2>
+        ${hero.pinned && hero.pinReason ? `<div class="hero-pin-reason">${hero.pinReason}</div>` : ''}
+        ${isSeed ? `<div class="hero-pitch">Do you see a donation here? <strong>Woo hoo!</strong>
+          Proof positive this model is working — we caught this one before an algorithm could bury it.</div>` : ''}
+        <p class="hero-desc">${hero.description}</p>
+        <div class="hero-tags">${hero.communities.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="hero-actions">
+          <a class="hero-cta" href="${hero.link}" target="_blank" rel="noopener">View campaign →</a>
+          <a class="hero-more" href="./board.html">See today's full board →</a>
+        </div>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>

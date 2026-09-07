@@ -1,0 +1,160 @@
+[
+  {
+    "id": "c001",
+    "name": "Maren's surgery fund",
+    "communities": [
+      "autistic",
+      "disabled"
+    ],
+    "description": "Emergency surgery costs after insurance denial.",
+    "link": "https://gofundme.com/f/example-maren",
+    "donationCount": 0,
+    "submittedDate": "2026-08-20",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c002",
+    "name": "Jae's housing deposit",
+    "communities": [
+      "trans",
+      "lgbtqia"
+    ],
+    "description": "First/last month deposit after leaving an unsafe living situation.",
+    "link": "https://gofundme.com/f/example-jae",
+    "donationCount": 2,
+    "submittedDate": "2026-08-22",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c003",
+    "name": "Ruth's mobility van repair",
+    "communities": [
+      "disabled",
+      "elderly"
+    ],
+    "description": "Wheelchair-accessible van needs transmission work.",
+    "link": "https://gofundme.com/f/example-ruth",
+    "donationCount": 7,
+    "submittedDate": "2026-08-25",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c004",
+    "name": "Priya's legal name change costs",
+    "communities": [
+      "trans",
+      "lgbtqia"
+    ],
+    "description": "Court and filing fees for legal name/gender marker change.",
+    "link": "https://gofundme.com/f/example-priya",
+    "donationCount": 14,
+    "submittedDate": "2026-08-18",
+    "lastFeatured": "2026-09-01",
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c005",
+    "name": "Diego's wheelchair repair",
+    "communities": [
+      "disabled"
+    ],
+    "description": "Custom wheelchair part replacement, insurance denied as cosmetic.",
+    "link": "https://gofundme.com/f/example-diego",
+    "donationCount": 0,
+    "submittedDate": "2026-08-28",
+    "lastFeatured": null,
+    "pinned": true,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "Surgery date is next week and this hasn't moved yet.",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c006",
+    "name": "Alex's top surgery aftercare",
+    "communities": [
+      "trans"
+    ],
+    "description": "Post-op supplies and follow-up appointments not covered by insurance.",
+    "link": "https://gofundme.com/f/example-alex",
+    "donationCount": 3,
+    "submittedDate": "2026-08-29",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c007",
+    "name": "Community elder relocation",
+    "communities": [
+      "elderly",
+      "lgbtqia"
+    ],
+    "description": "Moving costs after assisted living facility closure.",
+    "link": "https://gofundme.com/f/example-elder",
+    "donationCount": 1,
+    "submittedDate": "2026-08-30",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c008",
+    "name": "Rosa's wheelchair-accessible home repair",
+    "communities": [
+      "disabled",
+      "elderly"
+    ],
+    "description": "Ramp and bathroom modifications after a fall; contractor quote came in high.",
+    "link": "https://gofundme.com/f/example-rosa",
+    "donationCount": 12,
+    "amountRaised": 300,
+    "goalAmount": 20000,
+    "lowEngagementFlag": false,
+    "submittedDate": "2026-08-15",
+    "lastFeatured": null,
+    "pinned": false,
+    "pinReason": "",
+    "reported": false,
+    "imageUrl": ""
+  }
+]

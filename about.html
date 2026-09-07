@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Boost Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./board-data.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root {
+    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
+    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif;
+         padding: 2.5rem 1.5rem; line-height: 1.65; }
+  .wrap { max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid var(--border);
+          border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
+  h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 1.2rem; }
+  h2 { font-family: 'Lora', serif; font-size: 1.1rem; margin: 1.6rem 0 0.5rem; }
+  p { margin-bottom: 0.9rem; font-size: 0.95rem; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem;
+  }
+  a { color: var(--deep); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Why this exists</div>
+  <h1>About Boost Board</h1>
+
+  <p>This started from three things.</p>
+
+  <h2>1. Algorithms count people out</h2>
+  <p>A fundraising page with zero donations tends to stay that way — not because the need
+  isn't real, but because platforms surface what's already popular. Being first is the
+  hardest part, and it has nothing to do with how much someone deserves help.</p>
+
+  <h2>2. Predatory "boost your campaign" services</h2>
+  <p>People trying to raise money for a real need are often approached by paid services
+  promising visibility, virality, or guaranteed shares. At best these dilute the honesty of
+  the original ask; at worst they take money from someone already struggling and leave them
+  further discouraged when the promised results don't show up.</p>
+
+  <h2>3. A story about giving someone a good day, the hard way</h2>
+  <p>There's an old <em>This American Life</em> story (Episode 286, later re-aired as
+  Episode 588, in a segment called "The Spy Who Loved Everyone") about a comedy group called
+  Improv Everywhere. In 2004, they learned that a small unknown band from Vermont, Ghosts of
+  Pasha, was about to play their first-ever New York show to what would likely be an almost
+  empty room. So about three dozen volunteers learned the band's songs, made merchandise, and
+  showed up acting like devoted, longtime superfans — mobbing the stage, singing along,
+  treating total strangers like they'd just watched their favorite band on earth.</p>
+  <p>The intention was purely generous: give a band one incredible night. And for a while, it
+  worked — the band fed off the energy and played like they meant it. But once they realized
+  the crowd wasn't real, it left them unsettled rather than grateful. Manufactured encouragement,
+  even offered with real love, can curdle once the truth comes out.</p>
+  <p>Here's the part that matters most to us, though: it didn't end there. Years later, Ghosts
+  of Pasha came back and performed live at Improv Everywhere's own anniversary show — this
+  time as themselves, on their own terms, seemingly at peace with the whole strange story. The
+  good intention was real. It just needed honesty to actually land.</p>
+
+  <h2>Why a computer can't just find these for us</h2>
+  <p>You might wonder why this isn't just automated — a script that finds every $0 campaign
+  and lists them. It's not for lack of trying: platforms deliberately keep brand-new,
+  unpromoted campaigns out of their own search results, since letting every unverified new
+  page appear in search would flood everyone with untested listings. From the platform's side,
+  that's reasonable spam prevention. From ours, it means there's no shortcut — someone
+  actually has to look, one campaign at a time, the same way you might stumble across one
+  yourself. That's the whole reason this is a people-and-a-little-code project, not a
+  fully automated one.</p>
+
+  <h2>What we took from that</h2>
+  <p>We wanted the generous impulse — give someone a boost, make them feel seen — without the
+  con. No manufactured crowd, no fake momentum, no paid trick standing in for real support.
+  Boost Board just puts a real campaign in front of real people and lets them decide for
+  themselves whether to help. Whatever happens next is genuine, even if it's smaller than a
+  room full of fake superfans. It's honest, and it's real, and — unlike the story above — it
+  doesn't need years to feel good in hindsight.</p>
+
+  <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--muted);">You can hear the full
+  story yourself at
+  <a href="https://www.thisamericanlife.org/286/mind-games" target="_blank" rel="noopener">thisamericanlife.org</a>.</p>
+</div>
+</body>
+</html>

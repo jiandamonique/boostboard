@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Archive — Boost Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root {
+    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
+    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
+    --grad: #6b9e8a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
+  .intro { max-width: 640px; margin: 0 auto 2rem; text-align: center; }
+  .intro h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .intro p { color: var(--muted); font-size: 0.9rem; }
+  .grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow); }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--grad); margin-bottom: 0.5rem; }
+  .card h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .card p { font-size: 0.87rem; color: var(--deep); margin-bottom: 0.7rem; }
+  .tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; background: var(--warm); border-radius: 999px; padding: 0.15rem 0.5rem; color: var(--muted); }
+  .empty { grid-column: 1/-1; text-align: center; color: var(--muted); font-style: italic; font-family: 'Lora', serif; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>General Archive</h1>
+  <p>A plain, automatic record — every campaign that's passed 10 donors and graduated off the
+  active board. This list updates itself and isn't curated. For hand-picked stories with more
+  detail, see <a href="./success-stories.html" style="color:var(--deep);">Success Stories</a>.</p>
+</div>
+<div class="grid" id="archiveGrid"></div>
+
+<script src="./board-data.js"></script>
+<script>
+  // A campaign only counts as a genuine success story if it graduated
+  // AND doesn't still qualify under the fallback criteria (low percent-
+  // of-goal or flagged low engagement) -- 10+ donors on a campaign
+  // that's barely dented a large goal isn't actually a success yet.
+  const graduated = campaigns.filter(c => tierOf(c) === 'graduated' && !qualifiesAsFallback(c) && !c.reported);
+  const grid = document.getElementById('archiveGrid');
+  if (graduated.length === 0) {
+    grid.innerHTML = `<p class="empty">No graduated campaigns yet — the first one will show up here.</p>`;
+  } else {
+    graduated.forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="eyebrow">Graduated · ${c.donationCount}+ donors</div>
+        <h2>${c.name}</h2>
+        <p>${c.description}</p>
+        <div class="tags">${c.communities.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Boost Board — Today's Zero</title>
+    <link>https://example.org/index.html</link>
+    <description>One email whenever a campaign at zero donations gets featured. Nothing else.</description>
+    <lastBuildDate>Mon, 07 Sep 2026 02:01:38 GMT</lastBuildDate>
+    <item>
+      <title>Diego's wheelchair repair</title>
+      <link>https://gofundme.com/f/example-diego</link>
+      <guid isPermaLink="false">c005-2026-09-07</guid>
+      <pubDate>Mon, 07 Sep 2026 02:01:38 GMT</pubDate>
+      <description>Custom wheelchair part replacement, insurance denied as cosmetic.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Success Stories — Boost Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./board-data.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root {
+    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
+    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
+  .intro { max-width: 640px; margin: 0 auto 2rem; text-align: center; }
+  .intro h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .intro p { color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+  .intro a { color: var(--deep); }
+  .stories { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+  .story { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow); }
+  .story .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .story h2 { font-family: 'Lora', serif; font-size: 1.15rem; margin-bottom: 0.6rem; }
+  .story p { line-height: 1.6; font-size: 0.93rem; }
+  .empty-state { max-width: 480px; margin: 2rem auto; text-align: center; background: #fff;
+    border: 1px solid var(--border); border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
+  .empty-state p.headline { font-family: 'Lora', serif; font-style: italic; font-size: 1.05rem; margin-bottom: 0.8rem; }
+  .empty-state p.sub { color: var(--muted); font-size: 0.88rem; }
+  .submit-cta { max-width: 480px; margin: 2rem auto 0; text-align: center; font-size: 0.88rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>Success Stories</h1>
+  <p>Unlike the <a href="./archive.html">General Archive</a> (an automatic list of every
+  graduated campaign), these are hand-picked — written by our team or shared by the person
+  whose campaign it was, with a bit more of the story behind it.</p>
+</div>
+
+<div class="stories" id="storiesList"></div>
+
+<script>
+  // Add entries here as they come in -- either written by the team or
+  // submitted by a campaign owner who wants to share what happened.
+  // No limit on length or count. Keep the empty-state message warm and
+  // specific (not generic placeholder text) when this is empty.
+  const successStories = [
+    // {
+    //   name: "Example campaign name",
+    //   story: "A paragraph or two of what happened, in the owner's or team's own words.",
+    //   contributedBy: "campaign owner" // or "Boost Board team"
+    // },
+  ];
+
+  const container = document.getElementById('storiesList');
+
+  if (successStories.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <p class="headline">There's nothing here yet.</p>
+        <p class="sub">We hope that sometime soon we'll have some to share here.</p>
+      </div>
+    `;
+  } else {
+    successStories.forEach(s => {
+      const div = document.createElement('div');
+      div.className = 'story';
+      div.innerHTML = `
+        <div class="eyebrow">${s.contributedBy === 'campaign owner' ? "Shared by the campaign owner" : "Written by the Boost Board team"}</div>
+        <h2>${s.name}</h2>
+        <p>${s.story}</p>
+      `;
+      container.appendChild(div);
+    });
+  }
+</script>
+
+<p class="submit-cta">Did your campaign succeed after being featured here? We'd love to hear
+about it — reach out through the <a href="./credits.html" style="color:var(--deep);">Credits &
+Support</a> page.</p>
+
+</body>
+</html>

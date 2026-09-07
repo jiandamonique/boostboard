@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boost Board Widget</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* Deliberately minimal -- no nav, no footer, this page only ever
+     renders inside someone else's <iframe>. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Source Sans 3', sans-serif; background: #fff; color: #162418;
+    display: flex; align-items: center; justify-content: center; padding: 0.9rem;
+  }
+  .w-card { max-width: 300px; text-align: center; }
+  .w-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase;
+    color: #5c6b5c; margin-bottom: 0.4rem; letter-spacing: 0.04em; }
+  .w-name { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .w-desc { font-size: 0.8rem; color: #5c6b5c; margin-bottom: 0.7rem; }
+  a.w-link { display: inline-block; background: #162418; color: #f2f7f2; text-decoration: none;
+    font-weight: 600; font-size: 0.78rem; padding: 0.45rem 0.9rem; border-radius: 8px; }
+  .w-credit { display: block; margin-top: 0.6rem; font-size: 0.65rem; color: #9aa89e; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="w-card" id="widgetCard"></div>
+
+<script src="./board-data.js"></script>
+<script>
+  // ?mode=hero (default) shows today's featured campaign; ?mode=random
+  // shows a genuinely random eligible campaign each time this loads.
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get('mode') || 'hero';
+
+  let pick;
+  if (mode === 'random') {
+    const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
+    pick = eligible.length ? eligible[Math.floor(Math.random() * eligible.length)] : null;
+  } else {
+    pick = computeToday().hero;
+  }
+
+  const card = document.getElementById('widgetCard');
+  if (!pick) {
+    card.innerHTML = `<div class="w-desc">No campaign available right now.</div>`;
+  } else {
+    card.innerHTML = `
+      <div class="w-eyebrow">${mode === 'random' ? 'From Boost Board' : "Today's featured campaign"}</div>
+      <div class="w-name">${pick.name}</div>
+      <div class="w-desc">${pick.description}</div>
+      <a class="w-link" href="${pick.link}" target="_blank" rel="noopener">View campaign →</a>
+      <a class="w-credit" href="./index.html" target="_blank" rel="noopener">via Boost Board</a>
+    `;
+  }
+</script>
+</body>
+</html>

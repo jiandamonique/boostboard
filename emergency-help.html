@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency & Mutual Aid Help — Boost Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./board-data.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root {
+    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
+    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif;
+         padding: 2.5rem 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid var(--border);
+          border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
+  h1 { font-family: 'Lora', serif; font-size: 1.5rem; margin-bottom: 0.4rem; }
+  p.sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+  .framing { background: var(--warm); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.85rem;
+    line-height: 1.55; margin-bottom: 1.5rem; }
+  h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin: 1.4rem 0 0.4rem; }
+  ul { padding-left: 1.2rem; margin-bottom: 0.5rem; }
+  li { margin-bottom: 0.5rem; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">If you need help faster than a rotating board</div>
+  <h1>Emergency & mutual aid resources</h1>
+  <p class="sub">Boost Board rotates campaigns daily, which isn't fast enough for every situation.
+  These are places that may be able to help sooner, depending on where you live.</p>
+
+  <div class="framing">If you're in immediate danger, please contact local emergency services
+  directly rather than relying on any resource on this page.</div>
+
+  <h2>211 (United States)</h2>
+  <ul>
+    <li>A free, confidential helpline — dial 211, or visit 211.org — that connects you to local
+    help with housing, utilities, food, and other essential needs.</li>
+    <li>Available 24/7 in most areas, with interpretation in many languages.</li>
+  </ul>
+
+  <h2>Local mutual aid networks</h2>
+  <ul>
+    <li>Mutual Aid Hub (mutualaidhub.org) maintains a directory of local mutual aid groups
+    across the US — searchable by location.</li>
+    <li>Many cities have their own mutual aid networks (search "[your city] mutual aid") that
+    move faster than any national platform, since they're run by people nearby.</li>
+  </ul>
+
+  <h2>Community-specific resources</h2>
+  <ul>
+    <li>If your situation relates to domestic violence, housing loss, disability, or another
+    specific circumstance, an organization focused on that exact issue often has faster,
+    more targeted help than a general fundraising platform.</li>
+  </ul>
+
+  <p class="sub" style="margin-top:1.5rem;">Availability, eligibility, and wait times vary by
+  location and change over time — please verify current details directly with each
+  organization rather than relying solely on this page.</p>
+</div>
+</body>
+</html>
