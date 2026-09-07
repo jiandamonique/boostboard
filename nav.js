@@ -16,10 +16,19 @@
     { href: './success-stories.html', label: 'Success Stories' },
     { href: './archive.html', label: 'General Archive' },
     { href: './roadmap.html', label: 'Roadmap' },
-    { href: './helpful-fundraising-ideas.html', label: 'Helpful Fundraising Ideas' },
+    // Coalesced (v64): was three separate top-level links (Helpful
+    // Fundraising Ideas, Fundraising Platforms, Emergency & Mutual Aid
+    // Help) -- now one entry pointing to resources.html, which links out
+    // to all three. Those three pages still exist at their same URLs for
+    // anyone with an existing direct link (submit.html, board.html, and
+    // the README all still link to helpful-fundraising-ideas.html
+    // directly) -- only the nav itself got shorter. `alsoActiveFor`
+    // keeps this link highlighted when someone's actually on one of the
+    // three sub-pages, even though none of them are in `links` anymore.
+    { href: './resources.html', label: 'Resources', alsoActiveFor: [
+      'helpful-fundraising-ideas.html', 'fundraising-platforms.html', 'emergency-help.html'
+    ] },
     { href: './overlay-generator.html', label: 'Campaign Tools' },
-    { href: './fundraising-platforms.html', label: 'Fundraising Platforms' },
-    { href: './emergency-help.html', label: 'Emergency & Mutual Aid Help' },
     { href: './blog.html', label: 'Blog' },
     { href: './mods.html', label: "Moderators' Picks" },
     { href: './credits.html', label: 'Credits & Support' },
@@ -68,7 +77,7 @@
   nav.className = 'site-nav';
   nav.innerHTML = links.map(l => {
     const fileName = l.href.replace('./', '');
-    const isActive = fileName === currentPath;
+    const isActive = fileName === currentPath || (l.alsoActiveFor && l.alsoActiveFor.includes(currentPath));
     return `<a href="${l.href}" class="${isActive ? 'active' : ''}">${l.label}</a>`;
   }).join('');
 
