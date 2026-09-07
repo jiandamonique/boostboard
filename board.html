@@ -38,12 +38,14 @@
   .card-image {
     width: calc(100% + 2.5rem); margin: -1.25rem -1.25rem 0.9rem; height: 130px;
     object-fit: cover; border-radius: 14px 14px 0 0; display: block; background: var(--warm);
+    border-bottom: 1px solid var(--border);
   }
   .card-image-fallback {
     width: calc(100% + 2.5rem); margin: -1.25rem -1.25rem 0.9rem;
     aspect-ratio: 700 / 819; height: auto;
     border-radius: 14px 14px 0 0; background-image: url("./standin-image.jpg");
     background-size: cover; background-position: center;
+    border-bottom: 1px solid var(--border);
   }
   .eyebrow {
     font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.05em;
@@ -70,7 +72,7 @@
     justify-content: center; margin-bottom: 0.6rem; }
   .hero-eyebrow::before { content: "●"; font-size: 0.55rem; }
   .hero-image { width: 100%; aspect-ratio: 700 / 819; max-height: 260px; object-fit: cover;
-    border-radius: 12px; margin-bottom: 1.1rem; }
+    border-radius: 12px; margin-bottom: 1.1rem; border: 1px solid var(--border); }
   .hero-headline { font-family: 'Lora', serif; font-size: 1.5rem; text-align: center; margin-bottom: 0.6rem; }
   .hero-pitch { background: var(--warm); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.9rem;
     line-height: 1.55; margin-bottom: 1.1rem; }

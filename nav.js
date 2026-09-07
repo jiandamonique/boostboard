@@ -26,7 +26,7 @@
     // keeps this link highlighted when someone's actually on one of the
     // three sub-pages, even though none of them are in `links` anymore.
     { href: './resources.html', label: 'Resources', alsoActiveFor: [
-      'helpful-fundraising-ideas.html', 'fundraising-platforms.html', 'emergency-help.html'
+      'helpful-fundraising-ideas.html', 'emergency-help.html'
     ] },
     { href: './overlay-generator.html', label: 'Campaign Tools' },
     { href: './blog.html', label: 'Blog' },

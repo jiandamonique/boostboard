@@ -35,6 +35,8 @@
     font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
     letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem;
   }
+  .og-image { display: block; max-width: 180px; margin: 0 auto 1.4rem; border-radius: 14px;
+    border: 1px solid var(--border); }
   a.give-btn { display: inline-block; background: var(--deep); color: var(--cream); text-decoration: none;
     font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.9rem; margin-top: 0.5rem; }
   ul.thanks { padding-left: 1.2rem; }
@@ -47,6 +49,7 @@
 </head>
 <body>
 <div class="wrap">
+  <img class="og-image" src="./standin-image.jpg" alt="">
   <div class="eyebrow">Credits & support</div>
   <h1>Boost Board is built and run by volunteers</h1>
   <p class="sub">Not a charity, not a nonprofit — just an app, kept running by people
@@ -102,7 +105,8 @@
   <p>This isn't a newsletter in the usual sense — no roundups, no product updates, no drip
   sequence. Just one email whenever there's a new campaign at zero donations, so you can be
   the reason it isn't anymore. Unsubscribe any time; nothing else will ever land in that inbox.</p>
-  <a class="give-btn" href="#" target="_blank" rel="noopener">Get notified →</a>
+  <a class="give-btn" href="https://github.com/jiandamonique/boostboard/issues/new?title=Subscribe+me+to+zero-donation+alerts&body=I'd+like+to+get+an+email+whenever+a+new+campaign+hits+zero+donations.+My+email%3A+" target="_blank" rel="noopener">Get notified →</a>
+  <p style="font-size:0.78rem; color:var(--muted); margin-top:0.4rem;">This opens a GitHub issue for now — the automated signup form isn't built yet, so we're adding subscribers by hand in the meantime.</p>
 
   <h2>Thanks to</h2>
   <ul class="thanks">
@@ -110,10 +114,6 @@
     <li>Everyone who's moderated a submission, caught something important, or fixed a broken link</li>
     <li>Everyone who shared a campaign that wasn't theirs</li>
     <li>You :)</li>
-    <li>&nbsp;</li>
-    <li>&nbsp;</li>
-    <li>&nbsp;</li>
-    <li>&nbsp;</li>
   </ul>
 
   <script>
