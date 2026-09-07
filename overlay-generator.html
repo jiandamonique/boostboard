@@ -40,6 +40,14 @@
     width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--border); border-radius: 8px;
     font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
   }
+  select {
+    width: 100%; padding: 0.55rem 2rem 0.55rem 0.7rem; border: 1px solid var(--border); border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem; color: var(--deep); background: #fff;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%235c6b5c'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.6rem center; background-size: 1rem;
+    cursor: pointer;
+  }
   .row { display: flex; gap: 0.8rem; }
   .row > div { flex: 1; }
   .preview-area { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
@@ -108,7 +116,7 @@
     own site to show a small, live campaign card — either today's featured campaign, or a
     different random one on every page load.</p>
     <label>Which campaign?
-      <select id="embedMode" style="width:100%; padding:0.5rem; border:1px solid var(--border); border-radius:8px;">
+      <select id="embedMode">
         <option value="hero">Today's featured campaign</option>
         <option value="random">A random campaign each time</option>
       </select>
