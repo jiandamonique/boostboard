@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boost Board</title>
+<meta name="description" content="Boost Board features one overlooked fundraising campaign every day, reviewed by volunteers, so it doesn't stay stuck at zero donations.">
+<link rel="canonical" href="https://jiandamonique.github.io/boostboard/">
+<meta property="og:title" content="Boost Board">
+<meta property="og:description" content="Boost Board features one overlooked fundraising campaign every day, reviewed by volunteers, so it doesn't stay stuck at zero donations.">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:url" content="https://jiandamonique.github.io/boostboard/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boost Board">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Boost Board">
+<meta name="twitter:description" content="Boost Board features one overlooked fundraising campaign every day, reviewed by volunteers, so it doesn't stay stuck at zero donations.">
+<meta name="twitter:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
@@ -18,7 +30,10 @@
   body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
   .intro { max-width: 560px; margin: 0 auto 2.5rem; text-align: center; }
   .intro h1 { font-family: 'Lora', serif; font-size: 2rem; margin-bottom: 0.6rem; }
-  .intro p { font-size: 0.98rem; line-height: 1.6; color: var(--muted); }
+  .intro p { font-size: 0.98rem; line-height: 1.6; color: var(--muted); margin-bottom: 1rem; }
+  .intro p:last-child { margin-bottom: 0; }
+  .masthead { display: block; max-width: 180px; margin: 0 auto 1.4rem; border-radius: 14px;
+    box-shadow: var(--shadow); }
 
   /* Hero -- deliberately the largest, most prominent thing on this page,
      since nothing else competes with it here. */
@@ -46,15 +61,31 @@
   .hero-empty { max-width: 640px; margin: 0 auto 2.5rem; text-align: center; color: var(--muted);
     font-family: 'Lora', serif; font-style: italic; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Boost Board",
+  "url": "https://jiandamonique.github.io/boostboard/",
+  "description": "A volunteer-run tool that gives daily visibility to fundraising campaigns stuck at zero (or minimal percentage) donations. Not a charity or nonprofit -- just an app that never touches anyone's donations.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Boost Board"
+  }
+}
+</script>
 </head>
 <body>
 
 <div class="intro">
   <h1>Boost Board</h1>
-  <p>Every day, algorithms bury good fundraisers just because they haven't gotten their first
-  donation yet. Boost Board puts one of them front and center — reviewed by real volunteers,
-  rotated daily so no one waits forever. It's not a charity, just an app, and it never touches
-  anyone's donations.</p>
+  <img class="masthead" src="./standin-image.jpg" alt="">
+  <p>Every day, algorithms bury fundraisers because they haven't gotten their first donation
+  yet. Boost Board puts one of them front and center. While we can't promise success, we can
+  add some encouragement to the mix.</p>
+  <p>Reviewed by volunteers, features rotated daily. We signal boost, along with your
+  community.</p>
+  <p>It's not a charity, just an app, and it never touches anyone's donations.</p>
 </div>
 
 <div id="hero"></div>

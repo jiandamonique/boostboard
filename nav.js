@@ -10,6 +10,7 @@
 (function () {
   const links = [
     { href: './index.html', label: 'Boost Board' },
+    { href: './submit.html', label: 'Share Your Page' },
     { href: './board.html', label: 'The Board' },
     { href: './about.html', label: 'About' },
     { href: './success-stories.html', label: 'Success Stories' },
@@ -19,6 +20,8 @@
     { href: './overlay-generator.html', label: 'Campaign Tools' },
     { href: './fundraising-platforms.html', label: 'Fundraising Platforms' },
     { href: './emergency-help.html', label: 'Emergency & Mutual Aid Help' },
+    { href: './blog.html', label: 'Blog' },
+    { href: './mods.html', label: "Moderators' Picks" },
     { href: './credits.html', label: 'Credits & Support' },
   ];
 
