@@ -35,10 +35,22 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="eyebrow">Submit your campaign</div>
-  <h1>Share Your Page</h1>
-  <p class="sub">Tell us about your fundraiser — every submission is reviewed by a real person
+  <div class="eyebrow" id="pageEyebrow">Submit your campaign</div>
+  <h1 id="pageTitle">Share Your Page</h1>
+  <p class="sub" id="pageSub">Tell us about your fundraiser — every submission is reviewed by a real person
   before it's featured. No pressure, no guarantee, just a chance to be seen.</p>
+
+  <div class="placeholder-note" style="margin-bottom:1.5rem;">Boost Board is run by one volunteer,
+  with real (and varying) time to review submissions — so if it takes a little while, that's
+  normal, not a sign your submission was ignored. In the meantime, please keep reaching out to
+  your own community too, and feel free to check our
+  <a href="./helpful-fundraising-ideas.html" style="color:var(--deep); font-weight:600;">tips for spreading the word</a>.</div>
+
+  <div id="reportBanner" style="display:none; background: var(--warm); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.85rem; margin-bottom: 1.5rem; text-align: center;">
+    Reporting or updating info about <strong id="reportedCampaignName"></strong>? Use the
+    "Anything else?" field near the end of the form below to tell us what's going on —
+    that's the fastest way to reach us either way.
+  </div>
 
   <div class="form-panel">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf9ThdOcUj8fxX8VaZcT_aer0f53cIrZy3NVNv-ZwwKumJi9A/viewform?embedded=true" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
@@ -49,5 +61,18 @@
   <a href="https://github.com/jiandamonique/boostboard/issues" target="_blank" rel="noopener">GitHub issue</a>
   in the meantime.</p>
 </div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const reportedName = params.get('name');
+  if (params.get('report') && reportedName) {
+    document.getElementById('pageEyebrow').textContent = 'Report or update a campaign';
+    document.getElementById('pageTitle').textContent = 'Report / Update a Campaign';
+    document.getElementById('pageSub').textContent =
+      "Either something's wrong with a listed campaign, or it already has more support than " +
+      "shown -- both are welcome here.";
+    document.getElementById('reportedCampaignName').textContent = reportedName;
+    document.getElementById('reportBanner').style.display = 'block';
+  }
+</script>
 </body>
 </html>

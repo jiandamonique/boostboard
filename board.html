@@ -25,9 +25,9 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
-  h1.page-title { font-family: 'Lora', serif; text-align: center; margin-bottom: 0.3rem; }
-  p.page-sub { text-align: center; color: var(--muted); margin-bottom: 0.4rem; font-size: 0.95rem; }
-  p.page-note { text-align: center; color: var(--muted); margin-bottom: 2rem; font-size: 0.8rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  h1.page-title { font-family: 'Lora', serif; text-align: center; margin-bottom: 0.8rem; }
+  p.page-sub { text-align: center; color: var(--muted); margin-bottom: 1.6rem; font-size: 0.95rem; line-height: 1.6; }
+  p.page-note { text-align: left; color: var(--muted); margin-bottom: 2rem; font-size: 0.8rem; max-width: 480px; margin-left: auto; margin-right: auto; }
   p.page-note a { color: var(--deep); font-weight: 600; }
   .board { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
   .card {
@@ -54,7 +54,7 @@
   .card.first_five .eyebrow { color: var(--t-five); }
   .card.first_ten .eyebrow { color: var(--t-ten); }
   .card.is-pinned .eyebrow { color: var(--pin); }
-  h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.4rem; }
+  h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.7rem; }
   p.desc { line-height: 1.5; font-size: 0.87rem; margin-bottom: 0.9rem; flex-grow: 1; color: var(--deep); }
   .tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
   .tag {
@@ -74,7 +74,7 @@
   .hero-headline { font-family: 'Lora', serif; font-size: 1.5rem; text-align: center; margin-bottom: 0.6rem; }
   .hero-pitch { background: var(--warm); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.9rem;
     line-height: 1.55; margin-bottom: 1.1rem; }
-  .hero-desc { line-height: 1.6; font-size: 0.95rem; margin-bottom: 1rem; text-align: center; }
+  .hero-desc { line-height: 1.6; font-size: 0.95rem; margin-bottom: 1rem; text-align: left; }
   .hero-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.3rem; }
   .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
   a.hero-cta {
@@ -98,7 +98,7 @@
   .pin-reason { font-size: 0.78rem; color: var(--pin); font-style: italic; margin-bottom: 0.7rem; }
   .hero-pin-reason { font-size: 0.85rem; color: var(--pin); font-style: italic; text-align: center; margin-bottom: 0.9rem; }
   h2.section-heading { font-family: 'Lora', serif; text-align: center; font-size: 1.2rem;
-    max-width: 1000px; margin: 0 auto 0.3rem; }
+    max-width: 1000px; margin: 3rem auto 0.6rem; }
   .actions { display: flex; gap: 0.5rem; align-items: center; }
   a.cta {
     display: inline-block; background: var(--deep); color: var(--cream); text-decoration: none;
@@ -109,6 +109,23 @@
     font-size: 0.72rem; color: var(--muted); text-decoration: underline; margin-left: auto;
   }
   .empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-family: 'Lora', serif; font-style: italic; }
+  a.share { font-size: 0.72rem; color: var(--t-ten); text-decoration: underline; cursor: pointer; }
+  .tier-legend { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 0 auto 1rem; max-width: 1000px; }
+  .tier-pill { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; background: #fff;
+    border: 1px solid var(--border); border-radius: 12px; padding: 0.5rem 1rem; box-shadow: var(--shadow); min-width: 110px; }
+  .tier-pill-name { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase;
+    letter-spacing: 0.04em; font-weight: 600; }
+  .tier-pill-range { font-size: 0.72rem; color: var(--muted); }
+  .tier-pill.five .tier-pill-name { color: var(--t-five); }
+  .tier-pill.ten .tier-pill-name { color: var(--t-ten); }
+  .callout { max-width: 620px; margin: 0 auto 1.6rem; background: var(--warm); border-radius: 12px;
+    padding: 1rem 1.2rem; font-size: 0.85rem; line-height: 1.5; }
+  .callout p { margin-bottom: 0.6rem; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-note { font-style: italic; color: var(--muted); font-size: 0.8rem; }
+  .share-callout { max-width: 620px; margin: 0 auto 2rem; text-align: center; background: #fff;
+    border: 1px solid var(--t-ten); border-radius: 12px; padding: 1rem 1.2rem; font-size: 0.88rem; }
+  .share-callout a { color: var(--deep); font-weight: 600; }
 </style>
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
@@ -119,34 +136,54 @@
 <h1 class="page-title">The Board</h1>
 <p class="page-sub">Everyone currently in rotation, sorted by how much they've raised so far.</p>
 
+<div class="share-callout">
+  Can't donate right now? <strong>Sharing genuinely helps</strong> — campaigns that get shared
+  a lot in their first few days are far more likely to actually reach their goal.
+  <a href="./sharing-does-more-than-you-think.html">See the numbers →</a>
+</div>
+
 <h2 class="section-heading" id="zero-heading">Campaigns with zero donations</h2>
 <p class="page-sub">Be someone's first donor. Every campaign starts here — this is the tier we
 built this whole board around.</p>
 <div class="board" id="zeroGrid"></div>
 
 <h2 class="section-heading" id="board-heading">Campaigns already building momentum</h2>
-<p class="page-sub">Once a campaign gets its first few donations, it moves here — "First Five"
-means 1–4 donors so far, "First Ten" means 5–9. Once a campaign passes 10 donors, it moves off
-the board, so the spotlight moves to whoever needs it next. If there aren't enough campaigns
-fitting those donor-count tiers on a given day, we may also include a campaign that's
-technically passed 10 donors but has barely made a dent in a much larger goal, or one our team
-has flagged as getting very little reach. Our site is new and we are putting the pieces
-together, these are not hard and fast rules. Our main goal is to help signal boost and
-systemize it. &lt;3</p>
+<div class="tier-legend">
+  <div class="tier-pill seed"><span class="tier-pill-name">Seed</span><span class="tier-pill-range">0 donors</span></div>
+  <div class="tier-pill five"><span class="tier-pill-name">First Five</span><span class="tier-pill-range">1–4 donors</span></div>
+  <div class="tier-pill ten"><span class="tier-pill-name">First Ten</span><span class="tier-pill-range">5–9 donors</span></div>
+</div>
+<p class="page-sub">A campaign moves through these tiers as it picks up support, then rotates off
+the board once it passes 10 donors — the spotlight moves on to whoever needs it next.</p>
+<div class="callout">
+  <p><strong>A couple of exceptions, on purpose:</strong> we'll sometimes keep a campaign visible
+  past 10 donors if it's barely made a dent in a much larger goal, or if our team has flagged it
+  as getting very little reach despite the donor count.</p>
+  <p class="callout-note">Our site is new and we're still putting the pieces together — none of
+  this is a hard and fast rule. The goal is just to help signal-boost, and to make that
+  systematic instead of random. &lt;3</p>
+</div>
 <div class="board" id="board"></div>
 
-<p class="page-note">This project is run by volunteers on our own time. If a campaign hasn't
-rotated through yet, please keep reaching out to your own community too — don't wait on us alone.
-You can <a href="./helpful-fundraising-ideas.html">read some helpful ideas</a> while you wait.</p>
+<p class="page-note">This project is run by volunteers. If a campaign hasn't
+rotated through yet, please keep reaching out to your own community too — we want to support
+your success. To that end, please <a href="./helpful-fundraising-ideas.html">read some helpful
+ideas</a> here.</p>
 
 <p class="page-note">Every campaign here is reviewed by hand before it's added, which takes time —
 so by the time one appears, it may already have picked up a donation or two elsewhere. That's a
-genuinely good sign, not a mistake. If you notice it, the "Report / Update" link on that card is
-the easiest way to let us know.</p>
+genuinely good sign, not a mistake. If you notice something that looks off, the "Report / Update"
+link on that card is the easiest way to let us know.</p>
+
+<p class="page-note">If your situation is urgent, please don't wait on us. Try posting on social
+media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign
+some immediate attention. We're sorry that we don't have the staff to respond to urgent needs
+in real time.</p>
 
 <div class="support-block">
   <h3>Boost Board isn't a charity or nonprofit — it's just an app.</h3>
-  <p>Volunteers run it, it isn't tax-deductible, and it doesn't touch anyone's donations.
+  <p>Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly,
+    as submitted or brought to our attention.
     If you'd like to support the effort, you've got two options: help keep the app itself
     running, or send your money straight to today's featured campaign instead.</p>
   <div class="support-actions">
@@ -181,6 +218,7 @@ the easiest way to let us know.</p>
       <div class="tags">${c.communities.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       <div class="actions">
         <a class="cta" href="${c.link}" target="_blank" rel="noopener">View campaign →</a>
+        <a class="share" data-id="${c.id}" title="Sharing helps even if you can't donate">Share</a>
         <a class="report" href="#" data-id="${c.id}" title="Report a concern, or let us know this campaign already has donations">Report / Update</a>
       </div>
     `;
@@ -202,11 +240,28 @@ the easiest way to let us know.</p>
     tlcSection.forEach(c => board.appendChild(renderCard(c)));
   }
 
+  document.querySelectorAll('a.share').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const c = campaigns.find(x => x.id === a.dataset.id);
+      if (!c) return;
+      const shareData = { title: c.name, text: `Help boost this campaign: ${c.name}`, url: c.link };
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(c.link).then(() => {
+          alert("Link copied — paste it anywhere. Sharing genuinely helps, even if you can't donate.");
+        });
+      }
+    });
+  });
+
   document.querySelectorAll('a.report').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
-      alert(`Demo only: this would open a form for campaign ${a.dataset.id} — for reporting ` +
-        `a concern, or just letting us know this campaign already has donations so we can update it.`);
+      const campaign = campaigns.find(c => c.id === a.dataset.id);
+      const name = campaign ? campaign.name : '';
+      window.location.href = `./submit.html?report=${encodeURIComponent(a.dataset.id)}&name=${encodeURIComponent(name)}`;
     });
   });
 </script>

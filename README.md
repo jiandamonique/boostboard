@@ -5,6 +5,10 @@
 A small tool that helps volunteer moderators give visibility to
 fundraising campaigns that haven't gotten much traction yet.
 
+Run by volunteers, with various availabilities — if a campaign hasn't
+been featured yet, please keep reaching out to your own community too,
+and feel free to refer to our [tips for spreading the
+word](https://jiandamonique.github.io/boostboard/helpful-fundraising-ideas.html).
 
 ## Reporting a concern
 

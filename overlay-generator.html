@@ -146,7 +146,8 @@
     const safeName = (name || 'Untitled campaign').slice(0, 40);
     return `
       <rect width="400" height="220" rx="16" fill="#ffffff" stroke="#e0e0e0"/>
-      <text x="30" y="50" font-family="Georgia, serif" font-size="20" fill="#162418">${escapeXml(safeName)}</text>
+      <text x="30" y="52" font-family="'Arial Black', Impact, Arial, sans-serif" font-weight="900"
+        font-size="23" letter-spacing="0.3" fill="#162418">${escapeXml(safeName)}</text>
       <text x="30" y="80" font-family="Arial, sans-serif" font-size="15" fill="#5c6b5c">
         ${currency}${formatNum(raised)} raised of ${currency}${formatNum(goal)} goal
       </text>

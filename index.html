@@ -49,7 +49,7 @@
   .hero-pin-reason { font-size: 0.9rem; color: var(--pin); font-style: italic; text-align: center; margin-bottom: 1rem; }
   .hero-pitch { background: var(--warm); border-radius: 12px; padding: 1.1rem 1.3rem; font-size: 1rem;
     line-height: 1.6; margin-bottom: 1.3rem; }
-  .hero-desc { line-height: 1.65; font-size: 1.05rem; margin-bottom: 1.2rem; text-align: center; }
+  .hero-desc { line-height: 1.65; font-size: 1.05rem; margin-bottom: 1.2rem; text-align: left; }
   .hero-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.6rem; }
   .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; background: var(--warm);
     border: 1px solid var(--border); border-radius: 999px; padding: 0.18rem 0.55rem; color: var(--muted); }
@@ -58,6 +58,12 @@
     font-weight: 600; padding: 0.85rem 2rem; border-radius: 12px; font-size: 1.05rem; }
   a.hero-cta:hover { opacity: 0.9; }
   a.hero-more { font-size: 0.88rem; color: var(--muted); text-decoration: underline; }
+  button.hero-share { font-family: 'Source Sans 3', sans-serif; font-weight: 600; background: var(--warm);
+    color: var(--deep); border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 12px;
+    font-size: 1.05rem; cursor: pointer; }
+  button.hero-share:hover { opacity: 0.9; }
+  .cant-donate { font-size: 0.85rem; color: var(--muted); text-align: center; margin-top: 0.2rem; }
+  .cant-donate a { color: var(--deep); font-weight: 600; }
   .hero-empty { max-width: 640px; margin: 0 auto 2.5rem; text-align: center; color: var(--muted);
     font-family: 'Lora', serif; font-style: italic; }
 </style>
@@ -114,10 +120,24 @@
         <div class="hero-tags">${hero.communities.map(t => `<span class="tag">${t}</span>`).join('')}</div>
         <div class="hero-actions">
           <a class="hero-cta" href="${hero.link}" target="_blank" rel="noopener">View campaign →</a>
+          <button class="hero-share" id="heroShareBtn">Share this campaign</button>
+          <p class="cant-donate">Can't donate right now? Sharing genuinely helps —
+            <a href="./sharing-does-more-than-you-think.html">see the numbers →</a></p>
           <a class="hero-more" href="./board.html">See today's full board →</a>
         </div>
       </div>
     `;
+
+    document.getElementById('heroShareBtn').addEventListener('click', () => {
+      const shareData = { title: hero.name, text: `Help boost this campaign: ${hero.name}`, url: hero.link };
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(hero.link).then(() => {
+          alert("Link copied — paste it anywhere. Sharing genuinely helps, even if you can't donate.");
+        });
+      }
+    });
   }
 </script>
 

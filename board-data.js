@@ -12,7 +12,7 @@ const campaigns = [
     "donationCount": 2,
     "submittedDate": "2026-09-07",
     "lastFeatured": null,
-    "pinned": true,
+    "pinned": false,
     "reported": false,
     "imageUrl": "./campaign-jaye.webp",
     "pinReason": "",
