@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>Get Notified — Boost Board</title>
+<meta name="description" content="Get one email whenever a new campaign hits zero donations. No newsletter, no spam.">
+<link rel="canonical" href="https://jiandamonique.github.io/boostboard/subscribe.html">
+<meta property="og:title" content="Get Notified — Boost Board">
+<meta property="og:description" content="Get one email whenever a new campaign hits zero donations. No newsletter, no spam.">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:url" content="https://jiandamonique.github.io/boostboard/subscribe.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boost Board">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./board-data.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root { --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c; --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08); --accent: #e8562f; --on-accent: #fff8f4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 620px; margin: 0 auto; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem; text-align: center; }
+  h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.6rem; text-align: center; }
+  p.sub { color: var(--muted); font-size: 0.92rem; margin-bottom: 2rem; text-align: center; }
+  .form-panel { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+  .form-panel iframe { width: 100%; height: 520px; border: none; border-radius: 8px; }
+  .placeholder-note { background: var(--warm); border-radius: 10px; padding: 1rem 1.2rem; font-size: 0.85rem; color: var(--deep); text-align: center; margin-bottom: 1.5rem; }
+  .rss-option { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem 1.4rem; box-shadow: var(--shadow); margin-bottom: 1.5rem; text-align: center; }
+  .rss-option h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .rss-option p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.8rem; text-align: left; }
+  .rss-link { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+    background: var(--warm); padding: 0.5rem 0.9rem; border-radius: 8px; color: var(--deep);
+    text-decoration: none; word-break: break-all; }
+  .rss-link:hover { text-decoration: underline; }
+  .fallback { max-width: 500px; margin: 0 auto; text-align: center; font-size: 0.88rem; color: var(--muted); }
+  .fallback a { color: var(--deep); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Get notified</div>
+  <h1>Get an email when someone needs a first donation</h1>
+  <p class="sub">This isn't a newsletter in the usual sense — no roundups, no product updates,
+  no drip sequence. Just one email whenever there's a new campaign at zero donations, so you can
+  be the reason it isn't anymore. Unsubscribe any time; nothing else will ever land in that inbox.</p>
+
+  <div class="placeholder-note">The email signup form below isn't wired up yet — this is a
+  placeholder. See the note in the page source (or ask your Boost Board assistant) for the
+  three-step setup once the real Google Form exists.</div>
+
+  <div class="rss-option">
+    <h2>Prefer an RSS reader instead?</h2>
+    <p>This part already works, right now, no signup needed. Boost Board publishes a live feed —
+    point any RSS reader (Feedly, NetNewsWire, etc.) at the link below and you'll get the same
+    daily zero-donation campaign, one new item per day.</p>
+    <a class="rss-link" href="./rss.xml">https://jiandamonique.github.io/boostboard/rss.xml</a>
+  </div>
+
+  <!--
+    SETUP (once the signup Google Form exists): replace the iframe src below
+    with the real embed URL, same pattern as submit.html. Question needed on
+    that form: just "Email" (Google's built-in field, Responder input mode,
+    no sign-in) -- name is optional, nothing else required. See
+    INTERNAL_operations-howto.md for the full setup steps and how signups
+    move from the form into subscribers.json in the private repo.
+  <div class="form-panel">
+    <iframe src="PASTE_REAL_EMBED_URL_HERE" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
+  -->
+
+  <p class="fallback">In the meantime, you can also reach out directly through the
+  <a href="./credits.html">Credits & Support</a> page or as a
+  <a href="https://github.com/jiandamonique/boostboard/issues/new?title=Subscribe+me+to+zero-donation+alerts&body=I'd+like+to+get+an+email+whenever+a+new+campaign+hits+zero+donations.+My+email%3A+" target="_blank" rel="noopener">GitHub issue</a>,
+  and we'll add you to the list by hand.</p>
+</div>
+</body>
+</html>

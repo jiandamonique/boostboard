@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <title>The Board — Boost Board</title>
 <meta name="description" content="See every campaign currently in rotation on Boost Board, sorted by how much they've raised so far.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/board.html">
@@ -22,6 +23,7 @@
     --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
     --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
     --t-seed: #9b6e9e; --t-five: #7193a4; --t-ten: #6b9e8a; --pin: #b5762c;
+    --accent: #e8562f; --on-accent: #fff8f4;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
@@ -65,7 +67,7 @@
   }
 
   /* Hero: today's Inbox Zero campaign */
-  .hero { max-width: 640px; margin: 0 auto 3rem; background: #fff; border: 2px solid var(--t-seed);
+  .hero { max-width: 760px; margin: 0 auto 3rem; background: #fff; border: 2px solid var(--t-seed);
     border-radius: 18px; padding: 1.75rem; box-shadow: var(--shadow); }
   .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--t-seed); display: flex; align-items: center; gap: 0.4rem;
@@ -80,22 +82,22 @@
   .hero-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.3rem; }
   .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
   a.hero-cta {
-    display: inline-block; background: var(--deep); color: var(--cream); text-decoration: none;
+    display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none;
     font-weight: 600; padding: 0.75rem 1.6rem; border-radius: 10px; font-size: 0.95rem;
   }
   a.hero-cta:hover { opacity: 0.9; }
   a.hero-more { font-size: 0.82rem; color: var(--muted); text-decoration: underline; cursor: pointer; }
-  .hero-empty { max-width: 640px; margin: 0 auto 3rem; text-align: center; color: var(--muted);
+  .hero-empty { max-width: 760px; margin: 0 auto 3rem; text-align: center; color: var(--muted);
     font-family: 'Lora', serif; font-style: italic; }
-  .support-block { max-width: 640px; margin: 2.5rem auto 0; text-align: center; background: #fff;
+  .support-block { max-width: 760px; margin: 2.5rem auto 0; text-align: center; background: #fff;
     border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow); }
   .support-block h3 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.5rem; }
   .support-block p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
   .support-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
   a.support-btn { display: inline-block; padding: 0.6rem 1.1rem; border-radius: 8px; font-size: 0.85rem;
     font-weight: 600; text-decoration: none; }
-  a.support-app { background: var(--deep); color: var(--cream); }
-  a.support-booster { background: var(--warm); color: var(--deep); border: 1px solid var(--border); }
+  a.support-app { background: var(--accent); color: var(--on-accent); }
+  a.support-booster { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
   a.support-btn:hover { opacity: 0.9; }
   .pin-reason { font-size: 0.78rem; color: var(--pin); font-style: italic; margin-bottom: 0.7rem; }
   .hero-pin-reason { font-size: 0.85rem; color: var(--pin); font-style: italic; text-align: center; margin-bottom: 0.9rem; }
@@ -103,7 +105,7 @@
     max-width: 1000px; margin: 3rem auto 0.6rem; }
   .actions { display: flex; gap: 0.5rem; align-items: center; }
   a.cta {
-    display: inline-block; background: var(--deep); color: var(--cream); text-decoration: none;
+    display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none;
     font-weight: 600; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem;
   }
   a.cta:hover { opacity: 0.9; }
@@ -111,7 +113,7 @@
     font-size: 0.72rem; color: var(--muted); text-decoration: underline; margin-left: auto;
   }
   .empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-family: 'Lora', serif; font-style: italic; }
-  a.share { font-size: 0.72rem; color: var(--t-ten); text-decoration: underline; cursor: pointer; }
+  a.share { font-size: 0.72rem; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: 600; }
   .tier-legend { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 0 auto 1rem; max-width: 1000px; }
   .tier-pill { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; background: #fff;
     border: 1px solid var(--border); border-radius: 12px; padding: 0.5rem 1rem; box-shadow: var(--shadow); min-width: 110px; }
@@ -208,7 +210,7 @@ in real time.</p>
     const card = document.createElement('div');
     card.className = `card ${tier} ${c.pinned ? 'is-pinned' : ''}`;
     const imageHtml = c.imageUrl
-      ? `<img class="card-image" src="${c.imageUrl}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;card-image-fallback&quot;></div>'">`
+      ? `<img class="card-image" src="${c.imageUrl}" alt="${c.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;card-image-fallback&quot;></div>'">`
       : `<div class="card-image-fallback"></div>`;
     const eyebrowText = c.pinned ? "Editor's Pick" : (tier === 'graduated' ? fallbackLabel(c) : tierLabel(tier));
     card.innerHTML = `

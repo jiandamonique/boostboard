@@ -4,13 +4,13 @@
     <title>Boost Board — Today's Zero</title>
     <link>https://example.org/index.html</link>
     <description>One email whenever a campaign at zero donations gets featured. Nothing else.</description>
-    <lastBuildDate>Mon, 07 Sep 2026 18:01:26 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 02:01:38 GMT</lastBuildDate>
     <item>
-      <title>Paint Liverpool Better</title>
-      <link>https://www.gofundme.com/f/paint-liverpool-better</link>
-      <guid isPermaLink="false">c004-2026-09-07</guid>
-      <pubDate>Mon, 07 Sep 2026 18:01:26 GMT</pubDate>
-      <description>Starting a community project to give back the kind of practical support and positive experiences the organizer's own family once received.</description>
+      <title>Diego's wheelchair repair</title>
+      <link>https://gofundme.com/f/example-diego</link>
+      <guid isPermaLink="false">c005-2026-09-07</guid>
+      <pubDate>Mon, 07 Sep 2026 02:01:38 GMT</pubDate>
+      <description>Custom wheelchair part replacement, insurance denied as cosmetic.</description>
     </item>
   </channel>
 </rss>
