@@ -25,20 +25,30 @@
     { href: './resources.html', label: 'Resources', alsoActiveFor: [
       'helpful-fundraising-ideas.html', 'emergency-help.html'
     ] },
-    { href: './success-stories.html', label: 'Success Stories' },
     { href: './about.html', label: 'About' },
-    { href: './blog.html', label: 'Blog' },
+    { href: './blog.html', label: 'Blog', alsoActiveFor: ['success-stories.html', 'archive.html'] },
     { href: './overlay-generator.html', label: 'Campaign Tools' },
     { href: './credits.html', label: 'Credits & Support' },
-    // Reordered + trimmed (v80): "Share Your Page" moved into Credits &
-    // Support (bottommost section there) instead of its own nav slot;
-    // "General Archive" dropped from nav for now (still reachable via a
-    // link from the Blog page, and the existing link from
-    // success-stories.html), being re-approached per the roadmap;
-    // "Roadmap" folded into a section on Credits & Support instead of
-    // its own page/nav slot. None of the three pages were deleted --
-    // submit.html, archive.html, and roadmap.html still exist at their
-    // same URLs.
+    // "Share Your Page" (v84): moved to the very last slot per request,
+    // and given a permanent CTA treatment (`cta: true`) -- always
+    // coral-filled like a real button, not just when it happens to be
+    // the active page. It's the single most important action on the
+    // site, so it gets a different visual weight than a normal nav
+    // link, not just a normal-priority position in the list.
+    { href: './submit.html', label: 'Share Your Page', cta: true },
+    // Reordered + trimmed (v80, v82, v83, v84): "General Archive" and
+    // "Success Stories" both dropped from nav, now linked from the Blog
+    // page instead (both are written-content pages, same category as
+    // the blog itself) -- General Archive being re-approached per the
+    // roadmap, Success Stories moved deliberately. "Roadmap" folded
+    // into a section on Credits & Support instead of its own page/nav
+    // slot. "Share Your Page" moved out of the nav (v80), restored
+    // (v83), then moved to last + made a CTA button (v84). The Credits
+    // & Support section for it ("Have a campaign of your own?") was
+    // left in place too -- two reachable paths to the same form is fine
+    // for something this central. None of these pages were deleted --
+    // submit.html, archive.html, roadmap.html, and success-stories.html
+    // all still exist at their same URLs.
   ];
 
   window.BOOST_BOARD_PAGES = links;
@@ -64,6 +74,8 @@
     }
     .site-nav a.active { color: #fff8f4; font-weight: 600; background: #e8562f; }
     .site-nav a:hover:not(.active) { background: #f2f7f2; color: #162418; }
+    .site-nav a.cta { color: #fff8f4; font-weight: 600; background: #e8562f; }
+    .site-nav a.cta:hover { opacity: 0.9; }
 
     @media (min-width: ${BREAKPOINT}) {
       /* Page-max keeps the sidebar+content pair centered as one unit on
@@ -105,7 +117,8 @@
   nav.innerHTML = links.map(l => {
     const fileName = l.href.replace('./', '');
     const isActive = fileName === currentPath || (l.alsoActiveFor && l.alsoActiveFor.includes(currentPath));
-    return `<a href="${l.href}" class="${isActive ? 'active' : ''}">${l.label}</a>`;
+    const cls = l.cta ? 'cta' : (isActive ? 'active' : '');
+    return `<a href="${l.href}" class="${cls}">${l.label}</a>`;
   }).join('');
 
   document.body.insertBefore(nav, document.body.firstChild);
