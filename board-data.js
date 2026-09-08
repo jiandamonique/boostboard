@@ -18,7 +18,11 @@ const campaigns = [
     "pinReason": "",
     "amountRaised": 120,
     "goalAmount": 2400,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "Housing",
+      "Financial Hardship"
+    ]
   },
   {
     "id": "c002",
@@ -35,7 +39,11 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-simba.webp"
+    "imageUrl": "./campaign-simba.webp",
+    "category": [
+      "Animals",
+      "Medical"
+    ]
   },
   {
     "id": "c003",
@@ -52,7 +60,10 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-jimmy.webp"
+    "imageUrl": "./campaign-jimmy.webp",
+    "category": [
+      "Sports"
+    ]
   },
   {
     "id": "c004",
@@ -69,7 +80,10 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-liverpool.webp"
+    "imageUrl": "./campaign-liverpool.webp",
+    "category": [
+      "Community"
+    ]
   },
   {
     "id": "c005",
@@ -86,7 +100,11 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-rubie.webp"
+    "imageUrl": "./campaign-rubie.webp",
+    "category": [
+      "Crisis",
+      "Medical"
+    ]
   },
   {
     "id": "c006",
@@ -103,7 +121,11 @@ const campaigns = [
     "pinReason": "",
     "amountRaised": 40,
     "goalAmount": 1300,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "Animals",
+      "Medical"
+    ]
   },
   {
     "id": "c007",
@@ -120,7 +142,10 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-dog.webp"
+    "imageUrl": "./campaign-dog.webp",
+    "category": [
+      "Animals"
+    ]
   },
   {
     "id": "c008",
@@ -137,7 +162,11 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-eloise.webp"
+    "imageUrl": "./campaign-eloise.webp",
+    "category": [
+      "Education",
+      "International Aid"
+    ]
   },
   {
     "id": "c009",
@@ -154,7 +183,11 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-family.webp"
+    "imageUrl": "./campaign-family.webp",
+    "category": [
+      "Housing",
+      "Family Support"
+    ]
   },
   {
     "id": "c010",
@@ -171,7 +204,73 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-aubry.webp"
+    "imageUrl": "./campaign-aubry.webp",
+    "category": [
+      "Education"
+    ]
+  },
+  {
+    "id": "c011",
+    "name": "Help WIKIF Build Community Water Taps in Buea, Cameroon",
+    "communities": [],
+    "description": "WIKIF's fund makes community water taps possible for families across Buea, Cameroon.",
+    "link": "https://www.gofundme.com/f/help-wikif-build-community-water-taps-in-buea-cameroon",
+    "donationCount": 1,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-wikif.webp",
+    "pinReason": "",
+    "amountRaised": 5,
+    "goalAmount": 1200,
+    "lowEngagementFlag": false,
+    "category": [
+      "International Aid",
+      "Community"
+    ]
+  },
+  {
+    "id": "c012",
+    "name": "A Mother and Baby Needing a Bridge to Work",
+    "communities": [],
+    "description": "This fund bridges essential bills and baby care while a mother secures remote work.",
+    "link": "https://www.gofundme.com/f/a-mother-and-baby-needing-a-bridge-to-work",
+    "donationCount": 0,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-mari.webp",
+    "pinReason": "",
+    "amountRaised": 0,
+    "goalAmount": 10000,
+    "lowEngagementFlag": false,
+    "category": [
+      "Family Support",
+      "Financial Hardship"
+    ]
+  },
+  {
+    "id": "c013",
+    "name": "Support Savannahs Legal Fight",
+    "communities": [],
+    "description": "Savannah's legal fund covers attorney fees and court expenses for custody proceedings.",
+    "link": "https://www.gofundme.com/f/support-savannahs-legal-fight",
+    "donationCount": 1,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-savannah.webp",
+    "pinReason": "",
+    "amountRaised": 50,
+    "goalAmount": 2400,
+    "lowEngagementFlag": false,
+    "category": [
+      "Legal",
+      "Family Support"
+    ]
   }
 ];
 

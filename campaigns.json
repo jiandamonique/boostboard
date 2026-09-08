@@ -14,7 +14,11 @@
     "pinReason": "",
     "amountRaised": 120,
     "goalAmount": 2400,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "Housing",
+      "Financial Hardship"
+    ]
   },
   {
     "id": "c002",
@@ -31,7 +35,11 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-simba.webp"
+    "imageUrl": "./campaign-simba.webp",
+    "category": [
+      "Animals",
+      "Medical"
+    ]
   },
   {
     "id": "c003",
@@ -48,7 +56,10 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-jimmy.webp"
+    "imageUrl": "./campaign-jimmy.webp",
+    "category": [
+      "Sports"
+    ]
   },
   {
     "id": "c004",
@@ -65,7 +76,10 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-liverpool.webp"
+    "imageUrl": "./campaign-liverpool.webp",
+    "category": [
+      "Community"
+    ]
   },
   {
     "id": "c005",
@@ -82,7 +96,11 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-rubie.webp"
+    "imageUrl": "./campaign-rubie.webp",
+    "category": [
+      "Crisis",
+      "Medical"
+    ]
   },
   {
     "id": "c006",
@@ -99,7 +117,11 @@
     "pinReason": "",
     "amountRaised": 40,
     "goalAmount": 1300,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "Animals",
+      "Medical"
+    ]
   },
   {
     "id": "c007",
@@ -116,7 +138,10 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-dog.webp"
+    "imageUrl": "./campaign-dog.webp",
+    "category": [
+      "Animals"
+    ]
   },
   {
     "id": "c008",
@@ -133,7 +158,11 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-eloise.webp"
+    "imageUrl": "./campaign-eloise.webp",
+    "category": [
+      "Education",
+      "International Aid"
+    ]
   },
   {
     "id": "c009",
@@ -150,7 +179,11 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-family.webp"
+    "imageUrl": "./campaign-family.webp",
+    "category": [
+      "Housing",
+      "Family Support"
+    ]
   },
   {
     "id": "c010",
@@ -167,7 +200,10 @@
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-aubry.webp"
+    "imageUrl": "./campaign-aubry.webp",
+    "category": [
+      "Education"
+    ]
   },
   {
     "id": "c011",
@@ -184,7 +220,11 @@
     "pinReason": "",
     "amountRaised": 5,
     "goalAmount": 1200,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "International Aid",
+      "Community"
+    ]
   },
   {
     "id": "c012",
@@ -201,7 +241,11 @@
     "pinReason": "",
     "amountRaised": 0,
     "goalAmount": 10000,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "Family Support",
+      "Financial Hardship"
+    ]
   },
   {
     "id": "c013",
@@ -218,6 +262,10 @@
     "pinReason": "",
     "amountRaised": 50,
     "goalAmount": 2400,
-    "lowEngagementFlag": false
+    "lowEngagementFlag": false,
+    "category": [
+      "Legal",
+      "Family Support"
+    ]
   }
 ]

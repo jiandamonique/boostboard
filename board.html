@@ -130,6 +130,21 @@
   .share-callout { max-width: 620px; margin: 0 auto 2rem; text-align: center; background: #fff;
     border: 1px solid var(--t-ten); border-radius: 12px; padding: 1rem 1.2rem; font-size: 0.88rem; }
   .share-callout a { color: var(--deep); font-weight: 600; }
+  .filter-bar { max-width: 1000px; margin: 0 auto 2rem; }
+  .search-input {
+    display: block; width: 100%; max-width: 460px; margin: 0 auto 1rem; padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border); border-radius: 999px; font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem; color: var(--deep); background: #fff;
+  }
+  .search-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.03em; padding: 0.35rem 0.8rem; border-radius: 999px; cursor: pointer;
+    background: #fff; border: 1px solid var(--border); color: var(--muted);
+  }
+  .chip.active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .chip:hover:not(.active) { background: var(--warm); color: var(--deep); }
 </style>
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
@@ -144,6 +159,11 @@
   Can't donate right now? <strong>Sharing genuinely helps</strong> — campaigns that get shared
   a lot in their first few days are far more likely to actually reach their goal.
   <a href="./sharing-does-more-than-you-think.html">See the numbers →</a>
+</div>
+
+<div class="filter-bar">
+  <input type="text" id="searchInput" placeholder="Search by name or description…" class="search-input">
+  <div class="chip-row" id="chipRow"></div>
 </div>
 
 <h2 class="section-heading" id="zero-heading">Campaigns with zero donations</h2>
@@ -219,7 +239,7 @@ in real time.</p>
       ${c.pinned && c.pinReason ? `<div class="pin-reason">${c.pinReason}</div>` : ''}
       <h2>${c.name}</h2>
       <p class="desc">${c.description}</p>
-      <div class="tags">${c.communities.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      <div class="tags">${[...c.communities, ...(c.category || [])].map(t => `<span class="tag">${t}</span>`).join('')}</div>
       <div class="actions">
         <a class="cta" href="${c.link}" target="_blank" rel="noopener">View campaign →</a>
         <a class="share" data-id="${c.id}" title="Sharing helps even if you can't donate">Share</a>
@@ -231,23 +251,70 @@ in real time.</p>
 
   const zeroGrid = document.getElementById('zeroGrid');
   const board = document.getElementById('board');
+  const searchInput = document.getElementById('searchInput');
+  const chipRow = document.getElementById('chipRow');
 
-  if (zeroSection.length === 0) {
-    zeroGrid.innerHTML = `<p class="empty">No other zero-donation campaigns right now.</p>`;
-  } else {
-    zeroSection.forEach(c => zeroGrid.appendChild(renderCard(c)));
+  // Category chips, built from whatever `category` values actually exist
+  // in the dataset -- no hardcoded list to keep in sync by hand.
+  const allCategories = [...new Set(campaigns.flatMap(c => c.category || []))].sort();
+  let activeCategory = 'All';
+
+  function renderChips() {
+    const cats = ['All', ...allCategories];
+    chipRow.innerHTML = cats.map(cat =>
+      `<span class="chip ${cat === activeCategory ? 'active' : ''}" data-cat="${cat}">${cat}</span>`
+    ).join('');
+    chipRow.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        activeCategory = chip.dataset.cat;
+        renderChips();
+        applyFilters();
+      });
+    });
   }
 
-  if (tlcSection.length === 0) {
-    board.innerHTML = `<p class="empty">No other campaigns on the board right now.</p>`;
-  } else {
-    tlcSection.forEach(c => board.appendChild(renderCard(c)));
+  function matchesFilters(c) {
+    const q = searchInput.value.trim().toLowerCase();
+    const matchesSearch = !q || c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q);
+    const matchesCategory = activeCategory === 'All' || (c.category || []).includes(activeCategory);
+    return matchesSearch && matchesCategory;
   }
 
-  document.querySelectorAll('a.share').forEach(a => {
-    a.addEventListener('click', (e) => {
+  function applyFilters() {
+    const filteredZero = zeroSection.filter(matchesFilters);
+    const filteredTlc = tlcSection.filter(matchesFilters);
+
+    zeroGrid.innerHTML = '';
+    if (filteredZero.length === 0) {
+      zeroGrid.innerHTML = zeroSection.length === 0
+        ? `<p class="empty">No other zero-donation campaigns right now.</p>`
+        : `<p class="empty">No zero-donation campaigns match your filters.</p>`;
+    } else {
+      filteredZero.forEach(c => zeroGrid.appendChild(renderCard(c)));
+    }
+
+    board.innerHTML = '';
+    if (filteredTlc.length === 0) {
+      board.innerHTML = tlcSection.length === 0
+        ? `<p class="empty">No other campaigns on the board right now.</p>`
+        : `<p class="empty">No campaigns match your filters.</p>`;
+    } else {
+      filteredTlc.forEach(c => board.appendChild(renderCard(c)));
+    }
+  }
+
+  renderChips();
+  applyFilters();
+  searchInput.addEventListener('input', applyFilters);
+
+  // Event delegation on the whole document, not per-card -- this way
+  // share/report links keep working after every re-render from a
+  // filter change, without needing to re-attach listeners each time.
+  document.addEventListener('click', (e) => {
+    const shareLink = e.target.closest('a.share');
+    if (shareLink) {
       e.preventDefault();
-      const c = campaigns.find(x => x.id === a.dataset.id);
+      const c = campaigns.find(x => x.id === shareLink.dataset.id);
       if (!c) return;
       const shareData = { title: c.name, text: `Help boost this campaign: ${c.name}`, url: c.link };
       if (navigator.share) {
@@ -257,16 +324,15 @@ in real time.</p>
           alert("Link copied — paste it anywhere. Sharing genuinely helps, even if you can't donate.");
         });
       }
-    });
-  });
-
-  document.querySelectorAll('a.report').forEach(a => {
-    a.addEventListener('click', (e) => {
+      return;
+    }
+    const reportLink = e.target.closest('a.report');
+    if (reportLink) {
       e.preventDefault();
-      const campaign = campaigns.find(c => c.id === a.dataset.id);
+      const campaign = campaigns.find(c => c.id === reportLink.dataset.id);
       const name = campaign ? campaign.name : '';
-      window.location.href = `./submit.html?report=${encodeURIComponent(a.dataset.id)}&name=${encodeURIComponent(name)}`;
-    });
+      window.location.href = `./submit.html?report=${encodeURIComponent(reportLink.dataset.id)}&name=${encodeURIComponent(name)}`;
+    }
   });
 </script>
 
