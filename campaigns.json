@@ -267,5 +267,47 @@
       "Legal",
       "Family Support"
     ]
+  },
+  {
+    "id": "c014",
+    "name": "Help Us Get to Work, School, and Medical Care",
+    "communities": [],
+    "description": "Family left homeless needs bus passes to reach work, school, and medical care.",
+    "link": "https://www.gofundme.com/f/help-us-get-to-work-school-and-medical-care",
+    "donationCount": 0,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-santone.webp",
+    "pinReason": "",
+    "amountRaised": 0,
+    "goalAmount": 100,
+    "lowEngagementFlag": false,
+    "category": [
+      "Housing",
+      "Family Support"
+    ]
+  },
+  {
+    "id": "c015",
+    "name": "Help Cole Rebuild After Service",
+    "communities": [],
+    "description": "Cole's campaign keeps loan payments, moving costs, and safe housing within reach again.",
+    "link": "https://www.gofundme.com/f/help-cole-rebuild-after-service",
+    "donationCount": 0,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-cole.webp",
+    "pinReason": "",
+    "amountRaised": 0,
+    "goalAmount": 1000,
+    "lowEngagementFlag": false,
+    "category": [
+      "Housing",
+      "Financial Hardship"
+    ]
   }
 ]
