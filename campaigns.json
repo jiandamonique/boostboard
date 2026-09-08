@@ -185,5 +185,39 @@
     "amountRaised": 5,
     "goalAmount": 1200,
     "lowEngagementFlag": false
+  },
+  {
+    "id": "c012",
+    "name": "A Mother and Baby Needing a Bridge to Work",
+    "communities": [],
+    "description": "This fund bridges essential bills and baby care while a mother secures remote work.",
+    "link": "https://www.gofundme.com/f/a-mother-and-baby-needing-a-bridge-to-work",
+    "donationCount": 0,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-mari.webp",
+    "pinReason": "",
+    "amountRaised": 0,
+    "goalAmount": 10000,
+    "lowEngagementFlag": false
+  },
+  {
+    "id": "c013",
+    "name": "Support Savannahs Legal Fight",
+    "communities": [],
+    "description": "Savannah's legal fund covers attorney fees and court expenses for custody proceedings.",
+    "link": "https://www.gofundme.com/f/support-savannahs-legal-fight",
+    "donationCount": 1,
+    "submittedDate": "2026-09-07",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-savannah.webp",
+    "pinReason": "",
+    "amountRaised": 50,
+    "goalAmount": 2400,
+    "lowEngagementFlag": false
   }
 ]
