@@ -313,6 +313,26 @@ const campaigns = [
       "Housing",
       "Financial Hardship"
     ]
+  },
+  {
+    "id": "c016",
+    "name": "Help Us Open a Safe Haven for Survivors",
+    "communities": [],
+    "description": "Working to open a physical domestic violence shelter offering crisis support and connections to legal and housing resources.",
+    "link": "https://www.gofundme.com/f/help-us-open-a-safe-haven-for-survivors-yjg47",
+    "donationCount": 0,
+    "submittedDate": "2026-09-10",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-kenyatta.webp",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false,
+    "category": [
+      "Community"
+    ]
   }
 ];
 
