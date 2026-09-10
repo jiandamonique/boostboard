@@ -26,6 +26,7 @@
   :root {
     --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
     --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
+    --accent: #e8562f; --on-accent: #fff8f4;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif;
@@ -40,6 +41,23 @@
     letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem;
   }
   a { color: var(--deep); }
+  .reason-grid { display: grid; gap: 0.8rem; margin: 1.4rem 0 1.8rem; }
+  .reason-card { display: block; background: var(--cream); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.1rem; text-decoration: none; color: var(--deep); }
+  .reason-card:hover { border-color: var(--accent); }
+  .reason-num { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--accent); display: block; margin-bottom: 0.3rem; }
+  .reason-card h3 { font-family: 'Lora', serif; font-size: 0.98rem; margin-bottom: 0.3rem; }
+  .reason-card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0; line-height: 1.5; }
+  @media (min-width: 560px) { .reason-grid { grid-template-columns: repeat(3, 1fr); } }
+  .faq { margin-top: 1rem; }
+  .faq details { border-bottom: 1px solid var(--border); padding: 0.9rem 0; }
+  .faq details:first-child { border-top: 1px solid var(--border); }
+  .faq summary { cursor: pointer; list-style: none; font-weight: 600; font-size: 0.92rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary:after { content: '+'; font-size: 1.2rem; color: var(--accent); flex-shrink: 0; font-weight: 400; }
+  .faq details[open] summary:after { content: '−'; }
+  .faq details p { font-size: 0.88rem; color: var(--muted); margin: 0.7rem 0 0; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -62,18 +80,36 @@
     the person who needs it.</li>
   </ul>
 
-  <h2>1. Algorithms count people out</h2>
+  <div class="reason-grid">
+    <a class="reason-card" href="#reason-1">
+      <span class="reason-num">01</span>
+      <h3>Algorithms count people out</h3>
+      <p>Being first is the hardest part — and it has nothing to do with how much someone deserves help.</p>
+    </a>
+    <a class="reason-card" href="#reason-2">
+      <span class="reason-num">02</span>
+      <h3>Predatory "boost" services</h3>
+      <p>Paid services promise virality, then take money from people already struggling.</p>
+    </a>
+    <a class="reason-card" href="#reason-3">
+      <span class="reason-num">03</span>
+      <h3>A story about a good day</h3>
+      <p>An old radio story about a fake crowd — and what it taught us about real generosity.</p>
+    </a>
+  </div>
+
+  <h2 id="reason-1">1. Algorithms count people out</h2>
   <p>A fundraising page with zero donations tends to stay that way — not because the need
   isn't real, but because platforms surface what's already popular. Being first is the
   hardest part, and it has nothing to do with how much someone deserves help.</p>
 
-  <h2>2. Predatory "boost your campaign" services</h2>
+  <h2 id="reason-2">2. Predatory "boost your campaign" services</h2>
   <p>People trying to raise money for a real need are often approached by paid services
   promising visibility, virality, or guaranteed shares. At best these dilute the honesty of
   the original ask; at worst they take money from someone already struggling and leave them
   further discouraged when the promised results don't show up.</p>
 
-  <h2>3. A story* about giving someone a good day</h2>
+  <h2 id="reason-3">3. A story* about giving someone a good day</h2>
   <p>There's an old <em>This American Life</em> story (Episode 286, later re-aired as
   Episode 588, in a segment called "The Spy Who Loved Everyone") about a comedy group called
   Improv Everywhere. In 2004, they learned that a small unknown band from Vermont, Ghosts of
@@ -124,6 +160,40 @@
   <p style="margin-top:1rem; font-size:0.85rem; color:var(--muted); font-style:italic;">*You can hear the full
   story yourself at
   <a href="https://www.thisamericanlife.org/286/mind-games" target="_blank" rel="noopener">thisamericanlife.org</a>.</p>
+
+  <h2 style="margin-top: 2.2rem;">A few common questions</h2>
+  <div class="faq">
+    <details>
+      <summary>Does Boost Board verify campaigns?</summary>
+      <p>Every submission is reviewed by a real person, checking that it's genuine and safe to
+      share — but a listing here isn't a guarantee or endorsement. Review the organizer and
+      campaign details yourself before giving, the same as you would anywhere else.</p>
+    </details>
+    <details>
+      <summary>Does Boost Board collect or process donations?</summary>
+      <p>No. We never touch, hold, or process any money. When you give, you click through to a
+      campaign's own page — GoFundMe, or wherever it's hosted — and donate there directly. See
+      our <a href="./privacy-policy.html">privacy policy</a> for more on what we do and don't do
+      with information.</p>
+    </details>
+    <details>
+      <summary>Can I suggest my own campaign?</summary>
+      <p>Yes — use <a href="./submit.html">Share Your Page</a>. You don't need to be the
+      organizer to suggest one either, as long as the campaign is already public.</p>
+    </details>
+    <details>
+      <summary>What if I notice something suspicious about a listed campaign?</summary>
+      <p>Use the "Report / Update" link on that campaign's card on <a href="./board.html">the
+      board</a>. Reports are reviewed by a real person, not resolved automatically, and we
+      don't publish who filed one.</p>
+    </details>
+    <details>
+      <summary>Is a listing the same as an endorsement?</summary>
+      <p>No. We aim to feature genuine campaigns, but inclusion here isn't a verification
+      service and shouldn't be read as one. Boost Board isn't a charity or nonprofit — it's a
+      volunteer-run tool for visibility, nothing more.</p>
+    </details>
+  </div>
 </div>
 </body>
 </html>

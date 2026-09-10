@@ -45,6 +45,26 @@
   .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0 0.4rem; }
   .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: var(--warm);
     border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.7rem; color: var(--muted); }
+  .msg-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); margin-bottom: 0.5rem; }
+  #shareMsg { width: 100%; height: 160px; resize: vertical; border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.9rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
+    color: var(--deep); background: #fff; line-height: 1.6; }
+  .msg-actions { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.7rem; }
+  .dialog-btn { background: var(--accent); color: var(--on-accent); border: none; padding: 0.6rem 1.1rem;
+    border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+  .dialog-btn:disabled { opacity: 0.5; cursor: default; }
+  .msg-reset { background: none; border: none; color: var(--muted); text-decoration: underline;
+    font-size: 0.8rem; cursor: pointer; }
+  .msg-status { font-size: 0.8rem; color: var(--accent); margin-top: 0.5rem; min-height: 1.1rem; }
+  .checklist-box { background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.1rem 1.2rem; margin: 1.5rem 0; }
+  .checklist-lead { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.7rem; }
+  .check-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem;
+    padding: 0.5rem 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .check-item:last-of-type { border-bottom: none; }
+  .check-item input { accent-color: var(--accent); width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; }
+  .check-status { font-size: 0.78rem; color: var(--accent); margin-top: 0.6rem; }
 </style>
 </head>
 <body>
@@ -93,6 +113,28 @@
     <a class="action-btn secondary" href="./overlay-generator.html">Get a shareable graphic or QR code →</a>
   </div>
 
+  <h2>Your words make the connection</h2>
+  <p>Start here, then make it yours. Replace the bracketed details, then copy it wherever you'd share it.</p>
+  <label for="shareMsg" class="msg-label">An editable starting point</label>
+  <textarea id="shareMsg" spellcheck="true">I'm sharing [campaign name] because [why this matters to you].
+
+It hasn't gotten much attention yet, and every share genuinely helps: [link to campaign]
+
+If this speaks to you, consider supporting it or passing it along. No pressure — thank you for taking a look.</textarea>
+  <div class="msg-actions">
+    <button class="dialog-btn" id="msgCopyBtn">Copy message</button>
+    <button class="msg-reset" id="msgResetBtn">Reset wording</button>
+  </div>
+  <p class="msg-status" id="msgStatus" role="status"></p>
+
+  <div class="checklist-box">
+    <p class="checklist-lead">One last look before you post — a reminder, not a requirement:</p>
+    <label class="check-item"><input type="checkbox" class="check-box"> I've read the actual campaign, not just this page.</label>
+    <label class="check-item"><input type="checkbox" class="check-box"> My message sticks to what the organizer actually said.</label>
+    <label class="check-item"><input type="checkbox" class="check-box"> The link is direct, and there's no pressure attached.</label>
+    <p class="check-status" id="checkStatus" role="status">0 of 3 checked. Take your time.</p>
+  </div>
+
   <h2>Sharing with a hashtag</h2>
   <p>A few tags that tend to reach people already inclined to help:</p>
   <div class="tags">
@@ -110,5 +152,38 @@
   help too — see the <a href="./credits.html" style="color:var(--deep);">Credits & Support</a>
   page for both of those.</p>
 </div>
+
+<script>
+  const shareMsg = document.getElementById('shareMsg');
+  const originalMsg = shareMsg.value;
+  const msgCopyBtn = document.getElementById('msgCopyBtn');
+  const msgStatus = document.getElementById('msgStatus');
+
+  document.getElementById('msgResetBtn').addEventListener('click', () => {
+    shareMsg.value = originalMsg;
+    msgStatus.textContent = 'Starting wording restored.';
+  });
+
+  msgCopyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(shareMsg.value);
+      msgStatus.textContent = /\[[^\]]+\]/.test(shareMsg.value)
+        ? 'Copied — replace the bracketed details before sharing.'
+        : 'Copied — give it one last read before sharing.';
+    } catch {
+      shareMsg.focus();
+      shareMsg.select();
+      msgStatus.textContent = 'Select and copy the message above.';
+    }
+  });
+
+  const checkBoxes = [...document.querySelectorAll('.check-box')];
+  checkBoxes.forEach(box => box.addEventListener('change', () => {
+    const n = checkBoxes.filter(b => b.checked).length;
+    document.getElementById('checkStatus').textContent = n === checkBoxes.length
+      ? `${n} of ${checkBoxes.length} checked. Thank you for sharing with care.`
+      : `${n} of ${checkBoxes.length} checked. Take your time.`;
+  }));
+</script>
 </body>
 </html>

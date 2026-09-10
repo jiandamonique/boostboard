@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Post Composer — Boost Board (internal tool)</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
+    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2rem 1.5rem; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-family: 'Lora', serif; font-size: 1.4rem; margin-bottom: 0.3rem; }
+  p.sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.2rem; }
+  .panel { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow); margin-bottom: 1.2rem; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; margin-top: 0.9rem; }
+  label:first-child { margin-top: 0; }
+  input[type=text] { width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; }
+  .toolbar { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.8rem 0 0.6rem; }
+  .toolbar button { font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem; padding: 0.4rem 0.7rem;
+    border: 1px solid var(--border); border-radius: 6px; background: #fff; cursor: pointer; }
+  .toolbar button:hover { background: var(--warm); }
+  #editor {
+    min-height: 300px; border: 1px solid var(--border); border-radius: 8px; padding: 1rem;
+    font-size: 0.95rem; line-height: 1.7; background: #fff;
+  }
+  #editor:focus { outline: 2px solid #6b9e8a; outline-offset: -1px; }
+  #editor img { max-width: 100%; border-radius: 8px; }
+  .btn-row { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+  button.primary { font-family: 'Source Sans 3', sans-serif; font-weight: 600; background: var(--deep); color: var(--cream);
+    border: none; padding: 0.6rem 1.1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+  button.secondary { font-family: 'Source Sans 3', sans-serif; font-weight: 600; background: #fff; color: var(--deep);
+    border: 1px solid var(--border); padding: 0.6rem 1.1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+  .note { font-size: 0.8rem; color: var(--muted); margin-top: 0.8rem; }
+  textarea#output { width: 100%; height: 160px; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Blog Post Composer</h1>
+  <p class="sub">Internal tool — write visually, export a ready-to-upload HTML file. Not part of
+  the public site itself (marked noindex).</p>
+
+  <div class="panel">
+    <label>Post title</label>
+    <input type="text" id="postTitle" placeholder="What's this post about?">
+
+    <label>URL-friendly filename (auto-suggested from the title)</label>
+    <input type="text" id="postFilename" placeholder="e.g. why-we-built-this.html">
+
+    <label>Byline (optional — leave as-is for the default, or personalize it)</label>
+    <input type="text" id="postAuthor" value="Volunteer Team">
+
+    <label>Date</label>
+    <input type="text" id="postDate" placeholder="YYYY-MM-DD">
+
+    <label>Short description (used for the post's link preview/SEO tags)</label>
+    <input type="text" id="postDesc" placeholder="One sentence summarizing the post">
+
+    <label style="margin-top:1.2rem;">Post content</label>
+    <div class="toolbar">
+      <button type="button" data-cmd="bold"><b>B</b></button>
+      <button type="button" data-cmd="italic"><i>I</i></button>
+      <button type="button" data-cmd="formatBlock" data-value="h2">H2</button>
+      <button type="button" data-cmd="formatBlock" data-value="p">Paragraph</button>
+      <button type="button" data-cmd="insertUnorderedList">• List</button>
+      <button type="button" data-cmd="insertOrderedList">1. List</button>
+      <button type="button" id="linkBtn">Link</button>
+      <button type="button" id="imageBtn">Image (URL)</button>
+    </div>
+    <div id="editor" contenteditable="true">Start writing here...</div>
+
+    <div class="btn-row">
+      <button class="primary" id="generateBtn">Generate blog post HTML</button>
+      <button class="secondary" id="copyBtn">Copy HTML to clipboard</button>
+    </div>
+    <p class="note">After generating: download or copy the HTML, upload it to your GitHub repo
+    (same "Create new file" method as everything else), then add one line linking to it from
+    <code>blog.html</code>'s <code>posts</code> array — see the comment in that file.</p>
+
+    <textarea id="output" readonly placeholder="Generated HTML will appear here..."></textarea>
+  </div>
+</div>
+
+<script>
+  document.getElementById('postDate').value = new Date().toISOString().slice(0, 10);
+
+  document.querySelectorAll('.toolbar button[data-cmd]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.execCommand(btn.dataset.cmd, false, btn.dataset.value || null);
+      document.getElementById('editor').focus();
+    });
+  });
+
+  document.getElementById('linkBtn').addEventListener('click', () => {
+    const url = prompt('Link URL:');
+    if (url) document.execCommand('createLink', false, url);
+  });
+
+  document.getElementById('imageBtn').addEventListener('click', () => {
+    const url = prompt('Image URL (must already be hosted somewhere -- this tool doesn\'t upload images):');
+    if (url) document.execCommand('insertImage', false, url);
+  });
+
+  document.getElementById('postTitle').addEventListener('input', (e) => {
+    const slug = e.target.value.toLowerCase().trim()
+      .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').slice(0, 60);
+    document.getElementById('postFilename').value = slug ? `${slug}.html` : '';
+  });
+
+  function escapeAttr(s) {
+    return (s || '').replace(/"/g, '&quot;');
+  }
+
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    const title = document.getElementById('postTitle').value.trim() || 'Untitled post';
+    const desc = document.getElementById('postDesc').value.trim();
+    const author = document.getElementById('postAuthor').value.trim() || 'Volunteer Team';
+    const date = document.getElementById('postDate').value.trim() || new Date().toISOString().slice(0, 10);
+    const content = document.getElementById('editor').innerHTML;
+    const BASE_URL = 'https://jiandamonique.github.io/boostboard/';
+    const filename = document.getElementById('postFilename').value.trim() || 'untitled-post.html';
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title} — Boost Board Blog</title>
+<meta name="description" content="${escapeAttr(desc)}">
+<link rel="canonical" href="${BASE_URL}${filename}">
+<meta property="og:title" content="${escapeAttr(title)} — Boost Board Blog">
+<meta property="og:description" content="${escapeAttr(desc)}">
+<meta property="og:image" content="${BASE_URL}standin-image.jpg">
+<meta property="og:url" content="${BASE_URL}${filename}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Boost Board">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="./nav.js" defer><\/script>
+<script src="./footer.js" defer><\/script>
+<script src="./board-data.js" defer><\/script>
+<script src="./random-campaign-widget.js" defer><\/script>
+<style>
+  :root { --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c; --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; line-height: 1.7; }
+  .wrap { max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
+  h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
+  .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; letter-spacing: 0.04em; }
+  .wrap h2 { font-family: 'Lora', serif; font-size: 1.15rem; margin: 1.2rem 0 0.5rem; }
+  .wrap p { margin-bottom: 0.9rem; font-size: 0.95rem; }
+  .wrap a { color: var(--deep); }
+  .back-link { display:block; max-width:620px; margin:0 auto 1rem; font-size:0.85rem; }
+  .back-link a { color: var(--muted); }
+</style>
+</head>
+<body>
+<p class="back-link"><a href="./blog.html">← Back to all posts</a></p>
+<div class="wrap">
+  <h1>${title}</h1>
+  <div class="byline">${author} · ${date}</div>
+  ${content}
+</div>
+</body>
+</html>
+`;
+
+    document.getElementById('output').value = html;
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const output = document.getElementById('output');
+    if (!output.value) { alert('Click "Generate blog post HTML" first.'); return; }
+    navigator.clipboard.writeText(output.value).then(() => alert('Copied.'));
+  });
+</script>
+</body>
+</html>

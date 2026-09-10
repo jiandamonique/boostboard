@@ -112,6 +112,28 @@
   `;
   document.head.appendChild(style);
 
+  // Skip-to-content link -- first focusable element on every page, visually
+  // hidden until focused. Targets a zero-size anchor inserted right after
+  // nav (see below) rather than requiring every page's HTML to have its
+  // own #main id -- this way it works site-wide from one shared file.
+  const skipStyle = document.createElement('style');
+  skipStyle.textContent = `
+    .skip-link {
+      position: absolute; top: -60px; left: 12px; z-index: 1000;
+      background: #162418; color: #fff8f4; padding: 0.7rem 1.1rem; border-radius: 8px;
+      font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: top 0.15s;
+    }
+    .skip-link:focus { top: 12px; }
+  `;
+  document.head.appendChild(skipStyle);
+
+  const skipLink = document.createElement('a');
+  skipLink.className = 'skip-link';
+  skipLink.href = '#main-content';
+  skipLink.textContent = 'Skip to content';
+  document.body.insertBefore(skipLink, document.body.firstChild);
+
   const nav = document.createElement('nav');
   nav.className = 'site-nav';
   nav.innerHTML = links.map(l => {
@@ -121,5 +143,11 @@
     return `<a href="${l.href}" class="${cls}">${l.label}</a>`;
   }).join('');
 
-  document.body.insertBefore(nav, document.body.firstChild);
+  document.body.insertBefore(nav, skipLink.nextSibling);
+
+  const mainAnchor = document.createElement('span');
+  mainAnchor.id = 'main-content';
+  mainAnchor.tabIndex = -1;
+  mainAnchor.style.cssText = 'position:absolute; width:1px; height:1px;';
+  nav.insertAdjacentElement('afterend', mainAnchor);
 })();

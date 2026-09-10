@@ -98,6 +98,46 @@
     font-weight: 600; text-decoration: none; }
   a.support-app { background: var(--accent); color: var(--on-accent); }
   a.support-booster { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+
+  /* Multi-select + share list */
+  body { padding-bottom: 5.5rem; }
+  .card-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .select-label { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; color: var(--muted); cursor: pointer; }
+  .select-label input { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; cursor: pointer; }
+  .card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .share-bar {
+    position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+    width: min(600px, calc(100% - 2rem)); background: var(--deep); color: #fff;
+    border-radius: 12px; padding: 0.8rem 1.1rem; display: flex; align-items: center; gap: 0.9rem;
+    box-shadow: 0 8px 28px rgba(22,36,24,0.25); z-index: 50; font-size: 0.82rem;
+  }
+  .share-bar-count { flex: 1; }
+  .share-bar-count strong { font-weight: 600; }
+  .share-bar-clear { background: none; border: none; color: #cdd6cd; text-decoration: underline;
+    font-size: 0.72rem; cursor: pointer; padding: 0.4rem; }
+  .share-bar-clear:disabled { opacity: 0.4; cursor: default; text-decoration: none; }
+  .share-bar-btn { background: var(--accent); color: var(--on-accent); border: none; padding: 0.55rem 0.9rem;
+    border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+  .share-bar-btn:disabled { opacity: 0.4; cursor: default; }
+
+  /* Share dialog */
+  dialog#shareDialog { border: 1px solid var(--border); border-radius: 14px; background: #fff;
+    color: var(--deep); width: min(480px, calc(100% - 2rem)); padding: 1.6rem; position: relative; }
+  dialog#shareDialog::backdrop { background: rgba(22,36,24,0.55); }
+  dialog#shareDialog h2 { font-family: 'Lora', serif; font-size: 1.2rem; margin-bottom: 0.4rem; padding-right: 1.5rem; }
+  .dialog-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; }
+  .dialog-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em;
+    font-family: 'JetBrains Mono', monospace; color: var(--muted); margin-bottom: 0.4rem; }
+  dialog#shareDialog textarea { width: 100%; height: 160px; resize: vertical; border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.7rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem;
+    color: var(--deep); background: var(--cream); }
+  .dialog-actions { display: flex; gap: 0.6rem; margin-top: 0.9rem; }
+  .dialog-btn { background: var(--accent); color: var(--on-accent); border: none; padding: 0.6rem 1rem;
+    border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+  .dialog-btn-outline { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .dialog-status { font-size: 0.78rem; color: var(--accent); margin-top: 0.7rem; min-height: 1.1rem; }
+  .dialog-close { position: absolute; top: 0.9rem; right: 1rem; background: none; border: none;
+    font-size: 1.3rem; line-height: 1; color: var(--muted); cursor: pointer; padding: 0.2rem; }
   a.support-btn:hover { opacity: 0.9; }
   .pin-reason { font-size: 0.78rem; color: var(--pin); font-style: italic; margin-bottom: 0.7rem; }
   .hero-pin-reason { font-size: 0.85rem; color: var(--pin); font-style: italic; text-align: center; margin-bottom: 0.9rem; }
@@ -216,6 +256,27 @@ in real time.</p>
   </div>
 </div>
 
+<div class="share-bar" id="shareBar">
+  <div class="share-bar-count">
+    <strong id="shareCount">Select campaigns to share a few at once</strong>
+  </div>
+  <button class="share-bar-clear" id="shareClearBtn" disabled>Clear</button>
+  <button class="share-bar-btn" id="shareListBtn" disabled>Share list →</button>
+</div>
+
+<dialog id="shareDialog">
+  <button class="dialog-close" id="shareDialogClose" aria-label="Close">×</button>
+  <h2>Carry these forward.</h2>
+  <p class="dialog-sub">Edit the message below, then copy it into a text, post, or email.</p>
+  <label for="shareText" class="dialog-label">Your message</label>
+  <textarea id="shareText"></textarea>
+  <div class="dialog-actions">
+    <button class="dialog-btn" id="shareDialogCopy">Copy message</button>
+    <button class="dialog-btn dialog-btn-outline" id="shareDialogNative" hidden>Share to…</button>
+  </div>
+  <p class="dialog-status" id="shareDialogStatus" role="status"></p>
+</dialog>
+
 <script src="./board-data.js"></script>
 <script>
   const { hero, zeroSection, tlcSection } = computeToday();
@@ -235,7 +296,10 @@ in real time.</p>
     const eyebrowText = c.pinned ? "Editor's Pick" : (tier === 'graduated' ? fallbackLabel(c) : tierLabel(tier));
     card.innerHTML = `
       ${imageHtml}
-      <div class="eyebrow">${eyebrowText}</div>
+      <div class="card-top-row">
+        <div class="eyebrow">${eyebrowText}</div>
+        <label class="select-label"><input type="checkbox" class="select-box" data-id="${c.id}" ${selectedIds.has(c.id) ? 'checked' : ''} aria-label="Add ${c.name} to your share list">Select</label>
+      </div>
       ${c.pinned && c.pinReason ? `<div class="pin-reason">${c.pinReason}</div>` : ''}
       <h2>${c.name}</h2>
       <p class="desc">${c.description}</p>
@@ -247,6 +311,19 @@ in real time.</p>
       </div>
     `;
     return card;
+  }
+
+  const selectedIds = new Set();
+
+  function updateShareBar() {
+    const n = selectedIds.size;
+    const bar = document.getElementById('shareBar');
+    document.getElementById('shareCount').textContent = n
+      ? `${n} ${n === 1 ? 'campaign' : 'campaigns'} in your share list`
+      : 'Select campaigns to share a few at once';
+    document.getElementById('shareClearBtn').disabled = !n;
+    document.getElementById('shareListBtn').disabled = !n;
+    bar.classList.toggle('has-selection', n > 0);
   }
 
   const zeroGrid = document.getElementById('zeroGrid');
@@ -334,6 +411,71 @@ in real time.</p>
       window.location.href = `./submit.html?report=${encodeURIComponent(reportLink.dataset.id)}&name=${encodeURIComponent(name)}`;
     }
   });
+
+  // Checkboxes use 'change', not 'click', since that's what fires
+  // reliably for a checkbox regardless of whether it was clicked
+  // directly or toggled via its label.
+  document.addEventListener('change', (e) => {
+    const box = e.target.closest('.select-box');
+    if (!box) return;
+    if (box.checked) selectedIds.add(box.dataset.id);
+    else selectedIds.delete(box.dataset.id);
+    box.closest('.card').classList.toggle('selected', box.checked);
+    updateShareBar();
+  });
+
+  document.getElementById('shareClearBtn').addEventListener('click', () => {
+    selectedIds.clear();
+    document.querySelectorAll('.select-box').forEach(b => { b.checked = false; b.closest('.card').classList.remove('selected'); });
+    updateShareBar();
+  });
+
+  const shareDialog = document.getElementById('shareDialog');
+  const shareText = document.getElementById('shareText');
+  const shareStatus = document.getElementById('shareDialogStatus');
+
+  document.getElementById('shareListBtn').addEventListener('click', () => {
+    const picked = campaigns.filter(c => selectedIds.has(c.id));
+    if (picked.length === 0) return;
+    const intro = picked.length === 1
+      ? `I wanted to share this campaign — it hasn't gotten much attention yet.`
+      : `A few campaigns worth a moment of your time — none of them have gotten much attention yet.`;
+    shareText.value = intro + '\n\n' + picked.map(c => `${c.name}\n${c.link}`).join('\n\n')
+      + `\n\nSharing genuinely helps, even if giving isn't possible right now.`;
+    shareStatus.textContent = '';
+    shareDialog.showModal();
+  });
+
+  document.getElementById('shareDialogClose').addEventListener('click', () => shareDialog.close());
+  shareDialog.addEventListener('click', (e) => {
+    if (e.target !== shareDialog) return;
+    const r = shareDialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) shareDialog.close();
+  });
+
+  document.getElementById('shareDialogCopy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(shareText.value);
+      shareStatus.textContent = 'Copied — paste it anywhere.';
+    } catch {
+      shareText.focus();
+      shareText.select();
+      shareStatus.textContent = 'Select and copy the text above.';
+    }
+  });
+
+  if (navigator.share) {
+    const nativeBtn = document.getElementById('shareDialogNative');
+    nativeBtn.hidden = false;
+    nativeBtn.addEventListener('click', async () => {
+      try {
+        await navigator.share({ title: 'Campaigns worth a look', text: shareText.value });
+        shareStatus.textContent = 'Thanks for sharing.';
+      } catch (e) {
+        if (e.name !== 'AbortError') shareStatus.textContent = 'Sharing unavailable — copy the text instead.';
+      }
+    });
+  }
 </script>
 
 </body>

@@ -39,6 +39,28 @@
   .rss-link:hover { text-decoration: underline; }
   .fallback { max-width: 500px; margin: 0 auto; text-align: center; font-size: 0.88rem; color: var(--muted); }
   .fallback a { color: var(--deep); }
+  .prepare-panel { background: #fff; border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.3rem 1.4rem; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+  .field { margin-bottom: 0.9rem; }
+  .field label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .field .optional { font-weight: 400; color: var(--muted); font-size: 0.75rem; }
+  .field input { display: block; width: 100%; border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.6rem 0.8rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.88rem;
+    color: var(--deep); background: var(--cream); }
+  .prepare-btn { background: var(--accent); color: var(--on-accent); border: none; padding: 0.65rem 1.2rem;
+    border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-top: 0.4rem; }
+  .draft-box { margin-top: 1.3rem; padding-top: 1.2rem; border-top: 1px dashed var(--border); }
+  .draft-label { font-size: 0.84rem; margin-bottom: 0.6rem; }
+  .draft-label strong { color: var(--accent); }
+  #draftText { width: 100%; height: 110px; resize: vertical; border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.7rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    color: var(--deep); background: var(--cream); line-height: 1.6; }
+  .draft-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.7rem; }
+  .draft-btn { display: inline-block; background: var(--accent); color: var(--on-accent);
+    border: none; padding: 0.55rem 0.95rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
+    text-decoration: none; cursor: pointer; }
+  .draft-btn-outline { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .draft-status { font-size: 0.78rem; color: var(--accent); margin-top: 0.5rem; min-height: 1.1rem; }
 </style>
 </head>
 <body>
@@ -50,9 +72,29 @@
   be the reason it isn't anymore. Unsubscribe any time; nothing else will ever land in that inbox.</p>
 
   <div class="placeholder-note">The automated signup form isn't built yet — but you don't have to
-  wait for it. Use our <a href="./submit.html">contact form</a> (choose "Something else") or open a
-  <a href="https://github.com/jiandamonique/boostboard/issues/new?title=Subscribe+me+to+zero-donation+alerts&body=I'd+like+to+get+an+email+whenever+a+new+campaign+hits+zero+donations.+My+email%3A+" target="_blank" rel="noopener">GitHub issue</a>,
-  and we'll add you to the list by hand.</div>
+  wait for it. Fill in your email below to prepare a ready-to-send request.</div>
+
+  <div class="prepare-panel">
+    <div class="field">
+      <label for="subEmail">Your email</label>
+      <input type="email" id="subEmail" placeholder="you@example.com" required>
+    </div>
+    <div class="field">
+      <label for="subName">Your name <span class="optional">(optional)</span></label>
+      <input type="text" id="subName" placeholder="For our reference only, never published">
+    </div>
+    <button class="prepare-btn" id="prepareBtn">Prepare request</button>
+
+    <div class="draft-box" id="draftBox" hidden>
+      <p class="draft-label">Your request, ready to send — <strong>nothing has been sent yet.</strong></p>
+      <textarea id="draftText" readonly></textarea>
+      <div class="draft-actions">
+        <a class="draft-btn" id="mailtoBtn" href="#">Open email to send it →</a>
+        <button class="draft-btn draft-btn-outline" id="draftCopyBtn">Copy text</button>
+      </div>
+      <p class="draft-status" id="draftStatus" role="status"></p>
+    </div>
+  </div>
 
   <div class="rss-option">
     <h2>Prefer an RSS reader instead?</h2>
@@ -77,5 +119,33 @@
   <p class="fallback">Prefer another way to reach us? The
   <a href="./credits.html">Credits & Support</a> page has more contact options.</p>
 </div>
+
+<script>
+  document.getElementById('prepareBtn').addEventListener('click', () => {
+    const email = document.getElementById('subEmail').value.trim();
+    const name = document.getElementById('subName').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('subEmail').focus();
+      return;
+    }
+    const draft = `Subscribe me to zero-donation alerts.\n\nEmail: ${email}\nName: ${name || 'Not provided'}\n\nI'd like to get an email whenever a new campaign hits zero donations.`;
+    document.getElementById('draftText').value = draft;
+    document.getElementById('draftBox').hidden = false;
+    document.getElementById('mailtoBtn').href = `mailto:hello@curateindie.com?subject=${encodeURIComponent('Subscribe me to zero-donation alerts')}&body=${encodeURIComponent(draft)}`;
+    document.getElementById('draftStatus').textContent = '';
+  });
+
+  document.getElementById('draftCopyBtn').addEventListener('click', async () => {
+    const text = document.getElementById('draftText');
+    try {
+      await navigator.clipboard.writeText(text.value);
+      document.getElementById('draftStatus').textContent = 'Copied — paste it into an email or message.';
+    } catch {
+      text.focus();
+      text.select();
+      document.getElementById('draftStatus').textContent = 'Select and copy the text above.';
+    }
+  });
+</script>
 </body>
 </html>
