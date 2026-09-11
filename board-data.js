@@ -51,8 +51,8 @@ const campaigns = [
     "communities": [],
     "description": "Funding flights, accommodation, and tournament costs to represent Jamaica in rugby league, since the national team receives no central funding.",
     "link": "https://www.gofundme.com/f/jimmy-morgan-represent-jamaica-rugby-league-in-sydney",
-    "donationCount": 3,
-    "amountRaised": 40,
+    "donationCount": 7,
+    "amountRaised": 140,
     "goalAmount": 1200,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
@@ -332,6 +332,27 @@ const campaigns = [
     "lowEngagementFlag": false,
     "category": [
       "Community"
+    ]
+  },
+  {
+    "id": "c017",
+    "name": "RN Is Now the One in Need of Help",
+    "communities": [],
+    "description": "After 25 years working as a CNA, LPN, and Registered Nurse -- including through COVID -- Andrea's own health has broken down, and she's raising two children with almost no support system.",
+    "link": "https://www.gofundme.com/f/help-andrea-recover-and-support-her-family-qwepd",
+    "donationCount": 0,
+    "submittedDate": "2026-09-10",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaign-andrea.webp",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false,
+    "category": [
+      "Medical",
+      "Family Support"
     ]
   }
 ];

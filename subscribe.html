@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <title>Get Notified — Boost Board</title>
-<meta name="description" content="Get one email whenever a new campaign hits zero donations. No newsletter, no spam.">
+<meta name="description" content="Get an email for zero-donation alerts, a weekly TLC roundup, or both -- your choice, no spam.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/subscribe.html">
 <meta property="og:title" content="Get Notified — Boost Board">
-<meta property="og:description" content="Get one email whenever a new campaign hits zero donations. No newsletter, no spam.">
+<meta property="og:description" content="Get an email for zero-donation alerts, a weekly TLC roundup, or both -- your choice, no spam.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/subscribe.html">
 <meta property="og:type" content="website">
@@ -66,10 +66,9 @@
 <body>
 <div class="wrap">
   <div class="eyebrow">Get notified</div>
-  <h1>Get an email when someone needs a first donation</h1>
-  <p class="sub">This isn't a newsletter in the usual sense — no roundups, no product updates,
-  no drip sequence. Just one email whenever there's a new campaign at zero donations, so you can
-  be the reason it isn't anymore. Unsubscribe any time; nothing else will ever land in that inbox.</p>
+  <h1>Get emails from Boost Board — your choice of which</h1>
+  <p class="sub">Two genuinely separate options below. Pick either, both, or neither — opting into
+  one never adds you to the other, and each has its own honest promise about what you'll get.</p>
 
   <div class="placeholder-note">The automated signup form isn't built yet — but you don't have to
   wait for it. Fill in your email below to prepare a ready-to-send request.</div>
@@ -82,6 +81,19 @@
     <div class="field">
       <label for="subName">Your name <span class="optional">(optional)</span></label>
       <input type="text" id="subName" placeholder="For our reference only, never published">
+    </div>
+    <div class="field">
+      <label style="margin-bottom:0.6rem;">What would you like? <span class="optional">(pick one or both)</span></label>
+      <label style="font-weight:400; display:flex; align-items:flex-start; gap:0.5rem; margin-bottom:0.6rem;">
+        <input type="checkbox" id="subZero" style="width:auto; margin-top:0.2rem;" checked>
+        <span><strong>Zero-donation alerts</strong> — one email whenever a new campaign hits zero
+        donations. No roundups, no drip sequence, nothing else in that inbox.</span>
+      </label>
+      <label style="font-weight:400; display:flex; align-items:flex-start; gap:0.5rem;">
+        <input type="checkbox" id="subTlc" style="width:auto; margin-top:0.2rem;">
+        <span><strong>Weekly TLC roundup</strong> — a Monday email featuring a handful of campaigns
+        with some momentum already, still working toward their goal. Genuinely weekly, not more.</span>
+      </label>
     </div>
     <button class="prepare-btn" id="prepareBtn">Prepare request</button>
 
@@ -124,14 +136,23 @@
   document.getElementById('prepareBtn').addEventListener('click', () => {
     const email = document.getElementById('subEmail').value.trim();
     const name = document.getElementById('subName').value.trim();
+    const wantsZero = document.getElementById('subZero').checked;
+    const wantsTlc = document.getElementById('subTlc').checked;
     if (!email || !email.includes('@')) {
       document.getElementById('subEmail').focus();
       return;
     }
-    const draft = `Subscribe me to zero-donation alerts.\n\nEmail: ${email}\nName: ${name || 'Not provided'}\n\nI'd like to get an email whenever a new campaign hits zero donations.`;
+    if (!wantsZero && !wantsTlc) {
+      document.getElementById('draftStatus').textContent = 'Pick at least one option above.';
+      return;
+    }
+    const lists = [];
+    if (wantsZero) lists.push('zero-donation alerts');
+    if (wantsTlc) lists.push('the weekly TLC roundup');
+    const draft = `Subscribe me to: ${lists.join(' and ')}.\n\nEmail: ${email}\nName: ${name || 'Not provided'}\n\nPlease add me to the list(s) above.`;
     document.getElementById('draftText').value = draft;
     document.getElementById('draftBox').hidden = false;
-    document.getElementById('mailtoBtn').href = `mailto:hello@curateindie.com?subject=${encodeURIComponent('Subscribe me to zero-donation alerts')}&body=${encodeURIComponent(draft)}`;
+    document.getElementById('mailtoBtn').href = `mailto:hello@curateindie.com?subject=${encodeURIComponent('Subscribe me: ' + lists.join(' + '))}&body=${encodeURIComponent(draft)}`;
     document.getElementById('draftStatus').textContent = '';
   });
 

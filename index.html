@@ -116,8 +116,8 @@
         <h2 class="hero-headline">${hero.name}</h2>
         ${hero.pinned && hero.pinReason ? `<div class="hero-pin-reason">${hero.pinReason}</div>` : ''}
         ${isSeed ? `<div class="hero-pitch">This campaign hasn't received its first donation
-          yet — which is exactly why it's featured today. Catching it here, before an algorithm
-          could bury it, is the whole reason this board exists.</div>` : ''}
+          yet — which is exactly why it's featured today. Did a donation or two come in? We're
+          rooting for this to happen! Campaigns rotate daily.</div>` : ''}
         <p class="hero-desc">${hero.description}</p>
         <div class="hero-tags">${hero.communities.map(t => `<span class="tag">${t}</span>`).join('')}</div>
         <div class="hero-actions">
