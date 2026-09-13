@@ -173,12 +173,15 @@ h1 span{color:var(--green)}
       ? "This campaign hasn't received its first donation yet — which is exactly why it's featured today."
       : "Today's featured campaign has some real momentum already.";
     visual.innerHTML = `
-      <img class="hero-image" src="${hero.imageUrl || './standin-image.jpg'}" alt="${hero.name}" onerror="this.src='./standin-image.jpg'">
-      <div class="image-note">
-        <div class="eyebrow">Today's featured campaign</div>
-        <strong>${hero.name}</strong>
-        <p>${noteText}</p>
-      </div>
+      <a href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">
+        <img class="hero-image" src="${hero.imageUrl || './standin-image.jpg'}" alt="${hero.name}" onerror="this.src='./standin-image.jpg'">
+        <div class="image-note">
+          <div class="eyebrow">Today's featured campaign</div>
+          <strong>${hero.name}</strong>
+          <p>${noteText}</p>
+        </div>
+      </a>
+      <a class="button" href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
     `;
   }
 </script>
