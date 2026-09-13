@@ -22,6 +22,7 @@
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
 <style>
+body{padding-bottom:80px}
 .intro{padding:50px 0 32px;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
 h1{font-size:clamp(36px,4vw,51px);letter-spacing:-2px;line-height:1.14}
 .intro p{font-size:19px;max-width:435px}
@@ -136,6 +137,25 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 <section class="cta" aria-labelledby="cta-title"><div><h2 id="cta-title">Know a campaign stuck at the start?</h2><p>Your own fundraiser or a cause you care about — submit the original link for consideration.</p></div><a class="button" href="./submit.html">Submit a campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
 </main>
 
+<div id="shareBar" style="position:fixed; bottom:16px; left:50%; transform:translateX(-50%); width:min(600px, calc(100% - 32px)); background:var(--ink); color:#fff; border-radius:6px; padding:14px 18px; display:flex; align-items:center; gap:16px; box-shadow:0 8px 28px rgba(16,43,50,0.3); z-index:50; font-size:14px;">
+  <div style="flex:1;"><strong id="shareCount">Select campaigns to share a few at once</strong></div>
+  <button id="shareClearBtn" disabled style="background:none; border:none; color:#c2d3d4; text-decoration:underline; font-size:13px; cursor:pointer; padding:6px;">Clear</button>
+  <button id="shareListBtn" disabled class="button" style="padding:10px 18px; font-size:14px;">Share list →</button>
+</div>
+
+<dialog id="shareDialog" style="border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); width:min(480px, calc(100% - 32px)); padding:28px; position:relative;">
+  <button id="shareDialogClose" aria-label="Close" style="position:absolute; top:16px; right:18px; background:none; border:none; font-size:22px; line-height:1; color:var(--muted); cursor:pointer; padding:4px;">×</button>
+  <h2 style="font-size:22px; margin-bottom:8px; padding-right:24px;">Carry these forward.</h2>
+  <p style="font-size:14px; color:var(--muted); margin-bottom:16px;">Edit the message below, then copy it into a text, post, or email.</p>
+  <label for="shareText" style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:8px;">Your message</label>
+  <textarea id="shareText" style="width:100%; height:150px; resize:vertical; border:1px solid var(--line); border-radius:4px; padding:12px; font-family:'Source Sans 3',sans-serif; font-size:14px; color:var(--ink); background:var(--bg);"></textarea>
+  <div style="display:flex; gap:10px; margin-top:16px;">
+    <button id="shareDialogCopy" class="button">Copy message</button>
+    <button id="shareDialogNative" class="button outline" hidden>Share to…</button>
+  </div>
+  <p id="shareDialogStatus" role="status" style="font-size:13px; color:var(--deep); margin-top:12px; min-height:18px;"></p>
+</dialog>
+
 <script src="./board-data.js"></script>
 <script>
   const { eligible } = (function() {
@@ -153,9 +173,14 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     return `
       <div class="result-card">
         <img src="${c.imageUrl || './standin-image.jpg'}" alt="" onerror="this.src='./standin-image.jpg'">
-        <div class="result-tags">
-          <span class="tag ${tagClass}">${tierLabel}</span>
-          ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${cat}</span>`).join('')}
+        <div class="result-tags" style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span class="tag ${tagClass}">${tierLabel}</span>
+            ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${cat}</span>`).join('')}
+          </div>
+          <label style="display:flex; align-items:center; gap:5px; font-size:12px; color:var(--muted); cursor:pointer; flex-shrink:0;">
+            <input type="checkbox" class="select-box" data-id="${c.id}" ${selectedIds.has(c.id) ? 'checked' : ''} style="accent-color:var(--green); width:15px; height:15px; margin:0; cursor:pointer;" aria-label="Add ${c.name} to your share list">Select
+          </label>
         </div>
         <h3>${c.name}</h3>
         <p>${c.description}</p>
@@ -165,6 +190,17 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
         </div>
       </div>
     `;
+  }
+
+  const selectedIds = new Set();
+
+  function updateShareBar() {
+    const n = selectedIds.size;
+    document.getElementById('shareCount').textContent = n
+      ? `${n} ${n === 1 ? 'campaign' : 'campaigns'} in your share list`
+      : 'Select campaigns to share a few at once';
+    document.getElementById('shareClearBtn').disabled = !n;
+    document.getElementById('shareListBtn').disabled = !n;
   }
 
   // Category pills, built from whatever category values actually exist
@@ -197,9 +233,29 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 
     results.sort((a, b) => TIER_ORDER[tierOf(a)] - TIER_ORDER[tierOf(b)]);
 
+    const totalMatches = results.length;
+    // Display cap, reintroduced (v93): with no filter or search active,
+    // an unbounded results list could turn into an overwhelming wall of
+    // cards as the dataset grows past a few dozen entries -- this isn't
+    // hypothetical, it's already at 19 campaigns. Capped at 25 with a
+    // rotating start point (same day-seeded approach used for the hero
+    // and old section caps), so campaigns beyond the cap still get a
+    // turn over time rather than the same 25 always winning. Any active
+    // search or filter narrows the pool first, so this cap rarely
+    // matters once someone's actually looking for something specific.
+    const DISPLAY_CAP = 25;
+    if (results.length > DISPLAY_CAP) {
+      const startIndex = daysSinceEpoch(new Date()) % results.length;
+      const rotated = [];
+      for (let i = 0; i < DISPLAY_CAP; i++) rotated.push(results[(startIndex + i) % results.length]);
+      results = rotated;
+    }
+
     const countEl = document.getElementById('resultCount');
     const area = document.getElementById('resultsArea');
-    countEl.textContent = results.length + (results.length === 1 ? ' campaign' : ' campaigns');
+    countEl.textContent = totalMatches > DISPLAY_CAP
+      ? `Showing ${results.length} of ${totalMatches} campaigns`
+      : results.length + (results.length === 1 ? ' campaign' : ' campaigns');
 
     if (results.length === 0) {
       area.innerHTML = `
@@ -235,6 +291,69 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     heroLinkEl.href = hero.link;
     heroLinkEl.target = '_blank';
     heroLinkEl.rel = 'noopener';
+  }
+
+  // Checkboxes use 'change' via delegation so they keep working after
+  // every re-render from a search/filter change.
+  document.addEventListener('change', (e) => {
+    const box = e.target.closest('.select-box');
+    if (!box) return;
+    if (box.checked) selectedIds.add(box.dataset.id);
+    else selectedIds.delete(box.dataset.id);
+    updateShareBar();
+  });
+
+  document.getElementById('shareClearBtn').addEventListener('click', () => {
+    selectedIds.clear();
+    document.querySelectorAll('.select-box').forEach(b => { b.checked = false; });
+    updateShareBar();
+  });
+
+  const shareDialog = document.getElementById('shareDialog');
+  const shareText = document.getElementById('shareText');
+  const shareStatus = document.getElementById('shareDialogStatus');
+
+  document.getElementById('shareListBtn').addEventListener('click', () => {
+    const picked = campaigns.filter(c => selectedIds.has(c.id));
+    if (picked.length === 0) return;
+    const intro = picked.length === 1
+      ? `I wanted to share this campaign — it hasn't gotten much attention yet.`
+      : `A few campaigns worth a moment of your time — none of them have gotten much attention yet.`;
+    shareText.value = intro + '\n\n' + picked.map(c => `${c.name}\n${c.link}`).join('\n\n')
+      + `\n\nSharing genuinely helps, even if giving isn't possible right now.`;
+    shareStatus.textContent = '';
+    shareDialog.showModal();
+  });
+
+  document.getElementById('shareDialogClose').addEventListener('click', () => shareDialog.close());
+  shareDialog.addEventListener('click', (e) => {
+    if (e.target !== shareDialog) return;
+    const r = shareDialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) shareDialog.close();
+  });
+
+  document.getElementById('shareDialogCopy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(shareText.value);
+      shareStatus.textContent = 'Copied — paste it anywhere.';
+    } catch {
+      shareText.focus();
+      shareText.select();
+      shareStatus.textContent = 'Select and copy the text above.';
+    }
+  });
+
+  if (navigator.share) {
+    const nativeBtn = document.getElementById('shareDialogNative');
+    nativeBtn.hidden = false;
+    nativeBtn.addEventListener('click', async () => {
+      try {
+        await navigator.share({ title: 'Campaigns worth a look', text: shareText.value });
+        shareStatus.textContent = 'Thanks for sharing.';
+      } catch (e) {
+        if (e.name !== 'AbortError') shareStatus.textContent = 'Sharing unavailable — copy the text instead.';
+      }
+    });
   }
 </script>
 </body>

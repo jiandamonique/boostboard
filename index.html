@@ -175,14 +175,29 @@ h1 span{color:var(--green)}
     visual.innerHTML = `
       <a href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">
         <img class="hero-image" src="${hero.imageUrl || './standin-image.jpg'}" alt="${hero.name}" onerror="this.src='./standin-image.jpg'">
-        <div class="image-note">
+        <div class="image-note" id="heroImageNote">
           <div class="eyebrow">Today's featured campaign</div>
           <strong>${hero.name}</strong>
           <p>${noteText}</p>
         </div>
       </a>
-      <a class="button" href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="button" id="heroViewBtn" href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
     `;
+    // The "Today's Featured Campaign" card floats over the image via
+    // position:absolute, with a height that varies by campaign name
+    // length -- a long name can make the card tall enough to cover the
+    // "View campaign" button below it, since that button sits in normal
+    // flow right after the image with no awareness of the overlay's
+    // actual height (position:absolute removes the card from flow
+    // entirely). Measuring the card's real rendered height after paint
+    // and pushing the button down to clear it fixes this regardless of
+    // how long any given campaign's name is, rather than guessing a
+    // fixed margin that only happens to work for short names.
+    requestAnimationFrame(() => {
+      const note = document.getElementById('heroImageNote');
+      const btn = document.getElementById('heroViewBtn');
+      if (note && btn) btn.style.marginTop = (note.offsetHeight + 14) + 'px';
+    });
   }
 </script>
 </body>

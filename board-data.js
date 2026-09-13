@@ -14,7 +14,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-jaye.webp",
+    "imageUrl": "./campaigns/campaign-jaye.webp",
     "pinReason": "",
     "amountRaised": 190,
     "goalAmount": 2400,
@@ -39,7 +39,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-simba.webp",
+    "imageUrl": "./campaigns/campaign-simba.webp",
     "category": [
       "Animals",
       "Medical"
@@ -60,7 +60,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-jimmy.webp",
+    "imageUrl": "./campaigns/campaign-jimmy.webp",
     "category": [
       "Sports"
     ]
@@ -80,7 +80,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-liverpool.webp",
+    "imageUrl": "./campaigns/campaign-liverpool.webp",
     "category": [
       "Community"
     ]
@@ -100,7 +100,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-rubie.webp",
+    "imageUrl": "./campaigns/campaign-rubie.webp",
     "category": [
       "Crisis",
       "Medical"
@@ -117,7 +117,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-midnight.webp",
+    "imageUrl": "./campaigns/campaign-midnight.webp",
     "pinReason": "",
     "amountRaised": 40,
     "goalAmount": 1300,
@@ -142,7 +142,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-dog.webp",
+    "imageUrl": "./campaigns/campaign-dog.webp",
     "category": [
       "Animals"
     ]
@@ -162,7 +162,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-eloise.webp",
+    "imageUrl": "./campaigns/campaign-eloise.webp",
     "category": [
       "Education",
       "International Aid"
@@ -183,7 +183,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-family.webp",
+    "imageUrl": "./campaigns/campaign-family.webp",
     "category": [
       "Housing",
       "Family Support"
@@ -204,7 +204,7 @@ const campaigns = [
     "pinned": false,
     "pinReason": "",
     "reported": false,
-    "imageUrl": "./campaign-aubry.webp",
+    "imageUrl": "./campaigns/campaign-aubry.webp",
     "category": [
       "Education"
     ]
@@ -220,7 +220,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-wikif.webp",
+    "imageUrl": "./campaigns/campaign-wikif.webp",
     "pinReason": "",
     "amountRaised": 5,
     "goalAmount": 1200,
@@ -241,7 +241,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-mari.webp",
+    "imageUrl": "./campaigns/campaign-mari.webp",
     "pinReason": "",
     "amountRaised": 0,
     "goalAmount": 10000,
@@ -262,7 +262,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-savannah.webp",
+    "imageUrl": "./campaigns/campaign-savannah.webp",
     "pinReason": "",
     "amountRaised": 50,
     "goalAmount": 2400,
@@ -283,7 +283,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-santone.webp",
+    "imageUrl": "./campaigns/campaign-santone.webp",
     "pinReason": "",
     "amountRaised": 0,
     "goalAmount": 100,
@@ -304,7 +304,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-cole.webp",
+    "imageUrl": "./campaigns/campaign-cole.webp",
     "pinReason": "",
     "amountRaised": 0,
     "goalAmount": 1000,
@@ -325,7 +325,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-kenyatta.webp",
+    "imageUrl": "./campaigns/campaign-kenyatta.webp",
     "pinReason": "",
     "amountRaised": null,
     "goalAmount": null,
@@ -345,7 +345,7 @@ const campaigns = [
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaign-andrea.webp",
+    "imageUrl": "./campaigns/campaign-andrea.webp",
     "pinReason": "",
     "amountRaised": null,
     "goalAmount": null,
@@ -353,6 +353,46 @@ const campaigns = [
     "category": [
       "Medical",
       "Family Support"
+    ]
+  },
+  {
+    "id": "c018",
+    "name": "Help Us Get a Car with Just $1",
+    "communities": [],
+    "description": "Raising money toward purchasing a reliable used car, a dollar at a time.",
+    "link": "https://www.gofundme.com/f/help-us-get-a-car-with-just-1",
+    "donationCount": 0,
+    "submittedDate": "2026-09-13",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-dollarcar.webp",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false,
+    "category": [
+      "Financial Hardship"
+    ]
+  },
+  {
+    "id": "c019",
+    "name": "Help a Computer Engineering Student Finish Her Degree",
+    "communities": [],
+    "description": "Support for Maree to finish her computer engineering degree.",
+    "link": "https://www.gofundme.com/f/help-a-computer-engineering-student-finish-her-degree",
+    "donationCount": 0,
+    "submittedDate": "2026-09-13",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-maree.webp",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false,
+    "category": [
+      "Education"
     ]
   }
 ];
