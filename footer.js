@@ -8,7 +8,9 @@
 
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
-  const footerLinks = links.concat([{ href: './privacy-policy.html', label: 'Privacy Policy' }]);
+  const footerLinks = links.concat([
+    { href: './terms.html', label: 'Terms' },
+  ]);
   footer.innerHTML = `
     <div class="wrap">
       <div class="footer-top">

@@ -1,77 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>Moderators — Boost Board</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
 <meta name="description" content="Ongoing campaigns our moderator team wants to keep visible, outside the daily rotation.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/mods.html">
-<meta property="og:title" content="Moderators — Boost Board">
+<meta property="og:title" content="Moderators' Picks — Boost Board">
 <meta property="og:description" content="Ongoing campaigns our moderator team wants to keep visible, outside the daily rotation.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/mods.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>Moderators' Picks — Boost Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
 <script src="./board-data.js" defer></script>
 <script src="./random-campaign-widget.js" defer></script>
 <style>
-  :root { --cream: #EDF2F2; --warm: #dfeae6; --deep: #102B32; --muted: #52696e; --border: #cedbdb; --shadow: 0 4px 24px rgba(16,43,50,0.08); }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
-  .intro { max-width: 620px; margin: 0 auto 2rem; text-align: center; }
-  .intro h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
-  .intro p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; text-align: left; }
-  .grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
-  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow); }
-  .card h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.4rem; }
-  .card p { font-size: 0.87rem; color: var(--deep); }
-  .empty-state { max-width: 480px; margin: 2rem auto; text-align: center; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
-  .empty-state p { font-family: 'Lora', serif; font-style: italic; color: var(--muted); }
-  .og-image { display: block; width: 100%; aspect-ratio: 700 / 819; max-height: 240px; object-fit: cover;
-    margin: 0 0 1.4rem; border-radius: 14px; border: 1px solid var(--border); }
+.intro{max-width:620px;margin:0 auto;padding:52px 0 30px;text-align:center}
+h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
+.intro p{font-size:18px;margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding-bottom:60px}
+.empty-state{max-width:440px;margin:20px auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:40px}
+.empty-state p{font-family:var(--heading);font-style:italic;color:var(--muted)}
 </style>
 </head>
 <body>
-
+<main id="main" class="wrap">
 <div class="intro">
-  <img class="og-image" src="./standin-image.jpg" alt="">
   <h1>Moderators' Picks</h1>
-  <p>Separate from the daily-rotating board — these are campaigns our moderator team wants to
-  keep visible on an ongoing basis, not tied to any particular day. Our volunteers stay
-  anonymous; the campaigns speak for themselves.</p>
+  <p>Separate from the daily-rotating board — these are campaigns our moderator team wants to keep visible on an ongoing basis, not tied to any particular day. Our volunteers stay anonymous; the campaigns speak for themselves.</p>
 </div>
-
 <div class="grid" id="modsGrid"></div>
+</main>
 
 <script>
-  // Ongoing, not-time-bound picks -- separate from the daily rotation
-  // logic in board-data.js. Add entries here manually; no automatic
-  // selection or expiry.
   const modsPicks = [
-    // { name: "Campaign name", description: "Why it's here.", link: "https://..." },
+    { name: "Amplify Campaigns Waiting for a First Yes", description: "Boost Board's own fundraiser -- still genuinely at zero donations. Covers hosting, moderator time, and keeping the app running. Co-organized by Jaye and Jianda Monique.", link: "https://www.gofundme.com/f/amplify-campaigns-waiting-for-a-first-yes", imageUrl: "./standin-image.jpg" },
+    { name: "Help Jaye Get Through September and Rebuild", description: "One of our own volunteers -- covers rent, groceries, and a disability-focused yoga teacher certification during a career rebuild.", link: "https://www.gofundme.com/f/help-me-rebuild-as-a-yoga-teacher", imageUrl: "./campaign-jaye.webp" },
   ];
 
   const grid = document.getElementById('modsGrid');
   if (modsPicks.length === 0) {
     grid.innerHTML = `<div class="empty-state"><p>Nothing here yet.</p></div>`;
   } else {
-    modsPicks.forEach(c => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <h2>${c.name}</h2>
+    grid.innerHTML = modsPicks.map(c => `
+      <div class="card">
+        ${c.imageUrl ? `<img class="card-photo" src="${c.imageUrl}" alt="" onerror="this.style.display='none'">` : ''}
+        <div class="card-body">
+        <h3>${c.name}</h3>
         <p>${c.description}</p>
-        <p style="margin-top:0.8rem;"><a href="${c.link}" target="_blank" rel="noopener" style="color:var(--deep); font-weight:600; font-size:0.85rem;">View campaign →</a></p>
-      `;
-      grid.appendChild(card);
-    });
+        <a class="text-link" href="${c.link}" target="_blank" rel="noopener">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </div></div>
+    `).join('');
   }
 </script>
-
 </body>
 </html>
