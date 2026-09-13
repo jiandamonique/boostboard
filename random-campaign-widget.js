@@ -14,17 +14,17 @@
   const style = document.createElement('style');
   style.textContent = `
     .random-widget {
-      max-width: 320px; margin: 2rem auto 0; background: #fff; border: 1px solid rgba(40,80,45,0.18);
-      border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 4px 24px rgba(22,36,24,0.08);
+      max-width: 320px; margin: 2rem auto 0; background: #fff; border: 1px solid #cedbdb;
+      border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 4px 24px rgba(16,43,50,0.08);
       text-align: center; font-family: 'Source Sans 3', sans-serif;
     }
     .random-widget .rw-eyebrow {
       font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase;
-      color: #5c6b5c; margin-bottom: 0.4rem; letter-spacing: 0.04em;
+      color: #52696e; margin-bottom: 0.4rem; letter-spacing: 0.04em;
     }
-    .random-widget .rw-name { font-family: 'Lora', serif; font-size: 0.95rem; margin-bottom: 0.5rem; color: #162418; }
+    .random-widget .rw-name { font-family: 'Lora', serif; font-size: 0.95rem; margin-bottom: 0.5rem; color: #102B32; }
     .random-widget a.rw-link {
-      display: inline-block; font-size: 0.78rem; font-weight: 600; color: #162418;
+      display: inline-block; font-size: 0.78rem; font-weight: 600; color: #102B32;
       text-decoration: underline;
     }
   `;

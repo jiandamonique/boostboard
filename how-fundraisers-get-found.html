@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>How Fundraisers Actually Get Found — Boost Board Blog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
 <meta name="description" content="A look at how GoFundMe search, location filters, social sharing, and privacy settings work -- and why that leaves so many real campaigns invisible.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/how-fundraisers-get-found.html">
 <meta property="og:title" content="How Fundraisers Actually Get Found — Boost Board Blog">
@@ -14,34 +13,39 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>How Fundraisers Actually Get Found — Boost Board Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
 <script src="./board-data.js" defer></script>
 <script src="./random-campaign-widget.js" defer></script>
 <style>
-  :root { --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c; --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08); }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; line-height: 1.7; }
-  .wrap { max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
-  h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
-  .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; letter-spacing: 0.04em; }
-  .wrap h2 { font-family: 'Lora', serif; font-size: 1.15rem; margin: 1.2rem 0 0.5rem; }
-  .wrap p { margin-bottom: 0.9rem; font-size: 0.95rem; }
-  .wrap ul { padding-left: 1.2rem; margin-bottom: 0.9rem; }
-  .wrap li { margin-bottom: 0.4rem; font-size: 0.95rem; }
-  .wrap a { color: var(--deep); }
-  .back-link { display:block; max-width:620px; margin:0 auto 1rem; font-size:0.85rem; }
-  .back-link a { color: var(--muted); }
+.post-wrap{max-width:680px;margin:0 auto;padding:50px 0 70px}
+.back-link{display:block;font-size:14px;margin-bottom:24px;color:var(--muted)}
+.post-eyebrow{margin-bottom:14px}
+h1{font-size:clamp(32px,4vw,44px);letter-spacing:-1.6px;line-height:1.15;margin-bottom:14px}
+.byline{font-family:var(--heading);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:32px}
+.post-body h2{font-size:24px;letter-spacing:-.7px;margin:34px 0 14px}
+.post-body p{font-size:18px;margin-bottom:16px;color:var(--ink)}
+.post-body p.stat-box,.post-body div.stat-box{background:#dfeae6;border-radius:8px;padding:16px 20px;margin:16px 0}
+.post-body .num{font-family:var(--heading);font-size:22px;font-weight:600;color:var(--deep)}
+.post-body a{color:var(--deep);border-bottom:1px solid #a2c9c0}
+.post-body .sourcing{font-size:14px;color:var(--muted);margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
-<p class="back-link"><a href="./blog.html">← Back to all posts</a></p>
-<div class="wrap">
-  <h1>How Fundraisers Actually Get Found</h1>
-  <div class="byline">Volunteer Team · 2026-09-07</div>
-
-  <p>We spend a lot of time here thinking about visibility, so it's worth laying out, plainly,
+<main id="main" class="wrap">
+<div class="post-wrap">
+<a class="back-link" href="./blog.html">← Back to all posts</a>
+<div class="eyebrow post-eyebrow">Blog</div>
+<h1>How Fundraisers Actually Get Found</h1>
+<div class="byline">Volunteer Team · 2026-09-07</div>
+<div class="post-body">
+<p>We spend a lot of time here thinking about visibility, so it's worth laying out, plainly,
   the actual ways someone finds a fundraising page — and where each of those paths quietly
   breaks down for a brand-new campaign.</p>
 
@@ -78,5 +82,7 @@
   but because none of these ordinary discovery paths are built for day one. That's the gap this
   board exists to help with.</p>
 </div>
+</div>
+</main>
 </body>
 </html>

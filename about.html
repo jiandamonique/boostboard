@@ -1,199 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>About — Boost Board</title>
-<meta name="description" content="Why Boost Board exists: algorithms bury new campaigns, predatory services exploit fundraisers, and honest visibility is the alternative.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
+<meta name="description" content="Why Boost Board exists: to help crowdfunding campaigns with little or no support find an audience, without confusing visibility with verification.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/about.html">
-<meta property="og:title" content="About — Boost Board">
-<meta property="og:description" content="Why Boost Board exists: algorithms bury new campaigns, predatory services exploit fundraisers, and honest visibility is the alternative.">
+<meta property="og:title" content="Our purpose — Boost Board">
+<meta property="og:description" content="Why Boost Board exists: to help crowdfunding campaigns with little or no support find an audience, without confusing visibility with verification.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/about.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About — Boost Board">
-<meta name="twitter:description" content="Why Boost Board exists: algorithms bury new campaigns, predatory services exploit fundraisers, and honest visibility is the alternative.">
-<meta name="twitter:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>Our purpose — Boost Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
-<script src="./board-data.js" defer></script>
-<script src="./random-campaign-widget.js" defer></script>
 <style>
-  :root {
-    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
-    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
-    --accent: #e8562f; --on-accent: #fff8f4;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif;
-         padding: 2.5rem 1.5rem; line-height: 1.65; }
-  .wrap { max-width: 620px; margin: 0 auto; background: #fff; border: 1px solid var(--border);
-          border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
-  h1 { font-family: 'Lora', serif; font-size: 1.6rem; margin-bottom: 1.2rem; }
-  h2 { font-family: 'Lora', serif; font-size: 1.1rem; margin: 2.2rem 0 0.8rem; }
-  p { margin-bottom: 1.1rem; font-size: 0.95rem; line-height: 1.6; }
-  .eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
-    letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem;
-  }
-  a { color: var(--deep); }
-  .reason-grid { display: grid; gap: 0.8rem; margin: 1.4rem 0 1.8rem; }
-  .reason-card { display: block; background: var(--cream); border: 1px solid var(--border);
-    border-radius: 10px; padding: 1rem 1.1rem; text-decoration: none; color: var(--deep); }
-  .reason-card:hover { border-color: var(--accent); }
-  .reason-num { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--accent); display: block; margin-bottom: 0.3rem; }
-  .reason-card h3 { font-family: 'Lora', serif; font-size: 0.98rem; margin-bottom: 0.3rem; }
-  .reason-card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0; line-height: 1.5; }
-  @media (min-width: 560px) { .reason-grid { grid-template-columns: repeat(3, 1fr); } }
-  .faq { margin-top: 1rem; }
-  .faq details { border-bottom: 1px solid var(--border); padding: 0.9rem 0; }
-  .faq details:first-child { border-top: 1px solid var(--border); }
-  .faq summary { cursor: pointer; list-style: none; font-weight: 600; font-size: 0.92rem;
-    display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq summary:after { content: '+'; font-size: 1.2rem; color: var(--accent); flex-shrink: 0; font-weight: 400; }
-  .faq details[open] summary:after { content: '−'; }
-  .faq details p { font-size: 0.88rem; color: var(--muted); margin: 0.7rem 0 0; line-height: 1.6; }
+.purpose-hero{padding:56px 0 46px}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:end}
+h1{font-size:clamp(42px,4.6vw,60px);letter-spacing:-2.9px;line-height:1.12}
+h1 span{color:var(--green)}
+.hero-intro p{font-size:20px;line-height:1.6}
+.hero-intro .text-link{margin-top:20px}
+.purpose-image img{display:block;width:100%;height:300px;object-fit:cover;border-radius:5px 70px 5px 5px}
+.purpose-image figcaption{font-size:14px;color:var(--muted);padding:12px 0}
+.story{display:grid;grid-template-columns:1fr 1.12fr;gap:80px;padding:60px 0 66px}
+.story h2{max-width:420px}
+.story p{font-size:18px}
+.story p+p{margin-top:16px}
+.story .lead{color:var(--ink);font-size:21px;line-height:1.5;margin-bottom:18px}
+.reasons{padding-bottom:60px}
+.reason{border-top:1px solid var(--line);padding:32px 0}
+.reason:first-child{border-top:0}
+.reason h3{font-size:22px;margin-bottom:12px}
+.reason p{font-size:17px;margin-bottom:12px}
+.principles{background:#dfeae6;padding:56px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:32px}
+.section-head p{max-width:360px;font-size:17px}
+.principle-list{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.principle{border-top:1px solid #adbfba;padding-top:20px}
+.number{font-family:var(--heading);font-size:14px;color:var(--deep);display:block;margin-bottom:20px}
+.principle h3{font-size:20px;letter-spacing:-.5px;margin-bottom:10px}
+.principle p{font-size:16px}
+.boundaries{padding:66px 0}
+.boundaries-grid{display:grid;grid-template-columns:.85fr 1.2fr;gap:70px}
+.boundaries-intro p{margin:18px 0 20px}
+.commitment{padding:20px 0;border-top:1px solid var(--line)}
+.commitment:first-child{padding-top:0;border-top:0}
+.commitment h3{font-size:19px;letter-spacing:-.4px;margin-bottom:8px}
+.commitment p{font-size:16px}
+.reminder{margin-top:24px;background:white;border-left:3px solid var(--gold);padding:20px 22px;font-size:15px}
+.reminder strong{color:var(--ink)}
+.footnote-src{font-size:14px;margin-top:8px}
+@media(max-width:1000px){.hero-grid{gap:35px}h1{font-size:47px}.story{gap:40px}.boundaries-grid{gap:35px}}
+@media(max-width:740px){
+  .hero-grid{grid-template-columns:1fr;gap:22px}
+  h1{font-size:clamp(39px,9vw,58px);letter-spacing:-2px}
+  .story{grid-template-columns:1fr;gap:22px;padding:36px 0 40px}
+  .principle-list{grid-template-columns:1fr;gap:24px}
+  .principle{display:grid;grid-template-columns:32px 1fr;column-gap:12px}
+  .number{grid-row:span 2;margin:2px 0 0}
+  .boundaries-grid{grid-template-columns:1fr;gap:26px}
+  .section-head{display:block;margin-bottom:24px}
+  .section-head p{margin-top:16px;max-width:none}
+}
 </style>
 </head>
 <body>
+<main id="main">
 <div class="wrap">
-  <div class="eyebrow">Why this exists</div>
-  <h1>About Boost Board</h1>
-
-  <p>Picture a school bulletin board covered in thousands of drawings — but the light only
-  shines on the ones that already have a gold star. If nobody's noticed a drawing yet, it
-  stays in the dark corner.</p>
-  <p>Boost Board is like someone with a flashlight, pointing it at one hidden drawing every
-  single day so people can finally see it.</p>
-  <ul style="margin: 0.8rem 0 1.2rem 1.2rem; font-size: 0.95rem; line-height: 1.6;">
-    <li><strong>The problem:</strong> big platforms tend to promote what's already popular. A
-    brand-new fundraiser with no donations yet gets buried at the bottom.</li>
-    <li><strong>The spotlight:</strong> real volunteers pick one overlooked campaign each day and
-    put it front and center.</li>
-    <li><strong>Fair turns:</strong> it changes daily, so more campaigns get a turn.</li>
-    <li><strong>Hands-off:</strong> we never touch the money. When you give, it goes straight to
-    the person who needs it.</li>
-  </ul>
-
-  <div class="reason-grid">
-    <a class="reason-card" href="#reason-1">
-      <span class="reason-num">01</span>
-      <h3>Algorithms count people out</h3>
-      <p>Being first is the hardest part — and it has nothing to do with how much someone deserves help.</p>
-    </a>
-    <a class="reason-card" href="#reason-2">
-      <span class="reason-num">02</span>
-      <h3>Predatory "boost" services</h3>
-      <p>Paid services promise virality, then take money from people already struggling.</p>
-    </a>
-    <a class="reason-card" href="#reason-3">
-      <span class="reason-num">03</span>
-      <h3>A story about a good day</h3>
-      <p>An old radio story about a fake crowd — and what it taught us about real generosity.</p>
-    </a>
-  </div>
-
-  <h2 id="reason-1">1. Algorithms count people out</h2>
-  <p>A fundraising page with zero donations tends to stay that way — not because the need
-  isn't real, but because platforms surface what's already popular. Being first is the
-  hardest part, and it has nothing to do with how much someone deserves help.</p>
-
-  <h2 id="reason-2">2. Predatory "boost your campaign" services</h2>
-  <p>People trying to raise money for a real need are often approached by paid services
-  promising visibility, virality, or guaranteed shares. At best these dilute the honesty of
-  the original ask; at worst they take money from someone already struggling and leave them
-  further discouraged when the promised results don't show up.</p>
-
-  <h2 id="reason-3">3. A story* about giving someone a good day</h2>
-  <p>There's an old <em>This American Life</em> story (Episode 286, later re-aired as
-  Episode 588, in a segment called "The Spy Who Loved Everyone") about a comedy group called
-  Improv Everywhere. In 2004, they learned that a small unknown band from Vermont, Ghosts of
-  Pasha, was about to play their first-ever New York show to what would likely be an almost
-  empty room. So about three dozen volunteers learned the band's songs, made merchandise, and
-  showed up acting like devoted, longtime superfans — mobbing the stage, singing along,
-  treating total strangers like they'd just watched their favorite band on earth.</p>
-  <p>The intention was purely generous: give a band one incredible night. And for a while, it
-  worked — the band fed off the energy and played like they meant it. But once they realized
-  the crowd wasn't real, it left them unsettled rather than grateful. Manufactured encouragement,
-  even offered with real love, can curdle once the truth comes out.</p>
-  <p>Here's the part that matters most to us, though: it didn't end there. Years later, Ghosts
-  of Pasha came back and performed live at Improv Everywhere's own anniversary show — this
-  time as themselves, on their own terms, seemingly at peace with the whole strange story. The
-  good intention was real. It just needed honesty to land.</p>
-
-  <h2>Our goal isn't a sea of $0 campaign pages</h2>
-  <p>We're not trying to advertise or encourage zero-donation fundraisers as some kind of
-  category to collect. If you look at our board and every campaign already has a donor or
-  two, that's not a failure of this project — it might be the opposite.</p>
-  <p>Sharing a campaign, submitting it to us, even just someone talking about it — any of that
-  activity can be exactly the kind of signal a fundraising platform's own algorithm notices.
-  By the time a campaign reaches us, or by the time we get around to featuring it, it may
-  already have picked up its first supporter. That's not us missing the moment. That's the
-  actual goal arriving a little early.</p>
-  <p>Our real goal isn't a board full of zero-dollar campaigns to point at. It's the opposite —
-  we'd love to see no zero-dollar fundraisers at all. Either way this plays out, it's a win.</p>
-  <p>"Zero" here is really shorthand for low activity, not always a literal $0. You might send
-  us a campaign through our contact form, and by the time it's posted, it may no
-  longer be at zero. We consider that a good thing. &lt;3</p>
-
-  <h2>A personal note</h2>
-  <p>This project also has a more personal thread. A few of our volunteers have been going
-  through hard times of our own. We talked it through together, in a group chat, and decided
-  to try turning that into something useful instead of just something hard. We're choosing to
-  stay hopeful about where this goes.</p>
-
-  <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--muted);">We're under construction
-  — this is a DIY, volunteer-run project, so if you run into bugs or anything that seems off,
-  please just let us know.</p>
-
-  <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--muted);">At this time, we found
-  some campaigns our volunteers wanted to boost ourselves. We don't have inbound submissions
-  yet, so if things are slow or there aren't any submissions coming in, we'll hand-select
-  campaigns in the meantime.</p>
-
-  <hr style="margin-top:1.5rem; border:none; border-top:1px solid var(--border);">
-  <p style="margin-top:1rem; font-size:0.85rem; color:var(--muted); font-style:italic;">*You can hear the full
-  story yourself at
-  <a href="https://www.thisamericanlife.org/286/mind-games" target="_blank" rel="noopener">thisamericanlife.org</a>.</p>
-
-  <h2 style="margin-top: 2.2rem;">A few common questions</h2>
-  <div class="faq">
-    <details>
-      <summary>Does Boost Board verify campaigns?</summary>
-      <p>Every submission is reviewed by a real person, checking that it's genuine and safe to
-      share — but a listing here isn't a guarantee or endorsement. Review the organizer and
-      campaign details yourself before giving, the same as you would anywhere else.</p>
-    </details>
-    <details>
-      <summary>Does Boost Board collect or process donations?</summary>
-      <p>No. We never touch, hold, or process any money. When you give, you click through to a
-      campaign's own page — GoFundMe, or wherever it's hosted — and donate there directly. See
-      our <a href="./privacy-policy.html">privacy policy</a> for more on what we do and don't do
-      with information.</p>
-    </details>
-    <details>
-      <summary>Can I suggest my own campaign?</summary>
-      <p>Yes — use <a href="./submit.html">Share Your Page</a>. You don't need to be the
-      organizer to suggest one either, as long as the campaign is already public.</p>
-    </details>
-    <details>
-      <summary>What if I notice something suspicious about a listed campaign?</summary>
-      <p>Use the "Report / Update" link on that campaign's card on <a href="./board.html">the
-      board</a>. Reports are reviewed by a real person, not resolved automatically, and we
-      don't publish who filed one.</p>
-    </details>
-    <details>
-      <summary>Is a listing the same as an endorsement?</summary>
-      <p>No. We aim to feature genuine campaigns, but inclusion here isn't a verification
-      service and shouldn't be read as one. Boost Board isn't a charity or nonprofit — it's a
-      volunteer-run tool for visibility, nothing more.</p>
-    </details>
-  </div>
+<section class="purpose-hero" aria-labelledby="purpose-title">
+<div class="eyebrow">Our purpose</div>
+<div class="hero-grid">
+<h1 id="purpose-title">A fairer chance<br>at a <span>first supporter.</span></h1>
+<div class="hero-intro"><p>A campaign's worth isn't measured by the size of its crowd. Boost Board exists to help the stories stuck at zero — or close to it — get a chance to be seen.</p><a class="text-link" href="#origins">Why this exists <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a></div>
 </div>
+</section>
+<figure class="purpose-image">
+<img src="./standin-image.jpg" alt="">
+</figure>
+<section class="story" aria-labelledby="why-title">
+<h2 id="why-title">Crowdfunding asks for a crowd.<br>Not everyone has one.</h2>
+<div>
+<p class="lead">Picture a school bulletin board covered in thousands of drawings — but the light only shines on the ones that already have a gold star. If nobody's noticed a drawing yet, it stays in the dark corner.</p>
+<p>Boost Board is like someone with a flashlight, pointing it at one hidden drawing every single day so people can finally see it.</p>
+<p><strong>The problem:</strong> big platforms tend to promote what's already popular. A brand-new fundraiser with no donations yet gets buried at the bottom.<br>
+<strong>The spotlight:</strong> real volunteers pick one overlooked campaign each day and put it front and center.<br>
+<strong>Fair turns:</strong> it changes daily, so more campaigns get a turn.<br>
+<strong>Hands-off:</strong> we never touch the money. When you give, it goes straight to the person who needs it.</p>
+</div>
+</section>
+</div>
+
+<div class="wrap reasons" id="origins">
+<div class="reason">
+<h3>1. Algorithms count people out</h3>
+<p>Big fundraising websites usually promote campaigns that are already popular. If someone needs help but hasn't received their first dollar yet, the computer hides them at the bottom.</p>
+</div>
+<div class="reason">
+<h3>2. Predatory "boost your campaign" services</h3>
+<p>People trying to raise money for a real need are often approached by paid services promising visibility, virality, or guaranteed shares. At best these dilute the honesty of the ask; at worst they take money from someone already struggling.</p>
+</div>
+<div class="reason">
+<h3>3. A story* about giving someone a good day</h3>
+<p>There's an old <em>This American Life</em> episode about a comedy group, Improv Everywhere, who learned that a small unknown band was about to play its first-ever New York show to what would likely be an almost-empty room. So about three dozen volunteers learned the band's songs and showed up acting like devoted, longtime superfans.</p>
+<p>It worked, for a while — until the band realized the crowd wasn't real, which left them unsettled rather than grateful. Manufactured encouragement, even offered with real love, can curdle once the truth comes out.</p>
+<p>Years later, the band came back and performed live at Improv Everywhere's own anniversary show — this time as themselves, on their own terms. The good intention was real. It just needed honesty to land.</p>
+<p class="footnote-src">*You can hear the full story yourself at <a class="text-link" href="https://www.thisamericanlife.org/286/mind-games" target="_blank" rel="noopener">thisamericanlife.org</a>.</p>
+</div>
+</div>
+
+<section class="principles" aria-labelledby="principles-title">
+<div class="wrap">
+<div class="section-head"><h2 id="principles-title">Attention, with intention.</h2><p>The principles behind the campaigns we spotlight and the support we encourage.</p></div>
+<div class="principle-list">
+<article class="principle"><span class="number">01 /</span><h3>Look beyond momentum</h3><p>Our focus is on campaigns with little or no support, rather than the ones already drawing a crowd. A quiet start deserves a closer look.</p></article>
+<article class="principle"><span class="number">02 /</span><h3>Keep people's dignity intact</h3><p>A story belongs to the person living it. Share the original campaign, respect what the organizer chooses to disclose, and leave private details private.</p></article>
+<article class="principle"><span class="number">03 /</span><h3>Make room for small acts</h3><p>Giving money isn't the only way to help. One thoughtful share can give a campaign a whole new audience — the research backs this up.</p></article>
+</div>
+</div>
+</section>
+
+<div class="wrap">
+<section class="boundaries" aria-labelledby="boundaries-title">
+<div class="boundaries-grid">
+<div class="boundaries-intro"><h2 id="boundaries-title">Clear about our role.<br>Honest about our limits.</h2><p>Trust starts with knowing what a spotlight means — and what it doesn't.</p><a class="text-link" href="./how-it-works.html">Understand the process <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+<div>
+<article class="commitment"><h3>We help stories travel. We don't collect donations.</h3><p>Boost Board only signal boosts donations randomly, as submitted or brought to our attention. If you choose to contribute, you'll do so on the campaign's original fundraising platform, under its own terms and protections.</p></article>
+<article class="commitment"><h3>Our goal isn't a sea of $0 campaign pages</h3><p>We're not trying to advertise or encourage zero-donation fundraisers as some kind of category to collect. If a campaign already has a donor or two by the time it's featured — through sharing, submission activity, or a platform's own algorithm reacting to that — that's not a miss. Our real goal is the opposite: no zero-dollar fundraisers at all. "Zero" here is really shorthand for low activity, not always a literal $0. &lt;3</p></article>
+<article class="commitment"><h3>We're a small volunteer team, still figuring this out</h3><p>A few of our volunteers have been going through hard times of our own — that's a real part of why this exists. We're under construction, DIY and volunteer-run, so if you run into bugs or anything that seems off, please just let us know. At this time, we've been hand-selecting campaigns to boost ourselves since there isn't inbound-submission volume yet — we'll keep doing that whenever submissions are slow.</p></article>
+<div class="reminder"><p><strong>Zero funding isn't proof in either direction.</strong> It doesn't make a campaign unworthy, and it doesn't make it trustworthy. Give each story the care and consideration it deserves.</p></div>
+</div>
+</div>
+</section>
+<section class="cta" aria-labelledby="cta-title">
+<div><h2 id="cta-title">Your story shouldn't end at zero.</h2><p>If your campaign has stalled before finding its crowd, submit it for consideration. A small beginning is still a beginning.</p></div>
+<a class="button" href="./submit.html">Submit a campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+</section>
+</div>
+</main>
 </body>
 </html>

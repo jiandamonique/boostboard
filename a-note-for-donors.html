@@ -1,59 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>A Note for Donors: Why the Loudest Campaign Isn't the One That Needs You Most — Boost Board Blog</title>
-<meta name="description" content="Research shows crowdfunding success tracks social media savvy more than actual need. Some honest thoughts for donors on where that leaves you, and how to give well anyway.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
+<meta name="description" content="Research shows crowdfunding success tracks social media savvy more than actual need. Some honest thoughts on where that leaves you, and how to give well anyway.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/a-note-for-donors.html">
-<meta property="og:title" content="A Note for Donors: Why the Loudest Campaign Isn't the One That Needs You Most">
-<meta property="og:description" content="Research shows crowdfunding success tracks social media savvy more than actual need. Some honest thoughts for donors on where that leaves you, and how to give well anyway.">
+<meta property="og:title" content="A Note for Donors: Why the Loudest Campaign Isn't the One That Needs You Most — Boost Board Blog">
+<meta property="og:description" content="Research shows crowdfunding success tracks social media savvy more than actual need. Some honest thoughts on where that leaves you, and how to give well anyway.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/a-note-for-donors.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>A Note for Donors: Why the Loudest Campaign Isn't the One That Needs You Most — Boost Board Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
 <script src="./board-data.js" defer></script>
 <script src="./random-campaign-widget.js" defer></script>
 <style>
-  :root { --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c; --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08); --accent: #e8562f; --on-accent: #fff8f4; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; line-height: 1.7; }
-  .wrap { max-width: 640px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; box-shadow: var(--shadow); }
-  h1 { font-family: 'Lora', serif; font-size: 1.55rem; margin-bottom: 0.4rem; }
-  .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 1.3rem; letter-spacing: 0.04em; }
-  .wrap h2 { font-family: 'Lora', serif; font-size: 1.15rem; margin: 1.6rem 0 0.6rem; }
-  .wrap p { margin-bottom: 1rem; font-size: 0.95rem; }
-  .wrap a { color: var(--deep); }
-  .back-link { display:block; max-width:640px; margin:0 auto 1rem; font-size:0.85rem; }
-  .back-link a { color: var(--muted); }
-  .stat-callout { background: var(--warm); border-radius: 10px; padding: 1rem 1.2rem; margin: 1rem 0 1.3rem; font-size: 0.92rem; }
-  .stat-callout .src { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; display: block; }
-  .qlist { counter-reset: q; margin: 0.5rem 0 1.5rem; }
-  .qitem { counter-increment: q; padding: 1rem 0 1rem 2.2rem; position: relative; border-bottom: 1px solid var(--border); }
-  .qitem:last-child { border-bottom: none; }
-  .qitem:before { content: counter(q); position: absolute; left: 0; top: 1rem; font-family: 'Lora', serif;
-    font-size: 1.1rem; color: var(--accent); width: 1.7rem; height: 1.7rem; border: 1px solid var(--accent);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .qitem h3 { font-family: 'Lora', serif; font-size: 1rem; margin-bottom: 0.4rem; }
-  .qitem p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0; }
-  .cta-box { background: var(--warm); border-radius: 10px; padding: 1.1rem 1.3rem; margin-top: 1.5rem; text-align: center; }
-  a.cta-btn { display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none;
-    font-weight: 600; padding: 0.65rem 1.3rem; border-radius: 8px; font-size: 0.9rem; margin-top: 0.6rem; }
-  a.cta-btn:hover { opacity: 0.9; }
+.post-wrap{max-width:680px;margin:0 auto;padding:50px 0 70px}
+.back-link{display:block;font-size:14px;margin-bottom:24px;color:var(--muted)}
+.post-eyebrow{margin-bottom:14px}
+h1{font-size:clamp(32px,4vw,44px);letter-spacing:-1.6px;line-height:1.15;margin-bottom:14px}
+.byline{font-family:var(--heading);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:32px}
+.post-body h2{font-size:24px;letter-spacing:-.7px;margin:34px 0 14px}
+.post-body p{font-size:18px;margin-bottom:16px;color:var(--ink)}
+.post-body p.stat-box,.post-body div.stat-box{background:#dfeae6;border-radius:8px;padding:16px 20px;margin:16px 0}
+.post-body .num{font-family:var(--heading);font-size:22px;font-weight:600;color:var(--deep)}
+.post-body a{color:var(--deep);border-bottom:1px solid #a2c9c0}
+.post-body .sourcing{font-size:14px;color:var(--muted);margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
-<p class="back-link"><a href="./blog.html">← Back to all posts</a></p>
-<div class="wrap">
-  <h1>A Note for Donors: Why the Loudest Campaign Isn't the One That Needs You Most</h1>
-  <div class="byline">Volunteer Team · 2026-09-07</div>
-
-  <p>Crowdfunding runs on the same basic engine as everything else online: whoever tells the story best gets seen the most. That's not a knock on any individual campaign — it's just how the system is built. A campaign with a sharp headline, a compelling photo, and an organizer with a big, generous network is going to outperform an equally real, equally urgent need described by someone without those advantages. Attention follows communication skill and social reach, not the size of the need behind it.</p>
+<main id="main" class="wrap">
+<div class="post-wrap">
+<a class="back-link" href="./blog.html">← Back to all posts</a>
+<div class="eyebrow post-eyebrow">Blog</div>
+<h1>A Note for Donors: Why the Loudest Campaign Isn't the One That Needs You Most</h1>
+<div class="byline">Volunteer Team · 2026-09-07</div>
+<div class="post-body">
+<p>Crowdfunding runs on the same basic engine as everything else online: whoever tells the story best gets seen the most. That's not a knock on any individual campaign — it's just how the system is built. A campaign with a sharp headline, a compelling photo, and an organizer with a big, generous network is going to outperform an equally real, equally urgent need described by someone without those advantages. Attention follows communication skill and social reach, not the size of the need behind it.</p>
 
   <div class="stat-callout">
     Multiple peer-reviewed studies on medical crowdfunding — including research published in the
@@ -107,5 +99,7 @@
     <a class="cta-btn" href="./board.html">See who's featured today →</a>
   </div>
 </div>
+</div>
+</main>
 </body>
 </html>

@@ -1,482 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>The Board — Boost Board</title>
-<meta name="description" content="See every campaign currently in rotation on Boost Board, sorted by how much they've raised so far.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
+<meta name="description" content="Browse today's real fundraising campaigns on Boost Board -- filter by cause and see how much support each has so far.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/board.html">
-<meta property="og:title" content="The Board — Boost Board">
-<meta property="og:description" content="See every campaign currently in rotation on Boost Board, sorted by how much they've raised so far.">
+<meta property="og:title" content="Explore campaigns — Boost Board">
+<meta property="og:description" content="Browse today's real fundraising campaigns on Boost Board -- filter by cause and see how much support each has so far.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/board.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Board — Boost Board">
-<meta name="twitter:description" content="See every campaign currently in rotation on Boost Board, sorted by how much they've raised so far.">
-<meta name="twitter:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cream: #f2f7f2; --warm: #e6efe6; --deep: #162418; --muted: #5c6b5c;
-    --border: rgba(40,80,45,0.18); --shadow: 0 4px 24px rgba(22,36,24,0.08);
-    --t-seed: #9b6e9e; --t-five: #7193a4; --t-ten: #6b9e8a; --pin: #b5762c;
-    --accent: #e8562f; --on-accent: #fff8f4;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; }
-  h1.page-title { font-family: 'Lora', serif; text-align: center; margin-bottom: 0.8rem; }
-  p.page-sub { text-align: center; color: var(--muted); margin-bottom: 1.6rem; font-size: 0.95rem; line-height: 1.6; }
-  p.page-note { text-align: left; color: var(--muted); margin-bottom: 2rem; font-size: 0.8rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-  p.page-note a { color: var(--deep); font-weight: 600; }
-  .board { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
-  .card {
-    background: #fff; border: 1px solid var(--border); border-radius: 14px;
-    padding: 1.25rem; box-shadow: var(--shadow); display: flex; flex-direction: column; position: relative;
-  }
-  .card.is-pinned { border-color: var(--pin); }
-  .card-image {
-    width: calc(100% + 2.5rem); margin: -1.25rem -1.25rem 0.9rem; height: 130px;
-    object-fit: cover; border-radius: 14px 14px 0 0; display: block; background: var(--warm);
-    border-bottom: 1px solid var(--border);
-  }
-  .card-image-fallback {
-    width: calc(100% + 2.5rem); margin: -1.25rem -1.25rem 0.9rem;
-    aspect-ratio: 700 / 819; height: auto;
-    border-radius: 14px 14px 0 0; background-image: url("./standin-image.jpg");
-    background-size: cover; background-position: center;
-    border-bottom: 1px solid var(--border);
-  }
-  .eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.05em;
-    text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem;
-  }
-  .eyebrow::before { content: "●"; font-size: 0.5rem; }
-  .card.seed .eyebrow { color: var(--t-seed); }
-  .card.first_five .eyebrow { color: var(--t-five); }
-  .card.first_ten .eyebrow { color: var(--t-ten); }
-  .card.is-pinned .eyebrow { color: var(--pin); }
-  h2 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.7rem; }
-  p.desc { line-height: 1.5; font-size: 0.87rem; margin-bottom: 0.9rem; flex-grow: 1; color: var(--deep); }
-  .tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
-  .tag {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; background: var(--warm);
-    border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.5rem; color: var(--muted);
-  }
-
-  /* Hero: today's Inbox Zero campaign */
-  .hero { max-width: 760px; margin: 0 auto 3rem; background: #fff; border: 2px solid var(--t-seed);
-    border-radius: 18px; padding: 1.75rem; box-shadow: var(--shadow); }
-  .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--t-seed); display: flex; align-items: center; gap: 0.4rem;
-    justify-content: center; margin-bottom: 0.6rem; }
-  .hero-eyebrow::before { content: "●"; font-size: 0.55rem; }
-  .hero-image { width: 100%; aspect-ratio: 700 / 819; max-height: 260px; object-fit: cover;
-    border-radius: 12px; margin-bottom: 1.1rem; border: 1px solid var(--border); }
-  .hero-headline { font-family: 'Lora', serif; font-size: 1.5rem; text-align: center; margin-bottom: 0.6rem; }
-  .hero-pitch { background: var(--warm); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.9rem;
-    line-height: 1.55; margin-bottom: 1.1rem; }
-  .hero-desc { line-height: 1.6; font-size: 0.95rem; margin-bottom: 1rem; text-align: left; }
-  .hero-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.3rem; }
-  .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
-  a.hero-cta {
-    display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none;
-    font-weight: 600; padding: 0.75rem 1.6rem; border-radius: 10px; font-size: 0.95rem;
-  }
-  a.hero-cta:hover { opacity: 0.9; }
-  a.hero-more { font-size: 0.82rem; color: var(--muted); text-decoration: underline; cursor: pointer; }
-  .hero-empty { max-width: 760px; margin: 0 auto 3rem; text-align: center; color: var(--muted);
-    font-family: 'Lora', serif; font-style: italic; }
-  .support-block { max-width: 760px; margin: 2.5rem auto 0; text-align: center; background: #fff;
-    border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow); }
-  .support-block h3 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.5rem; }
-  .support-block p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
-  .support-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
-  a.support-btn { display: inline-block; padding: 0.6rem 1.1rem; border-radius: 8px; font-size: 0.85rem;
-    font-weight: 600; text-decoration: none; }
-  a.support-app { background: var(--accent); color: var(--on-accent); }
-  a.support-booster { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
-
-  /* Multi-select + share list */
-  body { padding-bottom: 5.5rem; }
-  .card-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
-  .select-label { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; color: var(--muted); cursor: pointer; }
-  .select-label input { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; cursor: pointer; }
-  .card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-  .share-bar {
-    position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
-    width: min(600px, calc(100% - 2rem)); background: var(--deep); color: #fff;
-    border-radius: 12px; padding: 0.8rem 1.1rem; display: flex; align-items: center; gap: 0.9rem;
-    box-shadow: 0 8px 28px rgba(22,36,24,0.25); z-index: 50; font-size: 0.82rem;
-  }
-  .share-bar-count { flex: 1; }
-  .share-bar-count strong { font-weight: 600; }
-  .share-bar-clear { background: none; border: none; color: #cdd6cd; text-decoration: underline;
-    font-size: 0.72rem; cursor: pointer; padding: 0.4rem; }
-  .share-bar-clear:disabled { opacity: 0.4; cursor: default; text-decoration: none; }
-  .share-bar-btn { background: var(--accent); color: var(--on-accent); border: none; padding: 0.55rem 0.9rem;
-    border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
-  .share-bar-btn:disabled { opacity: 0.4; cursor: default; }
-
-  /* Share dialog */
-  dialog#shareDialog { border: 1px solid var(--border); border-radius: 14px; background: #fff;
-    color: var(--deep); width: min(480px, calc(100% - 2rem)); padding: 1.6rem; position: relative; }
-  dialog#shareDialog::backdrop { background: rgba(22,36,24,0.55); }
-  dialog#shareDialog h2 { font-family: 'Lora', serif; font-size: 1.2rem; margin-bottom: 0.4rem; padding-right: 1.5rem; }
-  .dialog-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; }
-  .dialog-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em;
-    font-family: 'JetBrains Mono', monospace; color: var(--muted); margin-bottom: 0.4rem; }
-  dialog#shareDialog textarea { width: 100%; height: 160px; resize: vertical; border: 1px solid var(--border);
-    border-radius: 8px; padding: 0.7rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem;
-    color: var(--deep); background: var(--cream); }
-  .dialog-actions { display: flex; gap: 0.6rem; margin-top: 0.9rem; }
-  .dialog-btn { background: var(--accent); color: var(--on-accent); border: none; padding: 0.6rem 1rem;
-    border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
-  .dialog-btn-outline { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
-  .dialog-status { font-size: 0.78rem; color: var(--accent); margin-top: 0.7rem; min-height: 1.1rem; }
-  .dialog-close { position: absolute; top: 0.9rem; right: 1rem; background: none; border: none;
-    font-size: 1.3rem; line-height: 1; color: var(--muted); cursor: pointer; padding: 0.2rem; }
-  a.support-btn:hover { opacity: 0.9; }
-  .pin-reason { font-size: 0.78rem; color: var(--pin); font-style: italic; margin-bottom: 0.7rem; }
-  .hero-pin-reason { font-size: 0.85rem; color: var(--pin); font-style: italic; text-align: center; margin-bottom: 0.9rem; }
-  h2.section-heading { font-family: 'Lora', serif; text-align: center; font-size: 1.2rem;
-    max-width: 1000px; margin: 3rem auto 0.6rem; }
-  .actions { display: flex; gap: 0.5rem; align-items: center; }
-  a.cta {
-    display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none;
-    font-weight: 600; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem;
-  }
-  a.cta:hover { opacity: 0.9; }
-  a.report {
-    font-size: 0.72rem; color: var(--muted); text-decoration: underline; margin-left: auto;
-  }
-  .empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-family: 'Lora', serif; font-style: italic; }
-  a.share { font-size: 0.72rem; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: 600; }
-  .tier-legend { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 0 auto 1rem; max-width: 1000px; }
-  .tier-pill { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; background: #fff;
-    border: 1px solid var(--border); border-radius: 12px; padding: 0.5rem 1rem; box-shadow: var(--shadow); min-width: 110px; }
-  .tier-pill-name { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase;
-    letter-spacing: 0.04em; font-weight: 600; }
-  .tier-pill-range { font-size: 0.72rem; color: var(--muted); }
-  .tier-pill.five .tier-pill-name { color: var(--t-five); }
-  .tier-pill.ten .tier-pill-name { color: var(--t-ten); }
-  .callout { max-width: 620px; margin: 0 auto 1.6rem; background: var(--warm); border-radius: 12px;
-    padding: 1rem 1.2rem; font-size: 0.85rem; line-height: 1.5; }
-  .callout p { margin-bottom: 0.6rem; }
-  .callout p:last-child { margin-bottom: 0; }
-  .callout-note { font-style: italic; color: var(--muted); font-size: 0.8rem; }
-  .share-callout { max-width: 620px; margin: 0 auto 2rem; text-align: center; background: #fff;
-    border: 1px solid var(--t-ten); border-radius: 12px; padding: 1rem 1.2rem; font-size: 0.88rem; }
-  .share-callout a { color: var(--deep); font-weight: 600; }
-  .filter-bar { max-width: 1000px; margin: 0 auto 2rem; }
-  .search-input {
-    display: block; width: 100%; max-width: 460px; margin: 0 auto 1rem; padding: 0.6rem 0.9rem;
-    border: 1px solid var(--border); border-radius: 999px; font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.9rem; color: var(--deep); background: #fff;
-  }
-  .search-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-  .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
-  .chip {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
-    letter-spacing: 0.03em; padding: 0.35rem 0.8rem; border-radius: 999px; cursor: pointer;
-    background: #fff; border: 1px solid var(--border); color: var(--muted);
-  }
-  .chip.active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-  .chip:hover:not(.active) { background: var(--warm); color: var(--deep); }
-</style>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>Explore campaigns — Boost Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
-<script src="./random-campaign-widget.js" defer></script>
+<style>
+.intro{padding:50px 0 32px;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
+h1{font-size:clamp(36px,4vw,51px);letter-spacing:-2px;line-height:1.14}
+.intro p{font-size:19px;max-width:435px}
+.principles{display:flex;flex-wrap:wrap;gap:26px;border-top:1px solid var(--line);padding:18px 0 28px;font-size:14px;color:var(--muted)}
+.principles span{display:flex;align-items:center;gap:8px}
+.check{width:17px;height:17px;fill:none;stroke:var(--green);stroke-width:1.8;flex-shrink:0}
+.browse{padding-bottom:60px}
+.tools{background:white;border:1px solid var(--line);border-radius:5px;padding:24px 26px}
+.search-row{display:grid;grid-template-columns:minmax(220px,1fr) 220px 140px;gap:16px;align-items:end}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
+input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;color:var(--ink);background:white;font-size:16px;padding:10px 12px}
+.search-input{position:relative}
+.search-input svg{position:absolute;left:14px;top:14px;width:19px;height:19px;fill:none;stroke:var(--muted);stroke-width:1.7}
+.search-input input{padding-left:43px}
+.search-row .button{height:47px}
+.categories{border:0;padding:0;margin:20px 0 0;display:flex;gap:9px;flex-wrap:wrap}
+.categories legend{font-size:14px;font-weight:600;margin-bottom:9px;padding:0}
+.category-btn{border:1px solid var(--line);border-radius:4px;background:white;color:var(--muted);padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer}
+.category-btn:hover{background:var(--bg);color:var(--ink)}
+.category-btn[aria-pressed=true]{color:var(--deep);border-color:#98bfb6;background:#e3f0eb}
+.results-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:32px;margin-top:28px}
+.results-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
+.results-top h2{font-family:var(--font);font-size:17px;font-weight:600;color:var(--ink)}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.result-card{background:#fff;border:1px solid var(--line);border-radius:5px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.result-card img{width:100%;height:140px;border-radius:4px;object-fit:cover}
+.result-card h3{font-size:17px;letter-spacing:-.3px}
+.result-card p{font-size:14px;margin:0}
+.card-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
+.report-link{font-size:12px;color:var(--muted);text-decoration:underline;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+.report-link:hover{color:var(--ink)}
+.result-tags{display:flex;gap:6px;flex-wrap:wrap}
+.empty{background:#fff;border:1px solid var(--line);border-radius:5px;padding:52px 40px;text-align:center;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.empty h3{font-size:22px;letter-spacing:-.6px}
+.empty p{max-width:420px;font-size:16px;margin:12px 0 20px}
+.status{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--deep);font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.status:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}
+.aside h2{font-size:19px;line-height:1.4;letter-spacing:-.5px}
+.aside p{font-size:15px;margin-top:10px}
+.aside .text-link{margin-top:15px;font-size:14px}
+.aside-bottom{border-top:1px solid var(--line);margin-top:24px;padding-top:20px}
+.aside-bottom strong{font-size:14px;font-weight:600}
+.aside-bottom p{font-size:13px;margin-top:6px}
+.sharing{display:grid;grid-template-columns:1fr 1.1fr;gap:55px;border-top:1px solid var(--line);padding:32px 0 44px}
+.sharing h2{font-size:24px;letter-spacing:-1px;line-height:1.3}
+.sharing p{font-size:16px;margin-top:12px;max-width:430px}
+.share-note{border-left:3px solid var(--gold);padding:2px 0 2px 22px}
+@media(max-width:1000px){.results-layout{grid-template-columns:1fr}.results-grid{grid-template-columns:1fr}}
+@media(max-width:740px){
+  .intro{grid-template-columns:1fr;padding:28px 0 22px;gap:18px}
+  .principles{padding-bottom:22px}
+  .tools{padding:18px}
+  .search-row{grid-template-columns:1fr}
+  .sharing{grid-template-columns:1fr;gap:20px;padding:26px 0 32px}
+}
+</style>
 </head>
 <body>
-
-<h1 class="page-title">The Board</h1>
-<p class="page-sub">Everyone currently in rotation, sorted by how much they've raised so far.</p>
-
-<div class="share-callout">
-  Can't donate right now? <strong>Sharing genuinely helps</strong> — campaigns that get shared
-  a lot in their first few days are far more likely to reach their goal.
-  <a href="./sharing-does-more-than-you-think.html">See the numbers →</a>
+<main id="main" class="wrap">
+<section class="intro" aria-labelledby="page-title">
+<div><h1 id="page-title">Find a beginning<br>you believe in.</h1></div>
+<p>Every campaign here has been reviewed by hand. Filter by cause, or search for something specific.</p>
+</section>
+<div class="principles">
+  <span><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Overlooked, not unworthy</span>
+  <span><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Give on the original platform</span>
+  <span><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>A share is support, too</span>
 </div>
-
-<div class="filter-bar">
-  <input type="text" id="searchInput" placeholder="Search by name or description…" class="search-input">
-  <div class="chip-row" id="chipRow"></div>
+<section class="browse" aria-label="Campaign directory">
+<div class="tools">
+<div class="search-row">
+<div><label for="search">Find a campaign</label><div class="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" id="search" placeholder="Search by cause, name, or story"></div></div>
+<div><label for="funding">Funding stage</label><select id="funding">
+<option value="">All campaigns</option>
+<option value="seed">No donations yet</option>
+<option value="first_five">A small start (1–4 donors)</option>
+<option value="first_ten">Building momentum (5–9 donors)</option>
+</select></div>
 </div>
-
-<h2 class="section-heading" id="zero-heading">Campaigns with zero donations</h2>
-<p class="page-sub">Be someone's first donor. Every campaign starts here — this is the tier we
-built this whole board around.</p>
-<div class="board" id="zeroGrid"></div>
-
-<h2 class="section-heading" id="board-heading">Campaigns already building momentum</h2>
-<div class="tier-legend">
-  <div class="tier-pill seed"><span class="tier-pill-name">Seed</span><span class="tier-pill-range">0 donors</span></div>
-  <div class="tier-pill five"><span class="tier-pill-name">First Five</span><span class="tier-pill-range">1–4 donors</span></div>
-  <div class="tier-pill ten"><span class="tier-pill-name">First Ten</span><span class="tier-pill-range">5–9 donors</span></div>
+<fieldset class="categories" id="categoryPills"><legend>What matters to you?</legend></fieldset>
 </div>
-<p class="page-sub">A campaign moves through these tiers as it picks up support, then rotates off
-the board once it passes 10 donors — the spotlight moves on to whoever needs it next.</p>
-<div class="callout">
-  <p><strong>A couple of exceptions, on purpose:</strong> we'll sometimes keep a campaign visible
-  past 10 donors if it's barely made a dent in a much larger goal, or if our team has flagged it
-  as getting very little reach despite the donor count.</p>
-  <p class="callout-note">Our site is new and we're still putting the pieces together — none of
-  this is a hard and fast rule. The goal is just to help signal-boost, and to make that
-  systematic instead of random. &lt;3</p>
+<div class="results-layout">
+<div>
+<div class="results-top"><h2 id="resultCount" role="status" aria-live="polite">Loading…</h2></div>
+<div id="resultsArea"></div>
 </div>
-<div class="board" id="board"></div>
+<aside class="aside" aria-labelledby="directory-note">
+<div class="status">A crowd starts somewhere</div>
+<h2 id="directory-note">Small starts.<br>Not popularity rankings.</h2>
+<p>This space is for campaigns still waiting for traction — not the ones already making headlines.</p>
+<a class="text-link" href="./how-it-works.html">How campaigns get a spotlight <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+<div class="aside-bottom"><strong>Before you give</strong><p>A spotlight isn't verification. Read the original campaign, check organizer details and updates, and review the platform's protections. Boost Board never collects donations.</p></div>
+</aside>
+</div>
+</section>
 
-<p class="page-note">This project is run by volunteers. If a campaign hasn't
-rotated through yet, please keep reaching out to your own community too — we want to support
-your success. To that end, please <a href="./helpful-fundraising-ideas.html">read some helpful
-ideas</a> here.</p>
-
-<p class="page-note">Every campaign here is reviewed by hand before it's added, which takes time —
-so by the time one appears, it may already have picked up a donation or two elsewhere. That's a
-genuinely good sign, not a mistake. If you notice something that looks off, the "Report / Update"
-link on that card is the easiest way to let us know.</p>
-
-<p class="page-note">If your situation is urgent, please don't wait on us. Try posting on social
-media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign
-some immediate attention. We're sorry that we don't have the staff to respond to urgent needs
-in real time.</p>
-
-<div class="support-block">
-  <h3>Boost Board isn't a charity or nonprofit — it's just an app.</h3>
-  <p>Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly,
-    as submitted or brought to our attention.
-    If you'd like to support the effort, you've got two options: help keep the app itself
-    running, or send your money straight to today's featured campaign instead.</p>
-  <div class="support-actions">
-    <a class="support-btn support-app" href="./credits.html">Support the app</a>
-    <a class="support-btn support-booster" id="supportBoosterLink" href="#" target="_blank" rel="noopener">Donate to today's featured campaign</a>
+<section class="support-note" style="max-width:640px;margin:0 auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 32px;">
+  <h3 style="font-size:18px;margin-bottom:10px;">Boost Board isn't a charity or nonprofit — it's just an app.</h3>
+  <p style="font-size:15px;margin-bottom:16px;">Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly, as submitted or brought to our attention. If you'd like to support the effort, you've got two options: help keep the app itself running, or send your money straight to today's featured campaign instead.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a class="button outline" href="./credits.html">Support the app</a>
+    <a class="button" href="./index.html" id="heroDonateLink">Donate to today's featured campaign</a>
   </div>
-</div>
+  <p style="font-size:13px;margin-top:20px;">Every campaign here is reviewed by hand before it's added, which takes time — so by the time one appears, it may already have picked up a donation or two elsewhere. That's a genuinely good sign, not a mistake.</p>
+  <p style="font-size:13px;margin-top:12px;">If your situation is urgent, please don't wait on us. Try posting on social media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign some immediate attention. We're sorry that we don't have the staff to respond to urgent needs in real time.</p>
+</section>
 
-<div class="share-bar" id="shareBar">
-  <div class="share-bar-count">
-    <strong id="shareCount">Select campaigns to share a few at once</strong>
-  </div>
-  <button class="share-bar-clear" id="shareClearBtn" disabled>Clear</button>
-  <button class="share-bar-btn" id="shareListBtn" disabled>Share list →</button>
-</div>
-
-<dialog id="shareDialog">
-  <button class="dialog-close" id="shareDialogClose" aria-label="Close">×</button>
-  <h2>Carry these forward.</h2>
-  <p class="dialog-sub">Edit the message below, then copy it into a text, post, or email.</p>
-  <label for="shareText" class="dialog-label">Your message</label>
-  <textarea id="shareText"></textarea>
-  <div class="dialog-actions">
-    <button class="dialog-btn" id="shareDialogCopy">Copy message</button>
-    <button class="dialog-btn dialog-btn-outline" id="shareDialogNative" hidden>Share to…</button>
-  </div>
-  <p class="dialog-status" id="shareDialogStatus" role="status"></p>
-</dialog>
+<section class="sharing" aria-labelledby="sharing-title">
+<div><h2 id="sharing-title">You can give a story reach.</h2><p>When you find a campaign you care about, send it to someone who might connect with it. A personal note goes further than a link alone.</p></div>
+<div class="share-note"><p>Say what caught your attention. Explain who the campaign is for. Share the original link so others can read the story for themselves.</p></div>
+</section>
+<section class="cta" aria-labelledby="cta-title"><div><h2 id="cta-title">Know a campaign stuck at the start?</h2><p>Your own fundraiser or a cause you care about — submit the original link for consideration.</p></div><a class="button" href="./submit.html">Submit a campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
+</main>
 
 <script src="./board-data.js"></script>
 <script>
-  const { hero, zeroSection, tlcSection } = computeToday();
+  const { eligible } = (function() {
+    const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c)));
+    return { eligible: el };
+  })();
 
-  if (hero) {
-    const boosterLink = document.getElementById('supportBoosterLink');
-    if (boosterLink) boosterLink.href = hero.link;
-  }
+  const TIER_LABELS = { seed: 'No donations yet', first_five: '1–4 donors', first_ten: '5–9 donors' };
+  const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, graduated: 3 };
 
-  function renderCard(c) {
+  function cardHtml(c) {
     const tier = tierOf(c);
-    const card = document.createElement('div');
-    card.className = `card ${tier} ${c.pinned ? 'is-pinned' : ''}`;
-    const imageHtml = c.imageUrl
-      ? `<img class="card-image" src="${c.imageUrl}" alt="${c.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;card-image-fallback&quot;></div>'">`
-      : `<div class="card-image-fallback"></div>`;
-    const eyebrowText = c.pinned ? "Editor's Pick" : (tier === 'graduated' ? fallbackLabel(c) : tierLabel(tier));
-    card.innerHTML = `
-      ${imageHtml}
-      <div class="card-top-row">
-        <div class="eyebrow">${eyebrowText}</div>
-        <label class="select-label"><input type="checkbox" class="select-box" data-id="${c.id}" ${selectedIds.has(c.id) ? 'checked' : ''} aria-label="Add ${c.name} to your share list">Select</label>
-      </div>
-      ${c.pinned && c.pinReason ? `<div class="pin-reason">${c.pinReason}</div>` : ''}
-      <h2>${c.name}</h2>
-      <p class="desc">${c.description}</p>
-      <div class="tags">${[...c.communities, ...(c.category || [])].map(t => `<span class="tag">${t}</span>`).join('')}</div>
-      <div class="actions">
-        <a class="cta" href="${c.link}" target="_blank" rel="noopener">View campaign →</a>
-        <a class="share" data-id="${c.id}" title="Sharing helps even if you can't donate">Share</a>
-        <a class="report" href="#" data-id="${c.id}" title="Report a concern, or let us know this campaign already has donations">Report / Update</a>
+    const tierLabel = tier === 'graduated' ? fallbackLabel(c) : TIER_LABELS[tier];
+    const tagClass = tier === 'seed' ? 'seed' : '';
+    return `
+      <div class="result-card">
+        <img src="${c.imageUrl || './standin-image.jpg'}" alt="" onerror="this.src='./standin-image.jpg'">
+        <div class="result-tags">
+          <span class="tag ${tagClass}">${tierLabel}</span>
+          ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${cat}</span>`).join('')}
+        </div>
+        <h3>${c.name}</h3>
+        <p>${c.description}</p>
+        <div class="card-actions">
+          <a class="text-link" href="${c.link}" target="_blank" rel="noopener">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <button class="report-link" data-id="${c.id}" data-name="${c.name.replace(/"/g, '&quot;')}" title="Report a concern, or let us know this campaign already has donations">Report / Update</button>
+        </div>
       </div>
     `;
-    return card;
   }
 
-  const selectedIds = new Set();
-
-  function updateShareBar() {
-    const n = selectedIds.size;
-    const bar = document.getElementById('shareBar');
-    document.getElementById('shareCount').textContent = n
-      ? `${n} ${n === 1 ? 'campaign' : 'campaigns'} in your share list`
-      : 'Select campaigns to share a few at once';
-    document.getElementById('shareClearBtn').disabled = !n;
-    document.getElementById('shareListBtn').disabled = !n;
-    bar.classList.toggle('has-selection', n > 0);
-  }
-
-  const zeroGrid = document.getElementById('zeroGrid');
-  const board = document.getElementById('board');
-  const searchInput = document.getElementById('searchInput');
-  const chipRow = document.getElementById('chipRow');
-
-  // Category chips, built from whatever `category` values actually exist
-  // in the dataset -- no hardcoded list to keep in sync by hand.
-  const allCategories = [...new Set(campaigns.flatMap(c => c.category || []))].sort();
-  let activeCategory = 'All';
-
-  function renderChips() {
-    const cats = ['All', ...allCategories];
-    chipRow.innerHTML = cats.map(cat =>
-      `<span class="chip ${cat === activeCategory ? 'active' : ''}" data-cat="${cat}">${cat}</span>`
+  // Category pills, built from whatever category values actually exist
+  // in the real data -- not a hardcoded list, so a new category shows up
+  // automatically the next time a campaign uses it.
+  const allCategories = [...new Set(eligible.flatMap(c => c.category || []))].sort();
+  const pillsWrap = document.getElementById('categoryPills');
+  let activeCategory = new URLSearchParams(location.search).get('category') || '';
+  function renderPills() {
+    const pills = [{ value: '', label: 'All causes' }, ...allCategories.map(c => ({ value: c, label: c }))];
+    pillsWrap.innerHTML = pills.map(p =>
+      `<button type="button" class="category-btn" data-value="${p.value}" aria-pressed="${p.value === activeCategory}">${p.label}</button>`
     ).join('');
-    chipRow.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        activeCategory = chip.dataset.cat;
-        renderChips();
-        applyFilters();
+    pillsWrap.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => { activeCategory = btn.dataset.value; render(); });
+    });
+  }
+
+  function render() {
+    renderPills();
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const fundingFilter = document.getElementById('funding').value;
+
+    let results = eligible.filter(c => {
+      if (fundingFilter && tierOf(c) !== fundingFilter) return false;
+      if (activeCategory && !(c.category || []).includes(activeCategory)) return false;
+      if (q && !(c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q))) return false;
+      return true;
+    });
+
+    results.sort((a, b) => TIER_ORDER[tierOf(a)] - TIER_ORDER[tierOf(b)]);
+
+    const countEl = document.getElementById('resultCount');
+    const area = document.getElementById('resultsArea');
+    countEl.textContent = results.length + (results.length === 1 ? ' campaign' : ' campaigns');
+
+    if (results.length === 0) {
+      area.innerHTML = `
+        <div class="empty">
+          <h3>No campaigns match that search.</h3>
+          <p>Try a different search term, or clear your filters to see everything on the board.</p>
+          <button class="text-link" id="resetBtn" type="button">Clear search and filters</button>
+        </div>
+      `;
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        document.getElementById('search').value = '';
+        document.getElementById('funding').value = '';
+        activeCategory = '';
+        render();
       });
-    });
-  }
-
-  function matchesFilters(c) {
-    const q = searchInput.value.trim().toLowerCase();
-    const matchesSearch = !q || c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q);
-    const matchesCategory = activeCategory === 'All' || (c.category || []).includes(activeCategory);
-    return matchesSearch && matchesCategory;
-  }
-
-  function applyFilters() {
-    const filteredZero = zeroSection.filter(matchesFilters);
-    const filteredTlc = tlcSection.filter(matchesFilters);
-
-    zeroGrid.innerHTML = '';
-    if (filteredZero.length === 0) {
-      zeroGrid.innerHTML = zeroSection.length === 0
-        ? `<p class="empty">No other zero-donation campaigns right now.</p>`
-        : `<p class="empty">No zero-donation campaigns match your filters.</p>`;
     } else {
-      filteredZero.forEach(c => zeroGrid.appendChild(renderCard(c)));
-    }
-
-    board.innerHTML = '';
-    if (filteredTlc.length === 0) {
-      board.innerHTML = tlcSection.length === 0
-        ? `<p class="empty">No other campaigns on the board right now.</p>`
-        : `<p class="empty">No campaigns match your filters.</p>`;
-    } else {
-      filteredTlc.forEach(c => board.appendChild(renderCard(c)));
-    }
-  }
-
-  renderChips();
-  applyFilters();
-  searchInput.addEventListener('input', applyFilters);
-
-  // Event delegation on the whole document, not per-card -- this way
-  // share/report links keep working after every re-render from a
-  // filter change, without needing to re-attach listeners each time.
-  document.addEventListener('click', (e) => {
-    const shareLink = e.target.closest('a.share');
-    if (shareLink) {
-      e.preventDefault();
-      const c = campaigns.find(x => x.id === shareLink.dataset.id);
-      if (!c) return;
-      const shareData = { title: c.name, text: `Help boost this campaign: ${c.name}`, url: c.link };
-      if (navigator.share) {
-        navigator.share(shareData).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(c.link).then(() => {
-          alert("Link copied — paste it anywhere. Sharing genuinely helps, even if you can't donate.");
+      area.innerHTML = `<div class="results-grid">${results.map(cardHtml).join('')}</div>`;
+      area.querySelectorAll('.report-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+          window.location.href = `./submit.html?report=${encodeURIComponent(btn.dataset.id)}&name=${encodeURIComponent(btn.dataset.name)}`;
         });
-      }
-      return;
+      });
     }
-    const reportLink = e.target.closest('a.report');
-    if (reportLink) {
-      e.preventDefault();
-      const campaign = campaigns.find(c => c.id === reportLink.dataset.id);
-      const name = campaign ? campaign.name : '';
-      window.location.href = `./submit.html?report=${encodeURIComponent(reportLink.dataset.id)}&name=${encodeURIComponent(name)}`;
-    }
-  });
+  }
 
-  // Checkboxes use 'change', not 'click', since that's what fires
-  // reliably for a checkbox regardless of whether it was clicked
-  // directly or toggled via its label.
-  document.addEventListener('change', (e) => {
-    const box = e.target.closest('.select-box');
-    if (!box) return;
-    if (box.checked) selectedIds.add(box.dataset.id);
-    else selectedIds.delete(box.dataset.id);
-    box.closest('.card').classList.toggle('selected', box.checked);
-    updateShareBar();
-  });
+  document.getElementById('search').addEventListener('input', render);
+  document.getElementById('funding').addEventListener('change', render);
+  render();
 
-  document.getElementById('shareClearBtn').addEventListener('click', () => {
-    selectedIds.clear();
-    document.querySelectorAll('.select-box').forEach(b => { b.checked = false; b.closest('.card').classList.remove('selected'); });
-    updateShareBar();
-  });
-
-  const shareDialog = document.getElementById('shareDialog');
-  const shareText = document.getElementById('shareText');
-  const shareStatus = document.getElementById('shareDialogStatus');
-
-  document.getElementById('shareListBtn').addEventListener('click', () => {
-    const picked = campaigns.filter(c => selectedIds.has(c.id));
-    if (picked.length === 0) return;
-    const intro = picked.length === 1
-      ? `I wanted to share this campaign — it hasn't gotten much attention yet.`
-      : `A few campaigns worth a moment of your time — none of them have gotten much attention yet.`;
-    shareText.value = intro + '\n\n' + picked.map(c => `${c.name}\n${c.link}`).join('\n\n')
-      + `\n\nSharing genuinely helps, even if giving isn't possible right now.`;
-    shareStatus.textContent = '';
-    shareDialog.showModal();
-  });
-
-  document.getElementById('shareDialogClose').addEventListener('click', () => shareDialog.close());
-  shareDialog.addEventListener('click', (e) => {
-    if (e.target !== shareDialog) return;
-    const r = shareDialog.getBoundingClientRect();
-    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) shareDialog.close();
-  });
-
-  document.getElementById('shareDialogCopy').addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(shareText.value);
-      shareStatus.textContent = 'Copied — paste it anywhere.';
-    } catch {
-      shareText.focus();
-      shareText.select();
-      shareStatus.textContent = 'Select and copy the text above.';
-    }
-  });
-
-  if (navigator.share) {
-    const nativeBtn = document.getElementById('shareDialogNative');
-    nativeBtn.hidden = false;
-    nativeBtn.addEventListener('click', async () => {
-      try {
-        await navigator.share({ title: 'Campaigns worth a look', text: shareText.value });
-        shareStatus.textContent = 'Thanks for sharing.';
-      } catch (e) {
-        if (e.name !== 'AbortError') shareStatus.textContent = 'Sharing unavailable — copy the text instead.';
-      }
-    });
+  const heroLinkEl = document.getElementById('heroDonateLink');
+  const { hero } = computeToday();
+  if (hero) {
+    heroLinkEl.href = hero.link;
+    heroLinkEl.target = '_blank';
+    heroLinkEl.rel = 'noopener';
   }
 </script>
-
 </body>
 </html>
