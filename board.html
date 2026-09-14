@@ -203,7 +203,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     document.getElementById('shareListBtn').disabled = !n;
   }
 
-  // Category pills, built from whatever category values actually exist
+  // Category pills, built from whatever category values exist
   // in the real data -- not a hardcoded list, so a new category shows up
   // automatically the next time a campaign uses it.
   const allCategories = [...new Set(eligible.flatMap(c => c.category || []))].sort();
@@ -242,7 +242,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     // and old section caps), so campaigns beyond the cap still get a
     // turn over time rather than the same 25 always winning. Any active
     // search or filter narrows the pool first, so this cap rarely
-    // matters once someone's actually looking for something specific.
+    // matters once someone's looking for something specific.
     const DISPLAY_CAP = 25;
     if (results.length > DISPLAY_CAP) {
       const startIndex = daysSinceEpoch(new Date()) % results.length;
