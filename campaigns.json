@@ -533,5 +533,26 @@
       "Housing",
       "Family Support"
     ]
+  },
+  {
+    "id": "c029",
+    "name": "Help Sustain Lisa Hartouni's Work",
+    "communities": [],
+    "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
+    "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
+    "donationCount": 0,
+    "submittedDate": "2026-09-16",
+    "lastFeatured": null,
+    "pinned": true,
+    "pinnedUntil": "2026-09-18",
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false,
+    "category": [
+      "Community"
+    ]
   }
 ]

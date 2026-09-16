@@ -537,6 +537,27 @@ const campaigns = [
       "Housing",
       "Family Support"
     ]
+  },
+  {
+    "id": "c029",
+    "name": "Help Sustain Lisa Hartouni's Work",
+    "communities": [],
+    "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
+    "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
+    "donationCount": 0,
+    "submittedDate": "2026-09-16",
+    "lastFeatured": null,
+    "pinned": true,
+    "pinnedUntil": "2026-09-18",
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
+    "pinReason": "",
+    "amountRaised": null,
+    "goalAmount": null,
+    "lowEngagementFlag": false,
+    "category": [
+      "Community"
+    ]
   }
 ];
 
@@ -596,13 +617,25 @@ function daysSinceEpoch(d) {
   return Math.floor(d.getTime() / 86400000);
 }
 
+// A pin can carry an optional expiry date (pinnedUntil, "YYYY-MM-DD").
+// Once today's date passes that, the campaign quietly falls back into
+// normal rotation -- no manual step needed to un-pin it later. A pin
+// with no pinnedUntil stays pinned indefinitely, same as before this
+// existed.
+function isPinned(c) {
+  if (!c.pinned) return false;
+  if (!c.pinnedUntil) return true;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  return todayStr <= c.pinnedUntil;
+}
+
 // Shared selector: pinned entries in the pool always get a slot, everyone
 // else rotates through automatically via a date-seeded queue position, so
 // the whole pool cycles before repeats -- no manual step or server needed.
 function selectSection(pool, size) {
-  const pinned = pool.filter(c => c.pinned);
+  const pinned = pool.filter(c => isPinned(c));
   const rotatable = pool
-    .filter(c => !c.pinned)
+    .filter(c => !isPinned(c))
     .slice()
     .sort((a, b) => (a.submittedDate || '').localeCompare(b.submittedDate || ''));
 
@@ -632,7 +665,7 @@ function computeToday() {
   // one" decision (e.g. a real person a moderator wants front and center).
   // Falls back to seed-tier rotation, then any eligible campaign as a last
   // resort, if nothing is pinned.
-  const pinnedAny = eligible.filter(c => c.pinned);
+  const pinnedAny = eligible.filter(c => isPinned(c));
   const seedPool = eligible.filter(c => tierOf(c) === 'seed');
   const hero = selectSection(pinnedAny.length ? pinnedAny : seedPool, 1)[0]
     || selectSection(eligible, 1)[0]
