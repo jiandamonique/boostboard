@@ -453,48 +453,6 @@
     ]
   },
   {
-    "id": "c023",
-    "name": "Move Alexis, Jason, and Chloe to Irving Texas",
-    "communities": [],
-    "description": "This campaign pays for Alexis, Jason, and Chloe's move, new lodging, and fresh groceries.",
-    "link": "https://www.gofundme.com/f/move-alexis-jason-and-chloe-to-irving-texas",
-    "donationCount": 0,
-    "submittedDate": "2026-09-14",
-    "lastFeatured": null,
-    "pinned": false,
-    "reported": false,
-    "imageUrl": "./campaigns/campaign-move-alexis-jason-and-chloe-to-irving-texas.webp",
-    "pinReason": "",
-    "amountRaised": null,
-    "goalAmount": null,
-    "lowEngagementFlag": false,
-    "category": [
-      "Housing",
-      "Family Support"
-    ]
-  },
-  {
-    "id": "c024",
-    "name": "Help Jean and Her Daughters Through Hardship",
-    "communities": [],
-    "description": "Jean's fund pays urgent bills, groceries, college and homeschooling costs during hardship.",
-    "link": "https://www.gofundme.com/f/help-jean-and-her-daughters-through-hardship",
-    "donationCount": 0,
-    "submittedDate": "2026-09-14",
-    "lastFeatured": null,
-    "pinned": false,
-    "reported": false,
-    "imageUrl": "./campaigns/campaign-help-jean-and-her-daughters-through-hardship.webp",
-    "pinReason": "",
-    "amountRaised": null,
-    "goalAmount": null,
-    "lowEngagementFlag": false,
-    "category": [
-      "Education",
-      "Family Support"
-    ]
-  },
-  {
     "id": "c025",
     "name": "Help Jessica Create a Safe Home",
     "communities": [],
