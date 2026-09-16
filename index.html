@@ -193,10 +193,23 @@ h1 span{color:var(--green)}
     // and pushing the button down to clear it fixes this regardless of
     // how long any given campaign's name is, rather than guessing a
     // fixed margin that only happens to work for short names.
+    //
+    // v97 fix: the note overlaps the image (bottom:0 relative to the
+    // image's own wrapper, per the v95 positioning fix), so its bottom
+    // edge is already flush with the image's bottom -- the button just
+    // needs a small fixed gap after that in the normal case. The extra
+    // math only kicks in if the note is ever taller than the image
+    // itself (a very long campaign name), in which case the note would
+    // push above the image's top edge, and the button needs the
+    // difference added to actually clear it.
     requestAnimationFrame(() => {
       const note = document.getElementById('heroImageNote');
       const btn = document.getElementById('heroViewBtn');
-      if (note && btn) btn.style.marginTop = (note.offsetHeight + 14) + 'px';
+      const img = document.querySelector('.hero-image');
+      if (note && btn && img) {
+        const overflow = Math.max(0, note.offsetHeight - img.offsetHeight);
+        btn.style.marginTop = (overflow + 14) + 'px';
+      }
     });
   }
 </script>

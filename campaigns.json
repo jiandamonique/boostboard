@@ -513,5 +513,67 @@
     "category": [
       "Housing"
     ]
+  },
+  {
+    "id": "c026",
+    "name": "Standing with Brian in His Time of Need",
+    "communities": [],
+    "description": "Brian has selflessly served as a fire keeper for his community and now needs support of his own.",
+    "link": "https://www.gofundme.com/f/standing-with-brian-in-his-time-of-need-93ka7",
+    "donationCount": 5,
+    "submittedDate": "2026-09-15",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-standing-with-brian-in-his-time-of-need.webp",
+    "pinReason": "",
+    "amountRaised": 450,
+    "goalAmount": 3500,
+    "lowEngagementFlag": false,
+    "category": [
+      "Community",
+      "Crisis"
+    ]
+  },
+  {
+    "id": "c027",
+    "name": "Help Imani Achieve Her College Dreams",
+    "communities": [],
+    "description": "A recent high school graduate raising support to help make college possible.",
+    "link": "https://www.gofundme.com/f/help-imani-achieve-her-college-dreams-sdzj6",
+    "donationCount": 9,
+    "submittedDate": "2026-09-15",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-help-imani-achieve-her-college-dreams.webp",
+    "pinReason": "",
+    "amountRaised": 665,
+    "goalAmount": 1600,
+    "lowEngagementFlag": false,
+    "category": [
+      "Education"
+    ]
+  },
+  {
+    "id": "c028",
+    "name": "Housing and Essentials for Tina",
+    "communities": [],
+    "description": "Tina rushed to California to support her 34-year-old son after he suffered a stroke, and now needs help with housing and essentials.",
+    "link": "https://www.gofundme.com/f/Tina-essentials",
+    "donationCount": 5,
+    "submittedDate": "2026-09-15",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-housing-and-essentials-for-tina.webp",
+    "pinReason": "",
+    "amountRaised": 305,
+    "goalAmount": 3000,
+    "lowEngagementFlag": false,
+    "category": [
+      "Housing",
+      "Family Support"
+    ]
   }
 ]
