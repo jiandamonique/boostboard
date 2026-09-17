@@ -237,13 +237,11 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     results.sort((a, b) => TIER_ORDER[tierOf(a)] - TIER_ORDER[tierOf(b)]);
 
     const totalMatches = results.length;
-    // Display cap, reintroduced (v93): with no filter or search active,
-    // an unbounded results list could turn into an overwhelming wall of
-    // cards as the dataset grows past a few dozen entries -- this isn't
-    // hypothetical, it's already at 19 campaigns. Capped at 25 with a
-    // rotating start point (same day-seeded approach used for the spotlight
-    // and old section caps), so campaigns beyond the cap still get a
-    // turn over time rather than the same 25 always winning. Any active
+    // Display cap: with no filter or search active, an unbounded results
+    // list could turn into an overwhelming wall of cards as the dataset
+    // grows. Capped with a rotating start point (same day-seeded approach
+    // used for the spotlight), so campaigns beyond the cap still get a
+    // turn over time rather than the same ones always winning. Any active
     // search or filter narrows the pool first, so this cap rarely
     // matters once someone's looking for something specific.
     const DISPLAY_CAP = 25;

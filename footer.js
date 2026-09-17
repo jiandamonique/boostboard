@@ -1,10 +1,22 @@
 // Sitemap footer, appended to the bottom of every public page. Reuses
 // the same page list nav.js already built (via window.BOOST_BOARD_PAGES)
-// so there's one list to maintain, not two. Redesigned (v86) to match
-// design.css's footer pattern. Load this AFTER nav.js on every page.
+// so there's one list to maintain, not two. Load this AFTER nav.js on
+// every page.
 (function () {
   const links = window.BOOST_BOARD_PAGES || [];
   if (links.length === 0) return;
+
+  // Blog posts get an extra bold, centered link back to the homepage
+  // right after the post content -- distinct from the sitemap footer
+  // below, which reads as generic site chrome by the time someone
+  // reaches it. Detected via .post-body, used only by actual posts.
+  const postBody = document.querySelector('.post-body');
+  if (postBody) {
+    const homeLink = document.createElement('p');
+    homeLink.style.cssText = 'text-align:center; margin-top:32px; font-size:17px;';
+    homeLink.innerHTML = '<a href="./index.html" style="font-weight:700; text-decoration:underline; color:var(--deep);">Boost Board</a>';
+    postBody.appendChild(homeLink);
+  }
 
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
@@ -24,7 +36,7 @@
       </div>
       <div class="footer-bottom">
         <span>© <span id="footer-year"></span> Boost Board</span>
-        <p>Boost Board is a discovery tool, not a fundraiser or payment processor. Visibility doesn't guarantee funding. It's not a charity or nonprofit, and it never touches or processes donations for the campaigns it features.</p>
+        <p>Boost Board is a discovery tool, not a charity, nonprofit, or payment processor. It never touches donations or guarantees funding. Every campaign — including our volunteers' or their family's — is independent, with no funds ever delegated to us.</p>
       </div>
     </div>
   `;

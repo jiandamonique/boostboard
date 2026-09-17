@@ -2,14 +2,6 @@
 // edit instead of duplicating a nav bar into every HTML file. Also
 // exposes the full page list on window.BOOST_BOARD_PAGES so footer.js
 // can build a complete sitemap without duplicating the list.
-//
-// Redesigned (v86) to match the new design system (design.css) adopted
-// from a provided mockup -- a top header bar with a small primary nav,
-// rather than the earlier fixed left sidebar. Only 4 items live in the
-// visible header nav (matching the mockup's own simple pattern); every
-// other existing page still exists and is still linked, just from the
-// footer's sitemap instead of the header -- nothing was removed, only
-// the header's visual weight was reduced to match the new design.
 (function () {
   const headerLinks = [
     { href: './board.html', label: 'Explore campaigns' },

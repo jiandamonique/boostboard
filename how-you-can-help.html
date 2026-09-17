@@ -14,7 +14,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
 <script src="./board-data.js" defer></script>
@@ -24,18 +25,18 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--cream); color: var(--deep); font-family: 'Source Sans 3', sans-serif; padding: 2.5rem 1.5rem; line-height: 1.7; }
   .wrap { max-width: 680px; margin: 0 auto; }
-  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem; text-align: center; }
-  h1 { font-family: 'Lora', serif; font-size: 1.8rem; margin-bottom: 0.6rem; text-align: center; }
+  .eyebrow { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.6rem; text-align: center; }
+  h1 { font-family: 'Sora', sans-serif; font-size: 1.8rem; margin-bottom: 0.6rem; text-align: center; }
   p.sub { color: var(--muted); font-size: 0.98rem; margin-bottom: 2rem; text-align: center; }
   .callout { background: #fff; border: 2px solid var(--accent); border-radius: 14px; padding: 1.3rem 1.5rem;
     margin-bottom: 1.8rem; box-shadow: var(--shadow); }
   .callout p { font-size: 0.98rem; margin-bottom: 0; }
   .callout strong { color: var(--accent); }
-  h2 { font-family: 'Lora', serif; font-size: 1.2rem; margin: 1.8rem 0 0.7rem; }
+  h2 { font-family: 'Sora', sans-serif; font-size: 1.2rem; margin: 1.8rem 0 0.7rem; }
   .wrap > p { font-size: 0.95rem; margin-bottom: 1rem; }
   .stat-box { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem;
     margin-bottom: 1rem; box-shadow: var(--shadow); }
-  .stat-box .num { font-family: 'Lora', serif; font-size: 1.4rem; color: var(--accent); display: block; margin-bottom: 0.2rem; }
+  .stat-box .num { font-family: 'Sora', sans-serif; font-size: 1.4rem; color: var(--accent); display: block; margin-bottom: 0.2rem; }
   .stat-box .src { font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
   .actions { display: flex; flex-direction: column; gap: 0.7rem; margin: 1.5rem 0; }
   a.action-btn { display: block; text-align: center; background: var(--accent); color: var(--on-accent);
@@ -43,9 +44,9 @@
   a.action-btn:hover { opacity: 0.9; }
   a.action-btn.secondary { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
   .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0 0.4rem; }
-  .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: var(--warm);
+  .tag { font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; background: var(--warm);
     border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.7rem; color: var(--muted); }
-  .msg-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  .msg-label { display: block; font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem;
     text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); margin-bottom: 0.5rem; }
   #shareMsg { width: 100%; height: 160px; resize: vertical; border: 1px solid var(--border);
     border-radius: 10px; padding: 0.9rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
