@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="footer-year"></span> Boost Board</span>
+        <span>© <span id="footer-year"></span> Boost Board. A little attention tips the balance.</span>
         <p>Boost Board is a discovery tool, not a charity, nonprofit, or payment processor. It never touches donations or guarantees funding. Every campaign — including our volunteers' or their family's — is independent, with no funds ever delegated to us.</p>
       </div>
     </div>

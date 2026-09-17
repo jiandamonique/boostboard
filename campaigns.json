@@ -540,7 +540,7 @@
     "communities": [],
     "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
     "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
-    "donationCount": 0,
+    "donationCount": 1,
     "submittedDate": "2026-09-16",
     "lastFeatured": null,
     "pinned": true,
@@ -548,8 +548,8 @@
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
     "pinReason": "",
-    "amountRaised": null,
-    "goalAmount": null,
+    "amountRaised": 20,
+    "goalAmount": 2000,
     "lowEngagementFlag": false,
     "category": [
       "Community"
