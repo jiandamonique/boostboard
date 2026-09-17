@@ -31,17 +31,18 @@
 
 <script src="./board-data.js"></script>
 <script>
-  // ?mode=hero (default) shows today's featured campaign; ?mode=random
+  // ?mode=spotlight (default) shows today's featured campaign; ?mode=random
   // shows a genuinely random eligible campaign each time this loads.
+  // ?mode=hero also works, for backward compatibility.
   const params = new URLSearchParams(window.location.search);
-  const mode = params.get('mode') || 'hero';
+  const mode = params.get('mode') || 'spotlight';
 
   let pick;
   if (mode === 'random') {
     const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
     pick = eligible.length ? eligible[Math.floor(Math.random() * eligible.length)] : null;
   } else {
-    pick = computeToday().hero;
+    pick = computeToday().spotlight;
   }
 
   const card = document.getElementById('widgetCard');

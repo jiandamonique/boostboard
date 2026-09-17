@@ -651,15 +651,15 @@ function selectSection(pool, size) {
   return [...pinned, ...picks].slice(0, size);
 }
 
-// Computes today's hero, zero-donation section, and TLC section from the
+// Computes today's spotlight, zero-donation section, and TLC section from the
 // shared dataset. Both pages call this once and render whatever piece
-// they need -- index.html just the hero, board.html just the sections.
+// they need -- index.html just the spotlight, board.html just the sections.
 function computeToday() {
   const eligible = campaigns.filter(c =>
     !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c))
   );
 
-  // Hero preference: ANY pinned campaign wins first, regardless of tier --
+  // Spotlight preference: ANY pinned campaign wins first, regardless of tier --
   // an explicit moderator pin is a stronger signal than the donation-count
   // tier system, since it represents a deliberate "feature this specific
   // one" decision (e.g. a real person a moderator wants front and center).
@@ -667,15 +667,15 @@ function computeToday() {
   // resort, if nothing is pinned.
   const pinnedAny = eligible.filter(c => isPinned(c));
   const seedPool = eligible.filter(c => tierOf(c) === 'seed');
-  const hero = selectSection(pinnedAny.length ? pinnedAny : seedPool, 1)[0]
+  const spotlight = selectSection(pinnedAny.length ? pinnedAny : seedPool, 1)[0]
     || selectSection(eligible, 1)[0]
     || null;
 
-  const heroId = hero ? hero.id : null;
-  const zeroPool = eligible.filter(c => tierOf(c) === 'seed' && c.id !== heroId);
+  const spotlightId = spotlight ? spotlight.id : null;
+  const zeroPool = eligible.filter(c => tierOf(c) === 'seed' && c.id !== spotlightId);
   const zeroSection = selectSection(zeroPool, ZERO_SECTION_SIZE);
-  const tlcPool = eligible.filter(c => tierOf(c) !== 'seed' && c.id !== heroId);
+  const tlcPool = eligible.filter(c => tierOf(c) !== 'seed' && c.id !== spotlightId);
   const tlcSection = selectSection(tlcPool, TLC_SECTION_SIZE);
 
-  return { hero, zeroSection, tlcSection };
+  return { spotlight, zeroSection, tlcSection };
 }

@@ -1,6 +1,6 @@
 // Small, centered "one random campaign" widget appended to the bottom of
 // every page (above the footer sitemap). Genuinely random per page load
-// -- unlike the hero/board rotation, which is deliberately deterministic
+// -- unlike the spotlight/board rotation, which is deliberately deterministic
 // for fairness, this one is just for incidental exposure, so pure
 // Math.random() is fine here. Requires board-data.js to be loaded first.
 (function () {

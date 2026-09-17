@@ -125,7 +125,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
   <p style="font-size:15px;margin-bottom:16px;">Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly, as submitted or brought to our attention. If you'd like to support the effort, you've got two options: help keep the app itself running, or send your money straight to today's featured campaign instead.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
     <a class="button outline" href="./credits.html">Support the app</a>
-    <a class="button" href="./index.html" id="heroDonateLink">Donate to today's featured campaign</a>
+    <a class="button" href="./index.html" id="spotlightDonateLink">Donate to today's featured campaign</a>
   </div>
   <p style="font-size:13px;margin-top:20px;">Every campaign here is reviewed by hand before it's added, which takes time — so by the time one appears, it may already have picked up a donation or two elsewhere. That's a genuinely good sign, not a mistake.</p>
   <p style="font-size:13px;margin-top:12px;">If your situation is urgent, please don't wait on us. Try posting on social media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign some immediate attention. We're sorry that we don't have the staff to respond to urgent needs in real time.</p>
@@ -241,7 +241,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     // an unbounded results list could turn into an overwhelming wall of
     // cards as the dataset grows past a few dozen entries -- this isn't
     // hypothetical, it's already at 19 campaigns. Capped at 25 with a
-    // rotating start point (same day-seeded approach used for the hero
+    // rotating start point (same day-seeded approach used for the spotlight
     // and old section caps), so campaigns beyond the cap still get a
     // turn over time rather than the same 25 always winning. Any active
     // search or filter narrows the pool first, so this cap rarely
@@ -288,12 +288,12 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
   document.getElementById('funding').addEventListener('change', render);
   render();
 
-  const heroLinkEl = document.getElementById('heroDonateLink');
-  const { hero } = computeToday();
-  if (hero) {
-    heroLinkEl.href = hero.link;
-    heroLinkEl.target = '_blank';
-    heroLinkEl.rel = 'noopener';
+  const spotlightLinkEl = document.getElementById('spotlightDonateLink');
+  const { spotlight } = computeToday();
+  if (spotlight) {
+    spotlightLinkEl.href = spotlight.link;
+    spotlightLinkEl.target = '_blank';
+    spotlightLinkEl.rel = 'noopener';
   }
 
   // Checkboxes use 'change' via delegation so they keep working after

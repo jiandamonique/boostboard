@@ -32,20 +32,20 @@
 }
 </script>
 <style>
-.hero{display:grid;grid-template-columns:1.08fr 1fr;gap:60px;padding-top:56px;padding-bottom:56px;align-items:center}
+.spotlight{display:grid;grid-template-columns:1.08fr 1fr;gap:60px;padding-top:56px;padding-bottom:56px;align-items:center}
 h1{font-size:clamp(43px,4.5vw,60px);letter-spacing:-2.9px;line-height:1.1;max-width:620px}
 h1 span{color:var(--green)}
-.hero-copy>p{margin-top:25px;max-width:430px;font-size:20px;line-height:1.6}
+.spotlight-copy>p{margin-top:25px;max-width:430px;font-size:20px;line-height:1.6}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}
-.hero-copy .small-note{font-size:14px;margin-top:18px;display:flex;align-items:center;gap:8px}
+.spotlight-copy .small-note{font-size:14px;margin-top:18px;display:flex;align-items:center;gap:8px}
 .small-note svg{width:15px;height:15px;stroke:var(--green);stroke-width:1.8;fill:none}
-.hero-visual{position:relative;padding-bottom:23px}
-.hero-image{width:100%;height:400px;border-radius:5px 80px 5px 5px;background:#becbc1;object-position:center}
+.spotlight-visual{position:relative;padding-bottom:23px}
+.spotlight-image{width:100%;height:400px;border-radius:5px 80px 5px 5px;background:#becbc1;object-position:center}
 .image-note{position:absolute;bottom:0;left:30px;right:30px;background:var(--white);padding:20px 24px;box-shadow:0 8px 30px #102b3209;border-radius:4px}
 .image-note strong{display:block;font-family:var(--heading);font-weight:500;font-size:16px;letter-spacing:-.3px;margin-bottom:6px}
 .image-note p{font-size:14px;margin:0}
 .image-note .eyebrow{margin-bottom:8px;font-size:10px}
-.hero-empty{background:var(--white);border-radius:5px;padding:60px 30px;text-align:center;font-family:var(--heading);font-style:italic;color:var(--muted)}
+.spotlight-empty{background:var(--white);border-radius:5px;padding:60px 30px;text-align:center;font-family:var(--heading);font-style:italic;color:var(--muted)}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:33px}
 .section-head p{max-width:355px;font-size:17px}
 .section-head h2{max-width:550px}
@@ -65,12 +65,12 @@ h1 span{color:var(--green)}
 .faq{display:grid;grid-template-columns:.85fr 1.2fr;gap:70px;padding-bottom:70px}
 .faq h2{font-size:31px}
 .faq-intro p{margin-top:16px;max-width:290px}
-@media(max-width:1000px){.hero{gap:35px}h1{font-size:47px}.hero-image{height:360px}.mission-grid{gap:45px}.faq{gap:35px}}
+@media(max-width:1000px){.spotlight{gap:35px}h1{font-size:47px}.spotlight-image{height:360px}.mission-grid{gap:45px}.faq{gap:35px}}
 @media(max-width:740px){
-  .hero{grid-template-columns:1fr;padding:36px 0 30px;gap:30px}
+  .spotlight{grid-template-columns:1fr;padding:36px 0 30px;gap:30px}
   h1{font-size:clamp(40px,9vw,58px);letter-spacing:-2px}
-  .hero-image{height:300px;border-top-right-radius:50px}
-  .hero-visual{margin-left:8px}
+  .spotlight-image{height:300px;border-top-right-radius:50px}
+  .spotlight-visual{margin-left:8px}
   .image-note{left:12px;right:12px}
   .paths{grid-template-columns:1fr;gap:20px}
   .mission{padding:40px 0}
@@ -87,10 +87,10 @@ h1 span{color:var(--green)}
 <body>
 <main id="main">
 <div class="wrap">
-<section class="hero" aria-labelledby="hero-title">
-<div class="hero-copy">
+<section class="spotlight" aria-labelledby="spotlight-title">
+<div class="spotlight-copy">
 <div class="eyebrow">Small beginnings deserve to be seen</div>
-<h1 id="hero-title">Good causes<br>shouldn't get<br>lost at <span>zero.</span></h1>
+<h1 id="spotlight-title">Good causes<br>shouldn't get<br>lost at <span>zero.</span></h1>
 <p>Boost Board features one overlooked fundraising campaign every day, reviewed by real volunteers, so a good story gets a real chance to reach someone who can help.</p>
 <div class="actions">
 <a class="button" href="./board.html">Explore today's campaigns <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
@@ -98,8 +98,8 @@ h1 span{color:var(--green)}
 </div>
 <p class="small-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9"/></svg>You don't have to donate to make a difference.</p>
 </div>
-<div class="hero-visual" id="heroVisual">
-  <div class="hero-empty">Loading today's featured campaign…</div>
+<div class="spotlight-visual" id="spotlightVisual">
+  <div class="spotlight-empty">Loading today's featured campaign…</div>
 </div>
 </section>
 <div class="trust-strip" aria-label="Our approach">
@@ -163,25 +163,25 @@ h1 span{color:var(--green)}
 
 <script src="./board-data.js"></script>
 <script>
-  const { hero } = computeToday();
-  const visual = document.getElementById('heroVisual');
-  if (!hero) {
-    visual.innerHTML = '<div class="hero-empty">No campaigns on the board right now — check back soon, or <a href="./submit.html">submit one</a>.</div>';
+  const { spotlight } = computeToday();
+  const visual = document.getElementById('spotlightVisual');
+  if (!spotlight) {
+    visual.innerHTML = '<div class="spotlight-empty">No campaigns on the board right now — check back soon, or <a href="./submit.html">submit one</a>.</div>';
   } else {
-    const isSeed = tierOf(hero) === 'seed';
+    const isSeed = tierOf(spotlight) === 'seed';
     const noteText = isSeed
       ? "This campaign hasn't received its first donation yet — which is exactly why it's featured today."
       : "Today's featured campaign has some real momentum already.";
     visual.innerHTML = `
-      <a href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; position:relative;">
-        <img class="hero-image" src="${hero.imageUrl || './standin-image.jpg'}" alt="${hero.name}" onerror="this.src='./standin-image.jpg'">
-        <div class="image-note" id="heroImageNote">
+      <a href="${spotlight.link}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; position:relative;">
+        <img class="spotlight-image" src="${spotlight.imageUrl || './standin-image.jpg'}" alt="${spotlight.name}" onerror="this.src='./standin-image.jpg'">
+        <div class="image-note" id="spotlightImageNote">
           <div class="eyebrow">Today's featured campaign</div>
-          <strong>${hero.name}</strong>
+          <strong>${spotlight.name}</strong>
           <p>${noteText}</p>
         </div>
       </a>
-      <a class="button" id="heroViewBtn" href="${hero.link}" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="button" id="spotlightViewBtn" href="${spotlight.link}" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
     `;
     // The "Today's Featured Campaign" card floats over the image via
     // position:absolute, with a height that varies by campaign name
@@ -203,9 +203,9 @@ h1 span{color:var(--green)}
     // push above the image's top edge, and the button needs the
     // difference added to actually clear it.
     requestAnimationFrame(() => {
-      const note = document.getElementById('heroImageNote');
-      const btn = document.getElementById('heroViewBtn');
-      const img = document.querySelector('.hero-image');
+      const note = document.getElementById('spotlightImageNote');
+      const btn = document.getElementById('spotlightViewBtn');
+      const img = document.querySelector('.spotlight-image');
       if (note && btn && img) {
         const overflow = Math.max(0, note.offsetHeight - img.offsetHeight);
         btn.style.marginTop = (overflow + 14) + 'px';

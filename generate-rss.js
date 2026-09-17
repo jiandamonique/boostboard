@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Generates rss.xml from campaigns.json, one item per day: today's
-// zero-donation featured campaign (the same one shown as the hero on
+// zero-donation featured campaign (the same one shown as the spotlight on
 // index.html). Meant to run once a day via a scheduled GitHub Action --
 // safe to automate because it only recomputes an already-approved
 // rotation deterministically, the same way the client-side JS does. It
@@ -45,18 +45,18 @@ function escapeXml(s) {
 const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
 const pinnedSeed = eligible.filter(c => c.pinned && tierOf(c) === 'seed');
 const seedPool = eligible.filter(c => tierOf(c) === 'seed');
-const hero = selectSection(pinnedSeed.length ? pinnedSeed : seedPool, 1)[0]
+const spotlight = selectSection(pinnedSeed.length ? pinnedSeed : seedPool, 1)[0]
   || selectSection(eligible, 1)[0]
   || null;
 
 const today = new Date().toUTCString();
-const item = hero ? `
+const item = spotlight ? `
     <item>
-      <title>${escapeXml(hero.name)}</title>
-      <link>${escapeXml(hero.link)}</link>
-      <guid isPermaLink="false">${escapeXml(hero.id)}-${new Date().toISOString().slice(0, 10)}</guid>
+      <title>${escapeXml(spotlight.name)}</title>
+      <link>${escapeXml(spotlight.link)}</link>
+      <guid isPermaLink="false">${escapeXml(spotlight.id)}-${new Date().toISOString().slice(0, 10)}</guid>
       <pubDate>${today}</pubDate>
-      <description>${escapeXml(hero.description)}</description>
+      <description>${escapeXml(spotlight.description)}</description>
     </item>` : '';
 
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
@@ -71,4 +71,4 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
 `;
 
 fs.writeFileSync(path.join(__dirname, 'rss.xml'), rss);
-console.log(hero ? `Wrote rss.xml for: ${hero.name}` : 'No eligible campaign today; wrote empty feed.');
+console.log(spotlight ? `Wrote rss.xml for: ${spotlight.name}` : 'No eligible campaign today; wrote empty feed.');
