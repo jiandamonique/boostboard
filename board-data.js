@@ -558,6 +558,47 @@ const campaigns = [
     "category": [
       "Community"
     ]
+  },
+  {
+    "id": "c030",
+    "name": "Support My Recovery and Legal Journey",
+    "communities": [],
+    "description": "Covers travel, court fines, and bond payments for a Louisiana court date during recovery from addiction.",
+    "link": "https://www.gofundme.com/f/support-my-recovery-and-legal-journey",
+    "donationCount": 4,
+    "submittedDate": "2026-09-19",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-support-my-recovery-and-legal-journey.webp",
+    "pinReason": "",
+    "amountRaised": 120,
+    "goalAmount": 1100,
+    "lowEngagementFlag": false,
+    "category": [
+      "Financial Hardship",
+      "Legal"
+    ]
+  },
+  {
+    "id": "c031",
+    "name": "Support Jaime's Journey to Medical School",
+    "communities": [],
+    "description": "Helps cover application costs and tuition as he pursues medical school after years of community service work.",
+    "link": "https://www.gofundme.com/f/2ajdv-support-jaimes-journey-to-medical-school",
+    "donationCount": 6,
+    "submittedDate": "2026-09-19",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-support-jaimes-journey-to-medical-school.webp",
+    "pinReason": "",
+    "amountRaised": 400,
+    "goalAmount": 4500,
+    "lowEngagementFlag": false,
+    "category": [
+      "Education"
+    ]
   }
 ];
 
