@@ -544,7 +544,7 @@ const campaigns = [
     "communities": [],
     "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
     "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
-    "donationCount": 3,
+    "donationCount": 4,
     "submittedDate": "2026-09-16",
     "lastFeatured": null,
     "pinned": true,
@@ -552,7 +552,7 @@ const campaigns = [
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
     "pinReason": "",
-    "amountRaised": 170,
+    "amountRaised": 395,
     "goalAmount": 2000,
     "lowEngagementFlag": false,
     "category": [
@@ -598,6 +598,70 @@ const campaigns = [
     "lowEngagementFlag": false,
     "category": [
       "Education"
+    ]
+  },
+  {
+    "id": "c032",
+    "name": "Care for 3 Dogs Left on My Patio",
+    "communities": [],
+    "description": "A home-based dog rescue caring for three dogs abandoned on the organizer's patio, covering emergency vet visits, blood work, and treatment for injuries and infection.",
+    "link": "https://www.gofundme.com/f/care-for-3-dogs-left-on-my-patio",
+    "donationCount": 0,
+    "submittedDate": "2026-09-20",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./standin-image.jpg",
+    "pinReason": "",
+    "amountRaised": 0,
+    "goalAmount": 1600,
+    "lowEngagementFlag": false,
+    "category": [
+      "Animals",
+      "Medical"
+    ]
+  },
+  {
+    "id": "c033",
+    "name": "Helping a Family Rebuild After Firework Tragedy",
+    "communities": [],
+    "description": "A firework explosion badly damaged the Martinez family's home and injured multiple family members, including a child; one relative remains in critical condition. Funds go toward home repairs, temporary living costs, and medical bills.",
+    "link": "https://www.gofundme.com/f/helping-a-family-rebuild-after-firework-tragedy",
+    "donationCount": 5,
+    "submittedDate": "2026-09-20",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./standin-image.jpg",
+    "pinReason": "",
+    "amountRaised": 435,
+    "goalAmount": 5000,
+    "lowEngagementFlag": false,
+    "category": [
+      "Crisis",
+      "Housing",
+      "Medical"
+    ]
+  },
+  {
+    "id": "c034",
+    "name": "Housing and Essentials for Tina",
+    "communities": [],
+    "description": "After relocating to California to support her son through a stroke recovery, the organizer is now facing housing and food insecurity of her own while she works toward stable employment.",
+    "link": "https://www.gofundme.com/f/housing-and-essentials-for-tina",
+    "donationCount": 5,
+    "submittedDate": "2026-09-20",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./standin-image.jpg",
+    "pinReason": "",
+    "amountRaised": 305,
+    "goalAmount": 3000,
+    "lowEngagementFlag": false,
+    "category": [
+      "Housing",
+      "Family Support"
     ]
   }
 ];
