@@ -18,23 +18,26 @@ function tierOf(c) {
   return 'graduated';
 }
 
-function daysSinceEpoch(d) {
-  return Math.floor(d.getTime() / 86400000);
-}
-
+// Kept identical to board-data.js's selectSection() -- ordering by
+// lastFeatured (not a pool-size-dependent index) so this always agrees
+// with what index.html actually shows, regardless of how the pool's
+// size has changed since yesterday. See board-data.js for the full
+// reasoning; this file and notify-subscribers.js (private repo) both
+// need to stay in lockstep with it since they're all picking "today's
+// hero" independently from the same data.
 function selectSection(pool, size) {
   const pinned = pool.filter(c => c.pinned);
   const rotatable = pool
     .filter(c => !c.pinned)
     .slice()
-    .sort((a, b) => (a.submittedDate || '').localeCompare(b.submittedDate || ''));
+    .sort((a, b) => {
+      const aKey = a.lastFeatured || '';
+      const bKey = b.lastFeatured || '';
+      if (aKey !== bKey) return aKey.localeCompare(bKey);
+      return (a.submittedDate || '').localeCompare(b.submittedDate || '');
+    });
   const remainingSlots = Math.max(size - pinned.length, 0);
-  const picks = [];
-  if (rotatable.length > 0 && remainingSlots > 0) {
-    const startIndex = daysSinceEpoch(new Date()) % rotatable.length;
-    const n = Math.min(remainingSlots, rotatable.length);
-    for (let i = 0; i < n; i++) picks.push(rotatable[(startIndex + i) % rotatable.length]);
-  }
+  const picks = rotatable.slice(0, remainingSlots);
   return [...pinned, ...picks].slice(0, size);
 }
 

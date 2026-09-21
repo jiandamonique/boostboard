@@ -11,7 +11,7 @@ const campaigns = [
     "link": "https://gofund.me/869772639",
     "donationCount": 5,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-jaye.webp",
@@ -35,7 +35,7 @@ const campaigns = [
     "goalAmount": 450,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -56,7 +56,7 @@ const campaigns = [
     "goalAmount": 1200,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -76,7 +76,7 @@ const campaigns = [
     "goalAmount": 700,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -90,13 +90,13 @@ const campaigns = [
     "name": "Helping a Family Rebuild After Firework Tragedy",
     "communities": [],
     "description": "A firework explosion caused major home damage and serious injuries on July 4th -- one family member remains in critical condition undergoing repeat surgeries.",
-    "link": "https://www.gofundme.com/f/helping-a-family-rebuild-after-the-chino-firework-tragedy",
-    "donationCount": 4,
-    "amountRaised": 430,
+    "link": "https://www.gofundme.com/f/helping-a-family-rebuild-after-firework-tragedy",
+    "donationCount": 5,
+    "amountRaised": 435,
     "goalAmount": 5000,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -114,7 +114,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/midnights-operation-fpk8g",
     "donationCount": 3,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-midnight.webp",
@@ -138,7 +138,7 @@ const campaigns = [
     "goalAmount": 900,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -158,7 +158,7 @@ const campaigns = [
     "goalAmount": 200,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -179,7 +179,7 @@ const campaigns = [
     "goalAmount": 150,
     "lowEngagementFlag": false,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "pinReason": "",
     "reported": false,
@@ -217,7 +217,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-wikif-build-community-water-taps-in-buea-cameroon",
     "donationCount": 1,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-wikif.webp",
@@ -238,7 +238,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/a-mother-and-baby-needing-a-bridge-to-work",
     "donationCount": 0,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-mari.webp",
@@ -280,7 +280,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-us-get-to-work-school-and-medical-care",
     "donationCount": 0,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-santone.webp",
@@ -301,7 +301,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-cole-rebuild-after-service",
     "donationCount": 0,
     "submittedDate": "2026-09-07",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-cole.webp",
@@ -322,7 +322,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-us-open-a-safe-haven-for-survivors-yjg47",
     "donationCount": 0,
     "submittedDate": "2026-09-10",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-kenyatta.webp",
@@ -342,7 +342,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-andrea-recover-and-support-her-family-qwepd",
     "donationCount": 0,
     "submittedDate": "2026-09-10",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-andrea.webp",
@@ -363,7 +363,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-us-get-a-car-with-just-1",
     "donationCount": 0,
     "submittedDate": "2026-09-13",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-dollarcar.webp",
@@ -383,7 +383,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-a-computer-engineering-student-finish-her-degree",
     "donationCount": 0,
     "submittedDate": "2026-09-13",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-maree.webp",
@@ -403,7 +403,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-sarahi-get-back-on-her-feet",
     "donationCount": 0,
     "submittedDate": "2026-09-14",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-sarahi-get-back-on-her-feet.webp",
@@ -423,7 +423,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-a-caregiver-mom-rebuild-after-surgery",
     "donationCount": 0,
     "submittedDate": "2026-09-14",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-a-caregiver-mom-rebuild-after-surgery.webp",
@@ -444,7 +444,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/support-rickys-recovery-bellas-care",
     "donationCount": 0,
     "submittedDate": "2026-09-14",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-support-rickys-recovery-and-bellas-care.webp",
@@ -464,7 +464,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/help-jessica-create-a-safe-home",
     "donationCount": 0,
     "submittedDate": "2026-09-14",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-jessica-create-a-safe-home.webp",
@@ -522,7 +522,7 @@ const campaigns = [
     "name": "Housing and Essentials for Tina",
     "communities": [],
     "description": "Tina rushed to California to support her 34-year-old son after he suffered a stroke, and now needs help with housing and essentials.",
-    "link": "https://www.gofundme.com/f/Tina-essentials",
+    "link": "https://www.gofundme.com/f/housing-and-essentials-for-tina",
     "donationCount": 5,
     "submittedDate": "2026-09-15",
     "lastFeatured": null,
@@ -608,10 +608,10 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/care-for-3-dogs-left-on-my-patio",
     "donationCount": 0,
     "submittedDate": "2026-09-20",
-    "lastFeatured": null,
+    "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
-    "imageUrl": "./standin-image.jpg",
+    "imageUrl": "./campaigns/campaign-care-for-3-dogs-left-on-my-patio.webp",
     "pinReason": "",
     "amountRaised": 0,
     "goalAmount": 1600,
@@ -619,49 +619,6 @@ const campaigns = [
     "category": [
       "Animals",
       "Medical"
-    ]
-  },
-  {
-    "id": "c033",
-    "name": "Helping a Family Rebuild After Firework Tragedy",
-    "communities": [],
-    "description": "A firework explosion badly damaged the Martinez family's home and injured multiple family members, including a child; one relative remains in critical condition. Funds go toward home repairs, temporary living costs, and medical bills.",
-    "link": "https://www.gofundme.com/f/helping-a-family-rebuild-after-firework-tragedy",
-    "donationCount": 5,
-    "submittedDate": "2026-09-20",
-    "lastFeatured": null,
-    "pinned": false,
-    "reported": false,
-    "imageUrl": "./standin-image.jpg",
-    "pinReason": "",
-    "amountRaised": 435,
-    "goalAmount": 5000,
-    "lowEngagementFlag": false,
-    "category": [
-      "Crisis",
-      "Housing",
-      "Medical"
-    ]
-  },
-  {
-    "id": "c034",
-    "name": "Housing and Essentials for Tina",
-    "communities": [],
-    "description": "After relocating to California to support her son through a stroke recovery, the organizer is now facing housing and food insecurity of her own while she works toward stable employment.",
-    "link": "https://www.gofundme.com/f/housing-and-essentials-for-tina",
-    "donationCount": 5,
-    "submittedDate": "2026-09-20",
-    "lastFeatured": null,
-    "pinned": false,
-    "reported": false,
-    "imageUrl": "./standin-image.jpg",
-    "pinReason": "",
-    "amountRaised": 305,
-    "goalAmount": 3000,
-    "lowEngagementFlag": false,
-    "category": [
-      "Housing",
-      "Family Support"
     ]
   }
 ];
@@ -734,25 +691,38 @@ function isPinned(c) {
   return todayStr <= c.pinnedUntil;
 }
 
-// Shared selector: pinned entries in the pool always get a slot, everyone
-// else rotates through automatically via a date-seeded queue position, so
-// the whole pool cycles before repeats -- no manual step or server needed.
+// Shared selector: pinned entries in the pool always get a slot. Everyone
+// else is ordered by lastFeatured (never-featured and longest-waiting
+// campaigns first, oldest submittedDate as a tiebreaker), so the pool
+// works through in a genuine "everyone gets a turn" order.
+//
+// This replaced a pure date-seeded index (`daysSinceEpoch % pool.length`)
+// that looked fair but wasn't: that formula only guarantees a full cycle
+// before repeating if the pool stays a FIXED size. Since campaigns get
+// added or age out of a tier constantly, the pool's size changes often,
+// which reshuffles what each index points to and can let a campaign
+// repeat before everyone else has had a turn -- confirmed happening on
+// 2026-09-20. Sorting by lastFeatured has no such blind spot: it doesn't
+// matter how the pool's size or membership changes day to day, because
+// the ordering is always "whoever's waited longest goes next," using
+// data attached to each campaign rather than its position in an array.
+//
+// This only works as long as lastFeatured actually gets stamped after a
+// campaign is shown -- see mark-featured.js and its daily workflow.
 function selectSection(pool, size) {
   const pinned = pool.filter(c => isPinned(c));
   const rotatable = pool
     .filter(c => !isPinned(c))
     .slice()
-    .sort((a, b) => (a.submittedDate || '').localeCompare(b.submittedDate || ''));
+    .sort((a, b) => {
+      const aKey = a.lastFeatured || '';
+      const bKey = b.lastFeatured || '';
+      if (aKey !== bKey) return aKey.localeCompare(bKey); // '' (never featured) sorts first
+      return (a.submittedDate || '').localeCompare(b.submittedDate || '');
+    });
 
   const remainingSlots = Math.max(size - pinned.length, 0);
-  const picks = [];
-  if (rotatable.length > 0 && remainingSlots > 0) {
-    const startIndex = daysSinceEpoch(new Date()) % rotatable.length;
-    const n = Math.min(remainingSlots, rotatable.length);
-    for (let i = 0; i < n; i++) {
-      picks.push(rotatable[(startIndex + i) % rotatable.length]);
-    }
-  }
+  const picks = rotatable.slice(0, remainingSlots);
   return [...pinned, ...picks].slice(0, size);
 }
 
