@@ -544,7 +544,7 @@ const campaigns = [
     "communities": [],
     "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
     "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
-    "donationCount": 4,
+    "donationCount": 6,
     "submittedDate": "2026-09-16",
     "lastFeatured": null,
     "pinned": true,
@@ -552,7 +552,7 @@ const campaigns = [
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
     "pinReason": "",
-    "amountRaised": 395,
+    "amountRaised": 450,
     "goalAmount": 2000,
     "lowEngagementFlag": false,
     "category": [
@@ -606,14 +606,14 @@ const campaigns = [
     "communities": [],
     "description": "A home-based dog rescue caring for three dogs abandoned on the organizer's patio, covering emergency vet visits, blood work, and treatment for injuries and infection.",
     "link": "https://www.gofundme.com/f/care-for-3-dogs-left-on-my-patio",
-    "donationCount": 0,
+    "donationCount": 1,
     "submittedDate": "2026-09-20",
     "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-care-for-3-dogs-left-on-my-patio.webp",
     "pinReason": "",
-    "amountRaised": 0,
+    "amountRaised": 20,
     "goalAmount": 1600,
     "lowEngagementFlag": false,
     "category": [
@@ -663,19 +663,34 @@ function percentOfGoal(c) {
   return (c.amountRaised / c.goalAmount) * 100;
 }
 
-const LOW_PERCENTAGE_THRESHOLD = 10; // percent
+const LOW_PERCENTAGE_THRESHOLD = 10;  // percent — 10+ donors but barely made a dent
+const HIGH_PERCENTAGE_THRESHOLD = 85; // percent — 10+ donors and well on their way
 
-// Fallback eligibility: a campaign that's technically "graduated" by
-// donor count (10+ donors) can still desperately need help if it's
-// barely dented its dollar goal, or if a moderator has flagged it as
-// low-engagement (few shares/views -- something no platform API exposes,
-// so this is always a manual judgment call, never computed). This exists
-// specifically for when the normal seed/first-five/first-ten pool runs
-// thin -- it's a supplement, not a replacement for the donor-count tiers.
+// Fallback eligibility: a campaign that's technically past the donor-count
+// tiers (10+) can still show on the board in two different situations:
+//
+// 1. STRUGGLING: barely dented the dollar goal (under 10%) despite donor
+//    count, or manually flagged as low-engagement by a moderator.
+//    These show in the normal TLC/rotation pool as a supplement.
+//
+// 2. WELL ON THEIR WAY: reached 85%+ of goal. Good momentum — worth a
+//    signal boost to carry them the rest of the way. These appear in
+//    a separate "well on their way" section, not mixed with the
+//    struggling campaigns. Label is clearly distinct so visitors
+//    understand why a better-resourced campaign is back on the board.
+//
+// A campaign can only match one of these. If percentOfGoal is unknown
+// (null), neither triggers — we only resurface when we have real numbers.
 function qualifiesAsFallback(c) {
   const pct = percentOfGoal(c);
   const lowPercentage = pct !== null && pct < LOW_PERCENTAGE_THRESHOLD;
   return lowPercentage || c.lowEngagementFlag === true;
+}
+
+function qualifiesAsWellOnWay(c) {
+  if (tierOf(c) !== 'graduated') return false;
+  const pct = percentOfGoal(c);
+  return pct !== null && pct >= HIGH_PERCENTAGE_THRESHOLD;
 }
 
 function tierLabel(key) {
@@ -685,8 +700,8 @@ function tierLabel(key) {
 // Label for a fallback-eligible campaign (10+ donors but still
 // qualifies via low percent-of-goal or a flagged low-engagement note).
 // Transparent about *why* it's here, since it's outside the normal
-// donor-count tiers -- a visitor seeing "Graduated" with no explanation
-// next to a campaign that's clearly still struggling would be confusing.
+// donor-count tiers -- a visitor seeing a campaign with no explanation
+// next to one that's clearly still struggling would be confusing.
 function fallbackLabel(c) {
   const pct = percentOfGoal(c);
   if (pct !== null && pct < LOW_PERCENTAGE_THRESHOLD) {
@@ -694,6 +709,16 @@ function fallbackLabel(c) {
   }
   if (c.lowEngagementFlag) return 'Low engagement — added manually';
   return 'Added manually';
+}
+
+// Label for a campaign that's well on its way (85%+ of goal).
+// Warm but honest -- doesn't promise they're about to finish,
+// since goal amounts vary wildly. Just says: good momentum, still
+// worth a share.
+function wellOnWayLabel(c) {
+  const pct = percentOfGoal(c);
+  if (pct !== null) return `${Math.round(pct)}% of goal — well on their way`;
+  return 'Well on their way';
 }
 
 function daysSinceEpoch(d) {
@@ -747,9 +772,11 @@ function selectSection(pool, size) {
   return [...pinned, ...picks].slice(0, size);
 }
 
-// Computes today's spotlight, zero-donation section, and TLC section from the
-// shared dataset. Both pages call this once and render whatever piece
-// they need -- index.html just the spotlight, board.html just the sections.
+// Computes today's spotlight, zero-donation section, TLC section, and
+// "well on their way" section from the shared dataset.
+// - index.html uses just the spotlight
+// - board.html uses zeroSection + tlcSection + wellOnWaySection
+// - archive.html reads the full graduated pool directly
 function computeToday() {
   const eligible = campaigns.filter(c =>
     !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c))
@@ -773,5 +800,14 @@ function computeToday() {
   const tlcPool = eligible.filter(c => tierOf(c) !== 'seed' && c.id !== spotlightId);
   const tlcSection = selectSection(tlcPool, TLC_SECTION_SIZE);
 
-  return { spotlight, zeroSection, tlcSection };
+  // "Well on their way" section: graduated campaigns (10+ donors) that have
+  // reached 85%+ of their goal. Shown separately from the main rotation --
+  // good news, worth a final push, but clearly distinct from the struggling
+  // fallback pool so visitors aren't confused about why they're here.
+  const wellOnWayPool = campaigns.filter(c =>
+    !c.reported && qualifiesAsWellOnWay(c) && c.id !== spotlightId
+  );
+  const wellOnWaySection = selectSection(wellOnWayPool, 6);
+
+  return { spotlight, zeroSection, tlcSection, wellOnWaySection };
 }

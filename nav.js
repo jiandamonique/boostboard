@@ -23,7 +23,8 @@
     { href: './resources.html', label: 'Resources', alsoActiveFor: [
       'helpful-fundraising-ideas.html', 'emergency-help.html'
     ] },
-    { href: './blog.html', label: 'Blog', alsoActiveFor: ['success-stories.html', 'archive.html'] },
+    { href: './blog.html', label: 'Blog', alsoActiveFor: ['success-stories.html', 'archive.html', 'blog-common-fundraising-platforms.html', 'how-fundraisers-get-found.html', 'sharing-does-more-than-you-think.html', 'why-boost-board-exists.html', 'amplify-the-campaigns-still-waiting.html', 'labor-day-launch-press-release.html', 'waiting-for-a-first-yes-too.html', 'a-note-for-donors.html', 'blog-helpful-fundraising-ideas.html', 'blog-emergency-mutual-aid-resources.html', 'not-sure-what-to-say-sharing-tools.html', 'compassion-fatigue-and-giving-traditions.html', 'what-mutual-aid-is.html', '13-of-25-progress-on-zero.html', 'still-at-zero-alongside-our-campaigns.html', 'other-ways-people-get-help.html'] },
+    { href: './well-on-their-way.html', label: 'Well on Their Way' },
     { href: './overlay-generator.html', label: 'Campaign Tools' },
     { href: './credits.html', label: 'Credits & Support' },
     { href: './submit.html', label: 'Share Your Page', cta: true },

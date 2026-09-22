@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#EDF2F2">
-<meta name="description" content="Every campaign that's graduated off the active Boost Board -- an automatic, uncurated record.">
+<meta name="description" content="Campaigns that have reached 10 or more donors on Boost Board — a record of what momentum looks like when it builds.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/archive.html">
-<meta property="og:title" content="General Archive — Boost Board">
-<meta property="og:description" content="Every campaign that's graduated off the active Boost Board -- an automatic, uncurated record.">
+<meta property="og:title" content="Campaigns with momentum — Boost Board">
+<meta property="og:description" content="Campaigns that have reached 10 or more donors on Boost Board — a record of what momentum looks like when it builds.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/archive.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>General Archive — Boost Board</title>
+<title>Campaigns with momentum — Boost Board</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,15 +25,27 @@
 .intro{max-width:620px;margin:0 auto;padding:52px 0 30px;text-align:center}
 h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
 .intro p{font-size:18px;margin-top:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding-bottom:60px}
+.intro .hint{font-size:14px;color:var(--muted);margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding-bottom:60px}
+.archive-card{background:#fff;border:1px solid var(--line);border-radius:5px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.archive-card img{width:100%;height:130px;border-radius:4px;object-fit:cover;display:block}
+.archive-card > a:first-child{display:block}
+.archive-card h3{font-size:16px;letter-spacing:-.2px;margin:0}
+.archive-card h3 a{color:var(--ink);text-decoration:none}
+.archive-card h3 a:hover{text-decoration:underline}
+.archive-card p{font-size:14px;color:var(--muted);margin:0}
+.donor-note{font-size:13px;color:var(--deep);font-weight:600}
+.pct-bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}
+.pct-bar-fill{height:100%;background:var(--green);border-radius:3px}
 .empty{max-width:440px;margin:20px auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:40px;font-family:var(--heading);font-style:italic;color:var(--muted)}
 </style>
 </head>
 <body>
 <main id="main" class="wrap">
 <div class="intro">
-  <h1>General Archive</h1>
-  <p>A plain, automatic record — every campaign that's passed 10 donors and graduated off the active board. This list updates itself and isn't curated. For hand-picked stories with more detail, see <a class="text-link" href="./success-stories.html" style="display:inline;">Success Stories</a>.</p>
+  <h1>Campaigns with momentum</h1>
+  <p>These campaigns have reached 10 or more donors. That's the system working. They've moved off the active board, but every one of them may still need support — and a share still matters.</p>
+  <p class="hint">For hand-picked stories with more context, see <a class="text-link" href="./success-stories.html" style="display:inline;">Success Stories</a>.</p>
 </div>
 <div class="grid" id="archiveGrid"></div>
 </main>
@@ -41,19 +53,29 @@ h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
 <script src="./board-data.js"></script>
 <script src="./random-campaign-widget.js"></script>
 <script>
-  const graduated = campaigns.filter(c => tierOf(c) === 'graduated' && !qualifiesAsFallback(c) && !c.reported);
+  const moved = campaigns.filter(c => tierOf(c) === 'graduated' && !qualifiesAsFallback(c) && !c.reported);
   const grid = document.getElementById('archiveGrid');
-  if (graduated.length === 0) {
-    grid.innerHTML = `<p class="empty">No graduated campaigns yet — the first one will show up here.</p>`;
+  if (moved.length === 0) {
+    grid.innerHTML = `<p class="empty">No campaigns have hit 10 donors yet — the first one will show up here.</p>`;
   } else {
-    grid.innerHTML = graduated.map(c => `
-      <div class="card"><div class="card-body">
-        <div class="eyebrow">Graduated · ${c.donationCount}+ donors</div>
-        <h3>${c.name}</h3>
-        <p>${c.description}</p>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">${(c.communities||[]).map(t => `<span class="tag">${t}</span>`).join('')}</div>
-      </div></div>
-    `).join('');
+    grid.innerHTML = moved.map(c => {
+      const pct = percentOfGoal(c);
+      const pctBar = pct !== null
+        ? `<div class="pct-bar"><div class="pct-bar-fill" style="width:${Math.min(100,Math.round(pct))}%"></div></div>`
+        : '';
+      const pctText = pct !== null ? ` · ${Math.round(pct)}% of goal` : '';
+      return `
+        <div class="archive-card">
+          <a href="${c.link}" target="_blank" rel="noopener">
+            <img src="${c.imageUrl || './standin-image.jpg'}" alt="" onerror="this.src='./standin-image.jpg'">
+          </a>
+          <span class="donor-note">${c.donationCount}+ donors${pctText}</span>
+          ${pctBar}
+          <h3><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h3>
+          <p>${c.description}</p>
+        </div>
+      `;
+    }).join('');
   }
 </script>
 </body>

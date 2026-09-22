@@ -38,6 +38,7 @@ const path = require('path');
 
 const CAMPAIGNS_FILE = path.join(__dirname, 'campaigns.json');
 const BOARD_DATA_FILE = path.join(__dirname, 'board-data.js');
+const METRICS_LOG_FILE = path.join(__dirname, 'metrics-log.json');
 const ZERO_SECTION_SIZE = 15;
 const TLC_SECTION_SIZE = 10;
 
@@ -83,6 +84,73 @@ function selectSection(pool, size) {
   return [...pinned, ...picks].slice(0, size);
 }
 
+function tierOf_local(c) {
+  const n = c.donationCount ?? 0;
+  if (n === 0) return 'seed';
+  if (n <= 4) return 'first_five';
+  if (n <= 9) return 'first_ten';
+  return 'graduated';
+}
+
+// Load or create the metrics log. Structure:
+// { "firstDonorEvents": [...], "graduationEvents": [...] }
+// Each event: { "date": "YYYY-MM-DD", "campaignId": "cXXX", "campaignName": "...", "note": "..." }
+function loadMetricsLog() {
+  try {
+    return JSON.parse(fs.readFileSync(METRICS_LOG_FILE, 'utf8'));
+  } catch (e) {
+    return { firstDonorEvents: [], graduationEvents: [] };
+  }
+}
+
+// Compare campaign states before and after daily stamping to capture
+// milestone crossings: 0→1 (first donor) and any→graduated (10+).
+// Takes the raw campaigns array BEFORE lastFeatured is written (so
+// donationCount reflects today's live data as uploaded, not yesterday).
+function detectAndLogMilestones(campaigns, metricsLog) {
+  const today = new Date().toISOString().slice(0, 10);
+  let newEvents = 0;
+
+  // Build a quick lookup of already-logged campaign+event pairs so we
+  // don't double-log the same milestone if the script runs twice.
+  const loggedFirstDonor = new Set(metricsLog.firstDonorEvents.map(e => e.campaignId));
+  const loggedGraduation = new Set(metricsLog.graduationEvents.map(e => e.campaignId));
+
+  for (const c of campaigns) {
+    const tier = tierOf_local(c);
+    const count = c.donationCount ?? 0;
+
+    // First donor: campaign is in first_five tier (1–4 donors) and hasn't
+    // been logged as having received its first donor yet.
+    if (tier === 'first_five' && !loggedFirstDonor.has(c.id)) {
+      metricsLog.firstDonorEvents.push({
+        date: today,
+        campaignId: c.id,
+        campaignName: c.name,
+        note: `First donor recorded (donationCount: ${count})`
+      });
+      loggedFirstDonor.add(c.id);
+      newEvents++;
+      console.log(`  Milestone: ${c.name} got its first donor.`);
+    }
+
+    // Graduated: 10+ donors and not yet logged.
+    if (tier === 'graduated' && !loggedGraduation.has(c.id)) {
+      metricsLog.graduationEvents.push({
+        date: today,
+        campaignId: c.id,
+        campaignName: c.name,
+        note: `Graduated off active board (donationCount: ${count}, amountRaised: ${c.amountRaised ?? 'n/a'})`
+      });
+      loggedGraduation.add(c.id);
+      newEvents++;
+      console.log(`  Milestone: ${c.name} graduated (${count} donors).`);
+    }
+  }
+
+  return newEvents;
+}
+
 function main() {
   const campaigns = JSON.parse(fs.readFileSync(CAMPAIGNS_FILE, 'utf8'));
 
@@ -100,6 +168,14 @@ function main() {
   const zeroSection = selectSection(zeroPool, ZERO_SECTION_SIZE);
   const tlcPool = eligible.filter(c => tierOf(c) !== 'seed' && c.id !== spotlightId);
   const tlcSection = selectSection(tlcPool, TLC_SECTION_SIZE);
+
+  // Detect and log milestones BEFORE writing files (donationCount is current)
+  const metricsLog = loadMetricsLog();
+  const newMilestones = detectAndLogMilestones(campaigns, metricsLog);
+  if (newMilestones > 0) {
+    fs.writeFileSync(METRICS_LOG_FILE, JSON.stringify(metricsLog, null, 2) + '\n');
+    console.log(`Logged ${newMilestones} new milestone event(s) to metrics-log.json.`);
+  }
 
   const today = new Date().toISOString().slice(0, 10);
   const featuredIds = new Set([
