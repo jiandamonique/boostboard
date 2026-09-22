@@ -185,7 +185,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
             <input type="checkbox" class="select-box" data-id="${c.id}" ${selectedIds.has(c.id) ? 'checked' : ''} style="accent-color:var(--green); width:15px; height:15px; margin:0; cursor:pointer;" aria-label="Add ${c.name} to your share list">Select
           </label>
         </div>
-        <h3>${c.name}</h3>
+        <a href="${c.link}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;"><h3>${c.name}</h3></a>
         <p>${c.description}</p>
         <div class="card-actions">
           <a class="text-link" href="${c.link}" target="_blank" rel="noopener">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
