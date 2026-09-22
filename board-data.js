@@ -620,6 +620,27 @@ const campaigns = [
       "Animals",
       "Medical"
     ]
+  },
+  {
+    "id": "c033",
+    "name": "Disabled Family in Rural Area Needing Safe Transportation",
+    "communities": [],
+    "description": "A disabled family of three in a rural area needs help replacing a family van with an irreparable engine, after the mother's emergency spinal fusion surgery left the family relying on safe transportation for ongoing care.",
+    "link": "https://www.gofundme.com/f/disabled-family-in-rural-area-needing-safe-transportation",
+    "donationCount": 4,
+    "submittedDate": "2026-09-21",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-disabled-family-in-rural-area-needing-safe-transportation.webp",
+    "pinReason": "",
+    "amountRaised": 58,
+    "goalAmount": 2400,
+    "lowEngagementFlag": false,
+    "category": [
+      "Medical",
+      "Family Support"
+    ]
   }
 ];
 
