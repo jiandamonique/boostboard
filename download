@@ -1,2 +1,3 @@
-internal-docs/
-INTERNAL_*
+# Force GitHub to detect and include every file in language statistics
+* linguist-detectable=true
+* -linguist-vendored
