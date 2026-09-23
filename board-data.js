@@ -238,7 +238,7 @@ const campaigns = [
     "link": "https://www.gofundme.com/f/a-mother-and-baby-needing-a-bridge-to-work",
     "donationCount": 0,
     "submittedDate": "2026-09-07",
-    "lastFeatured": "2026-09-21",
+    "lastFeatured": "2026-09-22",
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-mari.webp",
@@ -640,6 +640,27 @@ const campaigns = [
     "category": [
       "Medical",
       "Family Support"
+    ]
+  },
+  {
+    "id": "c034",
+    "name": "Sustaining Free Tools for Artists",
+    "communities": [],
+    "description": "Jianda Monique builds and maintains free, open-source tools for artists and creative communities. This campaign sustains that infrastructure and keeps those tools accessible to everyone.",
+    "link": "https://www.gofundme.com/f/sustaining-free-tools-for-artists",
+    "donationCount": 0,
+    "submittedDate": "2026-09-22",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-sustaining-free-tools-for-artists.jpg",
+    "pinReason": "",
+    "amountRaised": 0,
+    "goalAmount": 1600,
+    "lowEngagementFlag": false,
+    "category": [
+      "Technology",
+      "Community"
     ]
   }
 ];
