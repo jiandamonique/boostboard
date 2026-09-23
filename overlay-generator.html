@@ -115,13 +115,14 @@
 
   <div class="panel">
     <h2 style="font-family:'Sora',sans-serif; font-weight:500; font-size:1.1rem; margin-bottom:0.5rem;">Embed a Boost Board widget on your own site</h2>
-    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;">Paste this into your
-    own site to show a small, live campaign card — either today's featured campaign, or a
-    different random one on every page load.</p>
-    <label>Which campaign?
-      <select id="embedMode">
-        <option value="spotlight">Today's featured campaign</option>
-        <option value="random">A random campaign each time</option>
+    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;">Paste this into any site that accepts an <code style="font-size:0.8rem; background:#edf2f2; padding:1px 4px; border-radius:3px;">&lt;iframe&gt;</code> to show a live list of campaigns that need support — updated daily, no maintenance required.</p>
+    <label>How many campaigns to show?
+      <select id="embedCount">
+        <option value="1">1 — today's spotlight only</option>
+        <option value="5" selected>5 campaigns</option>
+        <option value="10">10 campaigns</option>
+        <option value="30">30 campaigns</option>
+        <option value="all">All eligible campaigns</option>
       </select>
     </label>
     <textarea id="embedCode" readonly style="width:100%; height:70px; margin-top:0.8rem; font-family:'JetBrains Mono',monospace; font-size:0.75rem; padding:0.6rem; border:1px solid var(--border); border-radius:8px;"></textarea>
@@ -163,17 +164,37 @@
   const BOOST_BOARD_BASE = 'https://jiandamonique.github.io/boostboard/'; // real live URL, confirmed
 
   function updateEmbedCode() {
-    const mode = document.getElementById('embedMode').value;
-    const src = `${BOOST_BOARD_BASE}embed-widget.html?mode=${mode}`;
+    const count = document.getElementById('embedCount').value;
+    let src, width, height;
+
+    if (count === '1') {
+      // Single spotlight — original single-card mode
+      src    = `${BOOST_BOARD_BASE}embed-widget.html?mode=spotlight`;
+      width  = 320;
+      height = 220;
+    } else {
+      // Multi-campaign list
+      src    = `${BOOST_BOARD_BASE}embed-widget.html?count=${count}`;
+      width  = 340;
+      // Approximate height: ~80px per card + 48px header
+      const n = count === 'all' ? 30 : parseInt(count, 10);
+      height  = Math.min(48 + n * 82, 900);
+    }
+
     document.getElementById('embedCode').value =
-      `<iframe src="${src}" width="320" height="220" style="border:none;"></iframe>`;
+      `<iframe src="${src}" width="${width}" height="${height}" style="border:none;" loading="lazy" title="Boost Board — campaigns that need support"></iframe>`;
   }
-  document.getElementById('embedMode').addEventListener('change', updateEmbedCode);
+  document.getElementById('embedCount').addEventListener('change', updateEmbedCode);
   updateEmbedCode();
 
   document.getElementById('copyEmbedCodeBtn').addEventListener('click', () => {
-    navigator.clipboard.writeText(document.getElementById('embedCode').value)
-      .then(() => alert('Embed code copied — paste it anywhere that accepts an <iframe>.'));
+    const code = document.getElementById('embedCode').value;
+    navigator.clipboard.writeText(code)
+      .then(() => alert('Embed code copied — paste it anywhere that accepts an <iframe>.'))
+      .catch(() => {
+        document.getElementById('embedCode').select();
+        alert('Select all and copy the code above.');
+      });
   });
 </script>
 

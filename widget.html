@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>Embed the Boost Board widget</title>
+<meta name="description" content="Add a live, daily-updated list of fundraising campaigns to your site — no setup, no maintenance. One line of code.">
+<link rel="canonical" href="https://jiandamonique.github.io/boostboard/widget.html">
+<meta property="og:title" content="Embed the Boost Board widget">
+<meta property="og:description" content="Add a live, daily-updated list of fundraising campaigns to your site — no setup, no maintenance. One line of code.">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:url" content="https://jiandamonique.github.io/boostboard/widget.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boost Board">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<script src="./random-campaign-widget.js" defer></script>
+<style>
+  :root {
+    --cream: #EDF2F2; --warm: #dfeae6; --deep: #102B32; --muted: #52696e;
+    --border: #cedbdb; --teal: #087F73; --shadow: 0 4px 24px rgba(16,43,50,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--deep);
+         font-family: 'Source Sans 3', sans-serif; line-height: 1.55; }
+
+  .page { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  /* Hero */
+  .hero { margin-bottom: 2.5rem; }
+  .hero h1 {
+    font-family: 'Sora', sans-serif; font-weight: 600; font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 0.65rem;
+  }
+  .hero p {
+    font-size: 1rem; color: var(--muted); max-width: 520px; line-height: 1.65;
+  }
+
+  /* Two-column layout: preview left, controls right */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  @media (max-width: 620px) { .layout { grid-template-columns: 1fr; } }
+
+  /* Preview pane */
+  .preview-panel {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .preview-label {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--muted);
+    padding: 0.7rem 1rem 0.5rem; border-bottom: 1px solid var(--border);
+    background: var(--warm);
+  }
+  .preview-frame-wrap {
+    padding: 0;
+    /* clip the iframe visually inside the card */
+    overflow: hidden;
+    border-radius: 0 0 14px 14px;
+  }
+  #previewFrame {
+    display: block; width: 100%; border: none;
+    /* height is set dynamically */
+  }
+
+  /* Controls panel */
+  .controls-panel {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .control-group {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.1rem 1.2rem;
+    box-shadow: var(--shadow);
+  }
+  .control-group h2 {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 0.88rem; margin-bottom: 0.65rem;
+  }
+
+  label.field-label {
+    display: block; font-size: 0.78rem; color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+  select.count-select {
+    width: 100%; padding: 0.5rem 2rem 0.5rem 0.65rem;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.88rem;
+    color: var(--deep); background: #fff; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%235c6b5c'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.6rem center; background-size: 1rem;
+  }
+
+  /* Code block */
+  .code-wrap { position: relative; margin-top: 0.5rem; }
+  textarea.snippet {
+    width: 100%; height: 72px; resize: none;
+    font-family: 'JetBrains Mono', 'Fira Mono', monospace; font-size: 0.72rem;
+    padding: 0.65rem 0.75rem; border: 1px solid var(--border); border-radius: 8px;
+    background: #f4f8f8; color: var(--deep); line-height: 1.5;
+  }
+  .copy-btn {
+    display: block; width: 100%; margin-top: 0.6rem;
+    background: var(--teal); color: #fff; border: none; border-radius: 8px;
+    font-family: 'Sora', sans-serif; font-weight: 600; font-size: 0.82rem;
+    padding: 0.6rem 1rem; cursor: pointer; letter-spacing: 0.01em;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: #065f56; }
+  .copy-btn.copied { background: #3a7d66; }
+
+  /* What the embed does */
+  .explainer {
+    background: var(--warm); border-radius: 10px;
+    padding: 1rem 1.2rem; font-size: 0.85rem; line-height: 1.6; color: var(--muted);
+  }
+  .explainer strong { color: var(--deep); }
+
+  /* How it works */
+  .how {
+    margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .how h2 {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 1rem; margin-bottom: 1rem;
+  }
+  .steps { display: flex; flex-direction: column; gap: 0.65rem; }
+  .step {
+    display: flex; gap: 0.9rem; align-items: flex-start;
+    font-size: 0.88rem; color: var(--muted);
+  }
+  .step-num {
+    flex-shrink: 0; width: 24px; height: 24px;
+    background: var(--teal); color: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif; font-weight: 600; font-size: 0.7rem;
+    margin-top: 1px;
+  }
+  .step strong { color: var(--deep); }
+  .step p { margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="hero">
+    <h1>Embed a live campaign list on your site</h1>
+    <p>Show real fundraising campaigns that need support, updated daily. You don't have to build anything — just paste one line of code wherever your site accepts an embed.</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- Live preview -->
+    <div class="preview-panel">
+      <div class="preview-label">Live preview</div>
+      <div class="preview-frame-wrap">
+        <iframe id="previewFrame" title="Boost Board widget preview" scrolling="no"></iframe>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+
+      <div class="control-group">
+        <h2>Get your embed code</h2>
+        <label class="field-label" for="countSelect">How many campaigns to show</label>
+        <select class="count-select" id="countSelect">
+          <option value="1">1 — today's spotlight</option>
+          <option value="5" selected>5 campaigns</option>
+          <option value="10">10 campaigns</option>
+          <option value="30">30 campaigns</option>
+          <option value="all">All eligible campaigns</option>
+        </select>
+
+        <div class="code-wrap" style="margin-top:0.9rem;">
+          <label class="field-label" for="snippetBox">Your embed code</label>
+          <textarea class="snippet" id="snippetBox" readonly spellcheck="false"></textarea>
+        </div>
+        <button class="copy-btn" id="copyBtn">Copy embed code</button>
+      </div>
+
+      <div class="explainer">
+        <strong>What this does:</strong> The widget shows a live list of campaigns from Boost Board's active rotation — real people running real fundraisers, curated by hand, with the lowest-visibility ones surfaced first. It updates automatically each day. No account, no API key, no maintenance.
+      </div>
+
+    </div>
+  </div>
+
+  <div class="how">
+    <h2>How to add it to your site</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <p><strong>Choose how many campaigns to show</strong> using the selector above, then copy the embed code.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p><strong>Paste the code</strong> anywhere on your site that accepts an <code style="font-size:0.82rem; background:#dfeae6; padding:1px 4px; border-radius:3px;">&lt;iframe&gt;</code> — a sidebar, a page section, a blog post, a resource page.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p><strong>That's it.</strong> The list updates every day on its own. You never have to touch it again.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const BOOST_BOARD_BASE = 'https://jiandamonique.github.io/boostboard/';
+
+  const countSelect  = document.getElementById('countSelect');
+  const snippetBox   = document.getElementById('snippetBox');
+  const copyBtn      = document.getElementById('copyBtn');
+  const previewFrame = document.getElementById('previewFrame');
+
+  function iframeHeight(count) {
+    if (count === '1') return 220;
+    const n = count === 'all' ? 30 : parseInt(count, 10);
+    return Math.min(48 + n * 82, 760);
+  }
+
+  function update() {
+    const count = countSelect.value;
+    let src, width, height;
+
+    if (count === '1') {
+      src    = `${BOOST_BOARD_BASE}embed-widget.html?mode=spotlight`;
+      width  = 320;
+      height = 220;
+    } else {
+      src    = `${BOOST_BOARD_BASE}embed-widget.html?count=${count}`;
+      width  = 340;
+      height = iframeHeight(count);
+    }
+
+    snippetBox.value =
+      `<iframe src="${src}" width="${width}" height="${height}" style="border:none;" loading="lazy" title="Boost Board — campaigns that need support"></iframe>`;
+
+    // Update live preview
+    previewFrame.src    = src;
+    previewFrame.style.height = height + 'px';
+  }
+
+  countSelect.addEventListener('change', update);
+  update();
+
+  // Copy button
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(snippetBox.value)
+      .then(() => {
+        copyBtn.textContent = 'Copied!';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy embed code';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      })
+      .catch(() => {
+        snippetBox.select();
+        copyBtn.textContent = 'Select the code above and copy it';
+        setTimeout(() => { copyBtn.textContent = 'Copy embed code'; }, 3000);
+      });
+  });
+</script>
+</body>
+</html>

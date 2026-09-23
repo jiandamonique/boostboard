@@ -8,54 +8,239 @@
 <meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* Deliberately minimal -- no nav, no footer, this page only ever
+  /* Deliberately minimal — no nav, no footer; this page only ever
      renders inside someone else's <iframe>. */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
+
   body {
-    font-family: 'Source Sans 3', sans-serif; background: #fff; color: #102B32;
-    display: flex; align-items: center; justify-content: center; padding: 0.9rem;
+    font-family: 'Source Sans 3', sans-serif;
+    background: #fff;
+    color: #102B32;
+    padding: 0.75rem 0.9rem 0.5rem;
+  }
+
+  /* ── Single-campaign mode (spotlight / random) ── */
+  .single-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
   }
   .w-card { max-width: 300px; text-align: center; }
-  .w-eyebrow { font-family: 'Sora', sans-serif; font-size: 0.62rem; text-transform: uppercase;
-    color: #52696e; margin-bottom: 0.4rem; letter-spacing: 0.04em; font-weight: 600; }
+  .w-eyebrow {
+    font-family: 'Sora', sans-serif; font-size: 0.62rem; text-transform: uppercase;
+    color: #52696e; margin-bottom: 0.4rem; letter-spacing: 0.04em; font-weight: 600;
+  }
   .w-name { font-family: 'Sora', sans-serif; font-weight: 500; font-size: 1.05rem; margin-bottom: 0.5rem; }
   .w-desc { font-size: 0.8rem; color: #52696e; margin-bottom: 0.7rem; }
-  a.w-link { display: inline-block; background: #087F73; color: #ffffff; text-decoration: none;
-    font-weight: 600; font-size: 0.78rem; padding: 0.45rem 0.9rem; border-radius: 5px; }
+  a.w-link {
+    display: inline-block; background: #087F73; color: #ffffff; text-decoration: none;
+    font-weight: 600; font-size: 0.78rem; padding: 0.45rem 0.9rem; border-radius: 5px;
+  }
   .w-credit { display: block; margin-top: 0.6rem; font-size: 0.65rem; color: #9aa89e; text-decoration: none; }
+
+  /* ── Multi-campaign list mode ── */
+  .list-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid #e0e8e7;
+  }
+  .list-eyebrow {
+    font-family: 'Sora', sans-serif; font-size: 0.6rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em; color: #52696e;
+  }
+  .list-credit {
+    font-size: 0.6rem; color: #9aa89e; text-decoration: none;
+  }
+  .list-credit:hover { color: #087F73; }
+
+  .campaign-list { list-style: none; }
+
+  .campaign-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0.65rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #edf2f2;
+    text-decoration: none;
+    color: inherit;
+  }
+  .campaign-item:last-child { border-bottom: none; }
+  .campaign-item:hover .ci-name { color: #087F73; }
+
+  .ci-img {
+    width: 64px; height: 52px;
+    object-fit: cover; border-radius: 5px;
+    background: #dfeae6; display: block; flex-shrink: 0;
+  }
+  .ci-img-placeholder {
+    width: 64px; height: 52px; border-radius: 5px;
+    background: #dfeae6; flex-shrink: 0;
+  }
+
+  .ci-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+  .ci-name {
+    font-family: 'Sora', sans-serif; font-weight: 500;
+    font-size: 0.78rem; line-height: 1.25;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    color: #102B32;
+  }
+  .ci-desc {
+    font-size: 0.7rem; color: #52696e; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ci-progress-wrap { margin-top: 3px; }
+  .ci-bar-bg {
+    height: 3px; background: #dfeae6; border-radius: 2px; overflow: hidden;
+  }
+  .ci-bar-fill {
+    height: 100%; background: #087F73; border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  .ci-meta {
+    font-size: 0.63rem; color: #7a9498; margin-top: 2px;
+  }
 </style>
 </head>
 <body>
-<div class="w-card" id="widgetCard"></div>
+
+<div id="root"></div>
 
 <script src="./board-data.js"></script>
 <script>
-  // ?mode=spotlight (default) shows today's featured campaign; ?mode=random
-  // shows a genuinely random eligible campaign each time this loads.
-  // ?mode=hero also works, for backward compatibility.
   const params = new URLSearchParams(window.location.search);
-  const mode = params.get('mode') || 'spotlight';
+  const mode   = params.get('mode') || 'spotlight';
+  const root   = document.getElementById('root');
 
-  let pick;
-  if (mode === 'random') {
-    const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
-    pick = eligible.length ? eligible[Math.floor(Math.random() * eligible.length)] : null;
-  } else {
-    pick = computeToday().spotlight;
+  // ?count=N enables multi-campaign list. Accepts a number or "all".
+  // Without ?count, behavior is unchanged: single card.
+  const countParam = params.get('count');
+  const isMulti = countParam !== null;
+
+  // ── helpers ──────────────────────────────────────────────────────────────
+
+  function eligibleCampaigns() {
+    return campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
   }
 
-  const card = document.getElementById('widgetCard');
-  if (!pick) {
-    card.innerHTML = `<div class="w-desc">No campaign available right now.</div>`;
-  } else {
-    card.innerHTML = `
-      <div class="w-eyebrow">${mode === 'random' ? 'From Boost Board' : "Today's featured campaign"}</div>
-      <div class="w-name">${pick.name}</div>
-      <div class="w-desc">${pick.description}</div>
-      <a class="w-link" href="${pick.link}" target="_blank" rel="noopener">View campaign →</a>
-      <a class="w-credit" href="./index.html" target="_blank" rel="noopener">via Boost Board</a>
+  function rotationSorted(pool) {
+    // Oldest lastFeatured first (null = never featured, sorts first)
+    return [...pool].sort((a, b) => {
+      const da = a.lastFeatured ? new Date(a.lastFeatured) : new Date(0);
+      const db = b.lastFeatured ? new Date(b.lastFeatured) : new Date(0);
+      if (da - db !== 0) return da - db;
+      return new Date(a.submittedDate) - new Date(b.submittedDate);
+    });
+  }
+
+  function progressLabel(c) {
+    if (!c.goalAmount || c.goalAmount <= 0) return null;
+    const pct = Math.min(100, Math.round((c.amountRaised / c.goalAmount) * 100));
+    return { pct, label: `${pct}% of goal` };
+  }
+
+  function donorLabel(c) {
+    if (c.donationCount === 0) return 'No donors yet';
+    if (c.donationCount === 1) return '1 donor';
+    return `${c.donationCount} donors`;
+  }
+
+  function truncate(str, max) {
+    if (!str) return '';
+    return str.length <= max ? str : str.slice(0, max).trimEnd() + '…';
+  }
+
+  // ── single-campaign mode (unchanged behavior) ─────────────────────────
+
+  function renderSingle() {
+    let pick;
+    if (mode === 'random') {
+      const eligible = eligibleCampaigns();
+      pick = eligible.length ? eligible[Math.floor(Math.random() * eligible.length)] : null;
+    } else {
+      pick = computeToday().spotlight;
+    }
+
+    root.innerHTML = `<div class="single-wrap"><div class="w-card" id="widgetCard"></div></div>`;
+    const card = document.getElementById('widgetCard');
+
+    if (!pick) {
+      card.innerHTML = `<div class="w-desc">No campaign available right now.</div>`;
+    } else {
+      card.innerHTML = `
+        <div class="w-eyebrow">${mode === 'random' ? 'From Boost Board' : "Today's featured campaign"}</div>
+        <div class="w-name">${pick.name}</div>
+        <div class="w-desc">${pick.description}</div>
+        <a class="w-link" href="${pick.link}" target="_blank" rel="noopener">View campaign →</a>
+        <a class="w-credit" href="./index.html" target="_blank" rel="noopener">via Boost Board</a>
+      `;
+    }
+  }
+
+  // ── multi-campaign list mode ──────────────────────────────────────────
+
+  function renderList() {
+    const pool    = eligibleCampaigns();
+    const sorted  = rotationSorted(pool);
+    const maxCount = countParam === 'all'
+      ? sorted.length
+      : Math.max(1, Math.min(parseInt(countParam, 10) || 5, sorted.length));
+    const picks = sorted.slice(0, maxCount);
+
+    if (!picks.length) {
+      root.innerHTML = `<div style="padding:1rem;font-size:0.8rem;color:#52696e;">No campaigns available right now.</div>`;
+      return;
+    }
+
+    const items = picks.map(c => {
+      const prog = progressLabel(c);
+      const img  = c.imageUrl
+        ? `<img class="ci-img" src="${c.imageUrl}" alt="" loading="lazy">`
+        : `<div class="ci-img-placeholder"></div>`;
+
+      const progressHtml = prog
+        ? `<div class="ci-progress-wrap">
+             <div class="ci-bar-bg"><div class="ci-bar-fill" style="width:${prog.pct}%"></div></div>
+             <div class="ci-meta">${prog.label} · ${donorLabel(c)}</div>
+           </div>`
+        : `<div class="ci-meta">${donorLabel(c)}</div>`;
+
+      return `
+        <li>
+          <a class="campaign-item" href="${c.link}" target="_blank" rel="noopener">
+            ${img}
+            <div class="ci-body">
+              <div class="ci-name">${c.name}</div>
+              <div class="ci-desc">${truncate(c.description, 90)}</div>
+              ${progressHtml}
+            </div>
+          </a>
+        </li>`;
+    }).join('');
+
+    root.innerHTML = `
+      <div class="list-header">
+        <span class="list-eyebrow">Campaigns that need support</span>
+        <a class="list-credit" href="./index.html" target="_blank" rel="noopener">via Boost Board</a>
+      </div>
+      <ul class="campaign-list">${items}</ul>
     `;
+  }
+
+  // ── init ──────────────────────────────────────────────────────────────
+
+  if (isMulti) {
+    renderList();
+  } else {
+    renderSingle();
   }
 </script>
 </body>
