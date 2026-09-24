@@ -1,1 +1,38 @@
--
+name: Daily campaign rotation and RSS regeneration
+
+on:
+  schedule:
+    - cron: "0 13 * * *"   # 13:00 UTC daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  daily-rotation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Stamp today's featured campaigns
+        run: node mark-featured.js
+
+      - name: Regenerate RSS feed
+        run: node generate-rss.js
+
+      - name: Commit and push updates
+        run: |
+          git config user.name "boost-board-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add campaigns.json board-data.js rss.xml metrics-log.json
+          git diff --cached --quiet || git commit -m "Daily: rotate campaigns and regenerate RSS
+
+- mark-featured.js: stamp lastFeatured on today's selections
+- generate-rss.js: update RSS feed with current spotlight
+- metrics-log.json: track first-donor and graduation milestones"
+          git push
