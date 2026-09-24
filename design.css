@@ -76,6 +76,11 @@ details p{padding:0 30px 22px 0;font-size:16px}
 .tag{font-family:var(--heading);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:999px;background:#e3f0eb;color:var(--deep);display:inline-block}
 .tag.seed{background:#f0e3ee;color:#7a3d73}
 .tag.pinned{background:#fbeedc;color:#8a5a17}
+.progress{display:flex;flex-direction:column;gap:6px}
+.progress-track{height:8px;border-radius:999px;background:#dce7e6;overflow:hidden}
+.progress-fill{height:100%;border-radius:999px;background:var(--green)}
+.progress-text{font-size:13px;color:var(--muted);margin:0}
+.progress-text strong{color:var(--ink);font-weight:600}
 @media(max-width:1000px){.wrap{padding:0 30px}.cta{padding:34px}}
 @media(max-width:740px){
   .wrap{padding:0 22px}

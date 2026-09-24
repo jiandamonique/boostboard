@@ -55,7 +55,12 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 .card-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
 .report-link{font-size:12px;color:var(--muted);text-decoration:underline;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
 .report-link:hover{color:var(--ink)}
-.result-tags{display:flex;gap:6px;flex-wrap:wrap}
+.result-tags{display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
+.result-tags .tags{display:flex;gap:6px;flex-wrap:wrap}
+.select-label{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;color:var(--muted);cursor:pointer;flex-shrink:0;margin:0}
+.select-label input{accent-color:var(--green);width:15px;height:15px;margin:0;cursor:pointer}
+.result-card .title-link{text-decoration:none;color:inherit}
+.card-actions .arrow{width:15px;height:15px}
 .empty{background:#fff;border:1px solid var(--line);border-radius:5px;padding:52px 40px;text-align:center;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .empty h3{font-size:22px;letter-spacing:-.6px}
 .empty p{max-width:420px;font-size:16px;margin:12px 0 20px}
@@ -167,29 +172,92 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
   const TIER_LABELS = { seed: 'No donations yet', first_five: '1–4 donors', first_ten: '5–9 donors' };
   const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, graduated: 3 };
 
+  // Campaign data is typed in by hand (and may come from submissions
+  // later), so every value is escaped before it goes into the page, and
+  // links/images are checked so a bad entry can't run script.
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[ch]);
+  }
+
+  // Campaign links must be https:// -- anything else (javascript:,
+  // data:, typos) returns null and the card shows no link.
+  function safeLink(url) {
+    try {
+      const u = new URL(url);
+      return u.protocol === 'https:' ? u.href : null;
+    } catch { return null; }
+  }
+
+  // Images may be local files (./campaigns/...) or https:// addresses.
+  function safeImage(url) {
+    const fallback = './standin-image.jpg';
+    if (!url) return fallback;
+    try {
+      const u = new URL(url, location.href);
+      if (u.protocol === 'https:' || u.origin === location.origin) return url;
+    } catch {}
+    return fallback;
+  }
+
+  // Amounts are stored as plain numbers. Campaigns without a currency
+  // field are assumed to be in US dollars.
+  function formatMoney(amount, currency) {
+    try {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: currency || 'USD', maximumFractionDigits: 0
+      }).format(amount);
+    } catch {
+      return Math.round(amount).toLocaleString('en-US');
+    }
+  }
+
+  // Progress toward the goal, shown only when both numbers are known.
+  function progressHtml(c) {
+    const pct = percentOfGoal(c);
+    if (pct === null) return '';
+    const shown = Math.min(Math.max(pct, 0), 100);
+    const raised = formatMoney(c.amountRaised, c.currency);
+    const goal = formatMoney(c.goalAmount, c.currency);
+    // At $0, an empty bar and an invitation read better than "0%".
+    const text = c.amountRaised > 0
+      ? `<strong>${escapeHtml(raised)}</strong> raised of ${escapeHtml(goal)} goal · ${pct < 1 ? '&lt;1' : Math.round(pct)}%`
+      : `<strong>${escapeHtml(goal)}</strong> goal · be the first to give`;
+    return `
+      <div class="progress">
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width:${shown.toFixed(1)}%"></div></div>
+        <p class="progress-text">${text}</p>
+      </div>`;
+  }
+
   function cardHtml(c) {
     const tier = tierOf(c);
     const tierLabel = tier === 'graduated' ? fallbackLabel(c) : TIER_LABELS[tier];
     const tagClass = tier === 'seed' ? 'seed' : '';
+    const name = escapeHtml(c.name);
+    const link = safeLink(c.link);
+    const href = link ? escapeHtml(link) : '';
+    const ext = 'target="_blank" rel="noopener noreferrer"';
+    const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
     return `
       <div class="result-card">
-        <a href="${c.link}" target="_blank" rel="noopener" aria-label="View ${c.name.replace(/"/g, '&quot;')}">
-          <img src="${c.imageUrl || './standin-image.jpg'}" alt="" onerror="this.src='./standin-image.jpg'">
-        </a>
-        <div class="result-tags" style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <span class="tag ${tagClass}">${tierLabel}</span>
-            ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${cat}</span>`).join('')}
+        ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}
+        <div class="result-tags">
+          <div class="tags">
+            <span class="tag ${tagClass}">${escapeHtml(tierLabel)}</span>
+            ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${escapeHtml(cat)}</span>`).join('')}
           </div>
-          <label style="display:flex; align-items:center; gap:5px; font-size:12px; color:var(--muted); cursor:pointer; flex-shrink:0;">
-            <input type="checkbox" class="select-box" data-id="${c.id}" ${selectedIds.has(c.id) ? 'checked' : ''} style="accent-color:var(--green); width:15px; height:15px; margin:0; cursor:pointer;" aria-label="Add ${c.name} to your share list">Select
+          <label class="select-label">
+            <input type="checkbox" class="select-box" data-id="${escapeHtml(c.id)}" ${selectedIds.has(c.id) ? 'checked' : ''} aria-label="Add ${name} to your share list">Select
           </label>
         </div>
-        <a href="${c.link}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;"><h3>${c.name}</h3></a>
-        <p>${c.description}</p>
+        ${link ? `<a class="title-link" href="${href}" ${ext}><h3>${name}</h3></a>` : `<h3>${name}</h3>`}
+        <p>${escapeHtml(c.description)}</p>
+        ${progressHtml(c)}
         <div class="card-actions">
-          <a class="text-link" href="${c.link}" target="_blank" rel="noopener">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <button class="report-link" data-id="${c.id}" data-name="${c.name.replace(/"/g, '&quot;')}" title="Report a concern, or let us know this campaign already has donations">Report / Update</button>
+          ${link ? `<a class="text-link" href="${href}" ${ext}>View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>` : '<span></span>'}
+          <button class="report-link" data-id="${escapeHtml(c.id)}" data-name="${name}" title="Report a concern, or let us know this campaign already has donations">Report / Update</button>
         </div>
       </div>
     `;
@@ -215,7 +283,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
   function renderPills() {
     const pills = [{ value: '', label: 'All causes' }, ...allCategories.map(c => ({ value: c, label: c }))];
     pillsWrap.innerHTML = pills.map(p =>
-      `<button type="button" class="category-btn" data-value="${p.value}" aria-pressed="${p.value === activeCategory}">${p.label}</button>`
+      `<button type="button" class="category-btn" data-value="${escapeHtml(p.value)}" aria-pressed="${p.value === activeCategory}">${escapeHtml(p.label)}</button>`
     ).join('');
     pillsWrap.querySelectorAll('.category-btn').forEach(btn => {
       btn.addEventListener('click', () => { activeCategory = btn.dataset.value; render(); });
@@ -270,10 +338,10 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 
   const spotlightLinkEl = document.getElementById('spotlightDonateLink');
   const { spotlight } = computeToday();
-  if (spotlight) {
-    spotlightLinkEl.href = spotlight.link;
+  if (spotlight && safeLink(spotlight.link)) {
+    spotlightLinkEl.href = safeLink(spotlight.link);
     spotlightLinkEl.target = '_blank';
-    spotlightLinkEl.rel = 'noopener';
+    spotlightLinkEl.rel = 'noopener noreferrer';
   }
 
   // Checkboxes use 'change' via delegation so they keep working after
