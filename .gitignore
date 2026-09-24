@@ -1,2 +1,3 @@
-internal-docs/
-INTERNAL_*
+*.zip
+*DO-NOT-COMMIT*
+*INTERNAL*
