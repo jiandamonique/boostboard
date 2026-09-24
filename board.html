@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
+<meta name="description" content="Browse today's real fundraising campaigns on Boost Board -- filter by cause and see how much support each has so far.">
+<link rel="canonical" href="https://jiandamonique.github.io/boostboard/board.html">
+<meta property="og:title" content="Explore campaigns — Boost Board">
+<meta property="og:description" content="Browse today's real fundraising campaigns on Boost Board -- filter by cause and see how much support each has so far.">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:url" content="https://jiandamonique.github.io/boostboard/board.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boost Board">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>Explore campaigns — Boost Board</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gofundme.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'none'; object-src 'none'; upgrade-insecure-requests;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<style>
+body{padding-bottom:80px}
+.intro{padding:50px 0 32px;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
+h1{font-size:clamp(36px,4vw,51px);letter-spacing:-2px;line-height:1.14}
+.intro p{font-size:19px;max-width:435px}
+.principles{display:flex;flex-wrap:wrap;gap:26px;border-top:1px solid var(--line);padding:18px 0 28px;font-size:14px;color:var(--muted)}
+.principles span{display:flex;align-items:center;gap:8px}
+.check{width:17px;height:17px;fill:none;stroke:var(--green);stroke-width:1.8;flex-shrink:0}
+.browse{padding-bottom:60px}
+.tools{background:white;border:1px solid var(--line);border-radius:5px;padding:24px 26px}
+.search-row{display:grid;grid-template-columns:minmax(220px,1fr) 220px 140px;gap:16px;align-items:end}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
+input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;color:var(--ink);background:white;font-size:16px;padding:10px 12px}
+.search-input{position:relative}
+.search-input svg{position:absolute;left:14px;top:14px;width:19px;height:19px;fill:none;stroke:var(--muted);stroke-width:1.7}
+.search-input input{padding-left:43px}
+.search-row .button{height:47px}
+.categories{border:0;padding:0;margin:20px 0 0;display:flex;gap:9px;flex-wrap:wrap}
+.categories legend{font-size:14px;font-weight:600;margin-bottom:9px;padding:0}
+.category-btn{border:1px solid var(--line);border-radius:4px;background:white;color:var(--muted);padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer}
+.category-btn:hover{background:var(--bg);color:var(--ink)}
+.category-btn[aria-pressed=true]{color:var(--deep);border-color:#98bfb6;background:#e3f0eb}
+.results-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:32px;margin-top:28px}
+.results-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
+.results-top h2{font-family:var(--font);font-size:17px;font-weight:600;color:var(--ink)}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.result-card{background:#fff;border:1px solid var(--line);border-radius:5px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.result-card img{width:100%;height:140px;border-radius:4px;object-fit:cover;display:block}
+.result-card > a:first-child{display:block}
+.result-card h3{font-size:17px;letter-spacing:-.3px}
+.result-card p{font-size:14px;margin:0}
+.card-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
+.report-link{font-size:12px;color:var(--muted);text-decoration:underline;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+.report-link:hover{color:var(--ink)}
+.result-tags{display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
+.result-tags .tags{display:flex;gap:6px;flex-wrap:wrap}
+.select-label{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;color:var(--muted);cursor:pointer;flex-shrink:0;margin:0}
+.select-label input{accent-color:var(--green);width:15px;height:15px;margin:0;cursor:pointer}
+.result-card .title-link{text-decoration:none;color:inherit}
+.card-actions .arrow{width:15px;height:15px}
+.empty{background:#fff;border:1px solid var(--line);border-radius:5px;padding:52px 40px;text-align:center;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.empty h3{font-size:22px;letter-spacing:-.6px}
+.empty p{max-width:420px;font-size:16px;margin:12px 0 20px}
+.status{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--deep);font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.status:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}
+.aside h2{font-size:19px;line-height:1.4;letter-spacing:-.5px}
+.aside p{font-size:15px;margin-top:10px}
+.aside .text-link{margin-top:15px;font-size:14px}
+.aside-bottom{border-top:1px solid var(--line);margin-top:24px;padding-top:20px}
+.aside-bottom strong{font-size:14px;font-weight:600}
+.aside-bottom p{font-size:13px;margin-top:6px}
+.sharing{display:grid;grid-template-columns:1fr 1.1fr;gap:55px;border-top:1px solid var(--line);padding:32px 0 44px}
+.sharing h2{font-size:24px;letter-spacing:-1px;line-height:1.3}
+.sharing p{font-size:16px;margin-top:12px;max-width:430px}
+.share-note{border-left:3px solid var(--gold);padding:2px 0 2px 22px}
+@media(max-width:1000px){.results-layout{grid-template-columns:1fr}.results-grid{grid-template-columns:1fr}}
+@media(max-width:740px){
+  .intro{grid-template-columns:1fr;padding:28px 0 22px;gap:18px}
+  .principles{padding-bottom:22px}
+  .tools{padding:18px}
+  .search-row{grid-template-columns:1fr}
+  .sharing{grid-template-columns:1fr;gap:20px;padding:26px 0 32px}
+}
+</style>
+</head>
+<body>
+<main id="main" class="wrap">
+<section class="intro" aria-labelledby="page-title">
+<div><h1 id="page-title">Find a beginning<br>you believe in.</h1></div>
+<p>Filter by cause, or explore further.</p>
+</section>
+<div class="principles">
+  <span><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Overlooked, not unworthy</span>
+  <span><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Give on the original platform</span>
+  <span><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>A share is support, too</span>
+</div>
+<section class="browse" aria-label="Campaign directory">
+<div class="tools">
+<div class="search-row">
+<div><label for="search">Find a campaign</label><div class="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" id="search" placeholder="Search by cause, name, or story"></div></div>
+<div><label for="funding">Funding stage</label><select id="funding">
+<option value="">All campaigns</option>
+<option value="seed">No donations yet</option>
+<option value="first_five">A small start (1–4 donors)</option>
+<option value="first_ten">Building momentum (5–9 donors)</option>
+</select></div>
+</div>
+<fieldset class="categories" id="categoryPills"><legend>What matters to you?</legend></fieldset>
+</div>
+<div class="results-layout">
+<div>
+<div class="results-top"><h2 id="resultCount" role="status" aria-live="polite">Loading…</h2></div>
+<div id="resultsArea"></div>
+</div>
+<aside class="aside" aria-labelledby="directory-note">
+<div class="status">Every crowd starts somewhere</div>
+<h2 id="directory-note">A place for small starts.</h2>
+<p>This space is for campaigns still waiting for traction, before they've built up any real momentum.</p>
+<a class="text-link" href="./how-it-works.html">How campaigns get a spotlight <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+<div class="aside-bottom"><strong>Before you give</strong><p>A spotlight isn't verification. Read the original campaign, check organizer details and updates, and review the platform's protections. Boost Board never collects donations.</p></div>
+</aside>
+</div>
+</section>
+
+<section class="support-note">
+  <h3>Boost Board isn't a charity or nonprofit — it's just an app.</h3>
+  <p>Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly, as submitted or brought to our attention. If you'd like to support the effort, you've got two options: help keep the app itself running, or send your money straight to today's featured campaign instead.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a class="button outline" href="./credits.html">Support the app</a>
+    <a class="button" href="./index.html" id="spotlightDonateLink">Donate to today's featured campaign</a>
+  </div>
+  <p class="text-xsmall mt-md">Every campaign here is reviewed by hand before it's added, which takes time — so by the time one appears, it may already have picked up a donation or two elsewhere. That's a genuinely good sign, not a mistake.</p>
+  <p class="text-xsmall mt-md">If your situation is urgent, please don't wait on us. Try posting on social media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign some immediate attention. We're sorry that we don't have the staff to respond to urgent needs in real time.</p>
+</section>
+
+<section class="sharing" aria-labelledby="sharing-title">
+<div><h2 id="sharing-title">You can give a story reach.</h2><p>When you find a campaign you care about, send it to someone who might connect with it. A personal note goes further than a link alone.</p></div>
+<div class="share-note"><p>Say what caught your attention. Explain who the campaign is for. Share the original link so others can read the story for themselves.</p></div>
+</section>
+<section class="cta" aria-labelledby="cta-title"><div><h2 id="cta-title">Know a campaign that needs a boost?</h2><p>Your own fundraiser or a cause you care about — submit the original link for consideration.</p></div><a class="button" href="./submit.html">Submit a campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
+</main>
+
+<div id="shareBar" class="share-bar">
+  <div><strong id="shareCount">Select campaigns to share a few at once</strong></div>
+  <button id="shareClearBtn" disabled style="background:none; border:none; color:#c2d3d4; text-decoration:underline; cursor:pointer;">Clear</button>
+  <button id="shareListBtn" disabled class="button">Share list →</button>
+</div>
+
+<dialog id="shareDialog" class="modal-dialog">
+  <button id="shareDialogClose" class="modal-close" aria-label="Close">×</button>
+  <h2 class="modal-title">Carry these forward.</h2>
+  <p class="modal-description">Edit the message below, then copy it into a text, post, or email.</p>
+  <label for="shareText" class="text-xsmall" style="display:block; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Your message</label>
+  <textarea id="shareText" class="modal-textarea"></textarea>
+  <div style="display:flex; gap:10px; margin-top:16px;">
+    <button id="shareDialogCopy" class="button">Copy message</button>
+    <button id="shareDialogNative" class="button outline" hidden>Share to…</button>
+  </div>
+  <p id="shareDialogStatus" role="status" class="text-smaller" style="color:var(--deep); margin-top:12px; min-height:18px;"></p>
+</dialog>
+
+<script src="./board-data.js"></script>
+<script>
+  (async () => {
+    await loadCampaigns();
+    const { eligible } = (function() {
+      const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c)));
+      return { eligible: el };
+    })();
+
+  const TIER_LABELS = { seed: 'No donations yet', first_five: '1–4 donors', first_ten: '5–9 donors' };
+  const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, graduated: 3 };
+
+  // Campaign data is typed in by hand (and may come from submissions
+  // later), so every value is escaped before it goes into the page, and
+  // links/images are checked so a bad entry can't run script.
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[ch]);
+  }
+
+  // Campaign links must be https:// -- anything else (javascript:,
+  // data:, typos) returns null and the card shows no link.
+  function safeLink(url) {
+    try {
+      const u = new URL(url);
+      return u.protocol === 'https:' ? u.href : null;
+    } catch { return null; }
+  }
+
+  // Images may be local files (./campaigns/...) or https:// addresses.
+  function safeImage(url) {
+    const fallback = './standin-image.jpg';
+    if (!url) return fallback;
+    try {
+      const u = new URL(url, location.href);
+      if (u.protocol === 'https:' || u.origin === location.origin) return url;
+    } catch {}
+    return fallback;
+  }
+
+  // Amounts are stored as plain numbers. Campaigns without a currency
+  // field are assumed to be in US dollars.
+  function formatMoney(amount, currency) {
+    try {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: currency || 'USD', maximumFractionDigits: 0
+      }).format(amount);
+    } catch {
+      return Math.round(amount).toLocaleString('en-US');
+    }
+  }
+
+  // Progress toward the goal, shown only when both numbers are known.
+  function progressHtml(c) {
+    const pct = percentOfGoal(c);
+    if (pct === null) return '';
+    const shown = Math.min(Math.max(pct, 0), 100);
+    const raised = formatMoney(c.amountRaised, c.currency);
+    const goal = formatMoney(c.goalAmount, c.currency);
+    // At $0, an empty bar and an invitation read better than "0%".
+    const text = c.amountRaised > 0
+      ? `<strong>${escapeHtml(raised)}</strong> raised of ${escapeHtml(goal)} goal · ${pct < 1 ? '&lt;1' : Math.round(pct)}%`
+      : `<strong>${escapeHtml(goal)}</strong> goal · be the first to give`;
+    return `
+      <div class="progress">
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width:${shown.toFixed(1)}%"></div></div>
+        <p class="progress-text">${text}</p>
+      </div>`;
+  }
+
+  function cardHtml(c) {
+    const tier = tierOf(c);
+    const tierLabel = tier === 'graduated' ? fallbackLabel(c) : TIER_LABELS[tier];
+    const tagClass = tier === 'seed' ? 'seed' : '';
+    const name = escapeHtml(c.name);
+    const link = safeLink(c.link);
+    const href = link ? escapeHtml(link) : '';
+    const ext = 'target="_blank" rel="noopener noreferrer"';
+    const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
+    return `
+      <div class="result-card">
+        ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}
+        <div class="result-tags">
+          <div class="tags">
+            <span class="tag ${tagClass}">${escapeHtml(tierLabel)}</span>
+            ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${escapeHtml(cat)}</span>`).join('')}
+          </div>
+          <label class="select-label">
+            <input type="checkbox" class="select-box" data-id="${escapeHtml(c.id)}" ${selectedIds.has(c.id) ? 'checked' : ''} aria-label="Add ${name} to your share list">Select
+          </label>
+        </div>
+        ${link ? `<a class="title-link" href="${href}" ${ext}><h3>${name}</h3></a>` : `<h3>${name}</h3>`}
+        <p>${escapeHtml(c.description)}</p>
+        ${progressHtml(c)}
+        <div class="card-actions">
+          ${link ? `<a class="text-link" href="${href}" ${ext}>View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>` : '<span></span>'}
+          <button class="report-link" data-id="${escapeHtml(c.id)}" data-name="${name}" title="Report a concern, or let us know this campaign already has donations">Report / Update</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const selectedIds = new Set();
+
+  function updateShareBar() {
+    const n = selectedIds.size;
+    document.getElementById('shareCount').textContent = n
+      ? `${n} ${n === 1 ? 'campaign' : 'campaigns'} in your share list`
+      : 'Select campaigns to share a few at once';
+    document.getElementById('shareClearBtn').disabled = !n;
+    document.getElementById('shareListBtn').disabled = !n;
+  }
+
+  // Category pills, built from whatever category values exist
+  // in the real data -- not a hardcoded list, so a new category shows up
+  // automatically the next time a campaign uses it.
+  const allCategories = [...new Set(eligible.flatMap(c => c.category || []))].sort();
+  const pillsWrap = document.getElementById('categoryPills');
+  let activeCategory = new URLSearchParams(location.search).get('category') || '';
+  function renderPills() {
+    const pills = [{ value: '', label: 'All causes' }, ...allCategories.map(c => ({ value: c, label: c }))];
+    pillsWrap.innerHTML = pills.map(p =>
+      `<button type="button" class="category-btn" data-value="${escapeHtml(p.value)}" aria-pressed="${p.value === activeCategory}">${escapeHtml(p.label)}</button>`
+    ).join('');
+    pillsWrap.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => { activeCategory = btn.dataset.value; render(); });
+    });
+  }
+
+  function render() {
+    renderPills();
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const fundingFilter = document.getElementById('funding').value;
+
+    let results = eligible.filter(c => {
+      if (fundingFilter && tierOf(c) !== fundingFilter) return false;
+      if (activeCategory && !(c.category || []).includes(activeCategory)) return false;
+      if (q && !(c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q))) return false;
+      return true;
+    });
+
+    results.sort((a, b) => TIER_ORDER[tierOf(a)] - TIER_ORDER[tierOf(b)]);
+
+    const countEl = document.getElementById('resultCount');
+    const area = document.getElementById('resultsArea');
+    countEl.textContent = results.length + (results.length === 1 ? ' campaign' : ' campaigns');
+
+    if (results.length === 0) {
+      area.innerHTML = `
+        <div class="empty">
+          <h3>No campaigns match that search.</h3>
+          <p>Try a different search term, or clear your filters to see everything on the board.</p>
+          <button class="text-link" id="resetBtn" type="button">Clear search and filters</button>
+        </div>
+      `;
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        document.getElementById('search').value = '';
+        document.getElementById('funding').value = '';
+        activeCategory = '';
+        render();
+      });
+    } else {
+      area.innerHTML = `<div class="results-grid">${results.map(cardHtml).join('')}</div>`;
+      area.querySelectorAll('.report-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+          window.location.href = `./submit.html?report=${encodeURIComponent(btn.dataset.id)}&name=${encodeURIComponent(btn.dataset.name)}`;
+        });
+      });
+    }
+  }
+
+  document.getElementById('search').addEventListener('input', render);
+  document.getElementById('funding').addEventListener('change', render);
+  render();
+
+  const spotlightLinkEl = document.getElementById('spotlightDonateLink');
+  const { spotlight } = computeToday();
+  if (spotlight && safeLink(spotlight.link)) {
+    spotlightLinkEl.href = safeLink(spotlight.link);
+    spotlightLinkEl.target = '_blank';
+    spotlightLinkEl.rel = 'noopener noreferrer';
+  }
+
+  // Checkboxes use 'change' via delegation so they keep working after
+  // every re-render from a search/filter change.
+  document.addEventListener('change', (e) => {
+    const box = e.target.closest('.select-box');
+    if (!box) return;
+    if (box.checked) selectedIds.add(box.dataset.id);
+    else selectedIds.delete(box.dataset.id);
+    updateShareBar();
+  });
+
+  document.getElementById('shareClearBtn').addEventListener('click', () => {
+    selectedIds.clear();
+    document.querySelectorAll('.select-box').forEach(b => { b.checked = false; });
+    updateShareBar();
+  });
+
+  const shareDialog = document.getElementById('shareDialog');
+  const shareText = document.getElementById('shareText');
+  const shareStatus = document.getElementById('shareDialogStatus');
+
+  document.getElementById('shareListBtn').addEventListener('click', () => {
+    const picked = campaigns.filter(c => selectedIds.has(c.id));
+    if (picked.length === 0) return;
+    const intro = picked.length === 1
+      ? `I wanted to share this campaign — it hasn't gotten much attention yet.`
+      : `A few campaigns worth a moment of your time — none of them have gotten much attention yet.`;
+    shareText.value = intro + '\n\n' + picked.map(c => `${c.name}\n${c.link}`).join('\n\n')
+      + `\n\nSharing genuinely helps, even if giving isn't possible right now.`;
+    shareStatus.textContent = '';
+    shareDialog.showModal();
+  });
+
+  document.getElementById('shareDialogClose').addEventListener('click', () => shareDialog.close());
+  shareDialog.addEventListener('click', (e) => {
+    if (e.target !== shareDialog) return;
+    const r = shareDialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) shareDialog.close();
+  });
+
+  document.getElementById('shareDialogCopy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(shareText.value);
+      shareStatus.textContent = 'Copied — paste it anywhere.';
+    } catch {
+      shareText.focus();
+      shareText.select();
+      shareStatus.textContent = 'Select and copy the text above.';
+    }
+  });
+
+  if (navigator.share) {
+    const nativeBtn = document.getElementById('shareDialogNative');
+    nativeBtn.hidden = false;
+    nativeBtn.addEventListener('click', async () => {
+      try {
+        await navigator.share({ title: 'Campaigns worth a look', text: shareText.value });
+        shareStatus.textContent = 'Thanks for sharing.';
+      } catch (e) {
+        if (e.name !== 'AbortError') shareStatus.textContent = 'Sharing unavailable — copy the text instead.';
+      }
+    });
+  }
+  })();
+</script>
+</body>
+</html>
