@@ -125,15 +125,15 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 </div>
 </section>
 
-<section class="support-note" style="max-width:640px;margin:0 auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 32px;">
-  <h3 style="font-size:18px;margin-bottom:10px;">Boost Board isn't a charity or nonprofit — it's just an app.</h3>
-  <p style="font-size:15px;margin-bottom:16px;">Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly, as submitted or brought to our attention. If you'd like to support the effort, you've got two options: help keep the app itself running, or send your money straight to today's featured campaign instead.</p>
+<section class="support-note">
+  <h3>Boost Board isn't a charity or nonprofit — it's just an app.</h3>
+  <p>Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly, as submitted or brought to our attention. If you'd like to support the effort, you've got two options: help keep the app itself running, or send your money straight to today's featured campaign instead.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
     <a class="button outline" href="./credits.html">Support the app</a>
     <a class="button" href="./index.html" id="spotlightDonateLink">Donate to today's featured campaign</a>
   </div>
-  <p style="font-size:13px;margin-top:20px;">Every campaign here is reviewed by hand before it's added, which takes time — so by the time one appears, it may already have picked up a donation or two elsewhere. That's a genuinely good sign, not a mistake.</p>
-  <p style="font-size:13px;margin-top:12px;">If your situation is urgent, please don't wait on us. Try posting on social media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign some immediate attention. We're sorry that we don't have the staff to respond to urgent needs in real time.</p>
+  <p class="text-xsmall mt-md">Every campaign here is reviewed by hand before it's added, which takes time — so by the time one appears, it may already have picked up a donation or two elsewhere. That's a genuinely good sign, not a mistake.</p>
+  <p class="text-xsmall mt-md">If your situation is urgent, please don't wait on us. Try posting on social media with <strong>#BoostBoard</strong> or <strong>#SignalBoost</strong> to get your campaign some immediate attention. We're sorry that we don't have the staff to respond to urgent needs in real time.</p>
 </section>
 
 <section class="sharing" aria-labelledby="sharing-title">
@@ -143,23 +143,23 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 <section class="cta" aria-labelledby="cta-title"><div><h2 id="cta-title">Know a campaign that needs a boost?</h2><p>Your own fundraiser or a cause you care about — submit the original link for consideration.</p></div><a class="button" href="./submit.html">Submit a campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
 </main>
 
-<div id="shareBar" style="position:fixed; bottom:16px; left:50%; transform:translateX(-50%); width:min(600px, calc(100% - 32px)); background:var(--ink); color:#fff; border-radius:6px; padding:14px 18px; display:flex; align-items:center; gap:16px; box-shadow:0 8px 28px rgba(16,43,50,0.3); z-index:50; font-size:14px;">
-  <div style="flex:1;"><strong id="shareCount">Select campaigns to share a few at once</strong></div>
-  <button id="shareClearBtn" disabled style="background:none; border:none; color:#c2d3d4; text-decoration:underline; font-size:13px; cursor:pointer; padding:6px;">Clear</button>
-  <button id="shareListBtn" disabled class="button" style="padding:10px 18px; font-size:14px;">Share list →</button>
+<div id="shareBar" class="share-bar">
+  <div><strong id="shareCount">Select campaigns to share a few at once</strong></div>
+  <button id="shareClearBtn" disabled style="background:none; border:none; color:#c2d3d4; text-decoration:underline; cursor:pointer;">Clear</button>
+  <button id="shareListBtn" disabled class="button">Share list →</button>
 </div>
 
-<dialog id="shareDialog" style="border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); width:min(480px, calc(100% - 32px)); padding:28px; position:relative;">
-  <button id="shareDialogClose" aria-label="Close" style="position:absolute; top:16px; right:18px; background:none; border:none; font-size:22px; line-height:1; color:var(--muted); cursor:pointer; padding:4px;">×</button>
-  <h2 style="font-size:22px; margin-bottom:8px; padding-right:24px;">Carry these forward.</h2>
-  <p style="font-size:14px; color:var(--muted); margin-bottom:16px;">Edit the message below, then copy it into a text, post, or email.</p>
-  <label for="shareText" style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:8px;">Your message</label>
-  <textarea id="shareText" style="width:100%; height:150px; resize:vertical; border:1px solid var(--line); border-radius:4px; padding:12px; font-family:'Source Sans 3',sans-serif; font-size:14px; color:var(--ink); background:var(--bg);"></textarea>
+<dialog id="shareDialog" class="modal-dialog">
+  <button id="shareDialogClose" class="modal-close" aria-label="Close">×</button>
+  <h2 class="modal-title">Carry these forward.</h2>
+  <p class="modal-description">Edit the message below, then copy it into a text, post, or email.</p>
+  <label for="shareText" class="text-xsmall" style="display:block; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Your message</label>
+  <textarea id="shareText" class="modal-textarea"></textarea>
   <div style="display:flex; gap:10px; margin-top:16px;">
     <button id="shareDialogCopy" class="button">Copy message</button>
     <button id="shareDialogNative" class="button outline" hidden>Share to…</button>
   </div>
-  <p id="shareDialogStatus" role="status" style="font-size:13px; color:var(--deep); margin-top:12px; min-height:18px;"></p>
+  <p id="shareDialogStatus" role="status" class="text-smaller" style="color:var(--deep); margin-top:12px; min-height:18px;"></p>
 </dialog>
 
 <script src="./board-data.js"></script>
@@ -241,7 +241,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     const link = safeLink(c.link);
     const href = link ? escapeHtml(link) : '';
     const ext = 'target="_blank" rel="noopener noreferrer"';
-    const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
+    const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
     return `
       <div class="result-card">
         ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}

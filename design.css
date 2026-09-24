@@ -81,6 +81,39 @@ details p{padding:0 30px 22px 0;font-size:16px}
 .progress-fill{height:100%;border-radius:999px;background:var(--green)}
 .progress-text{font-size:13px;color:var(--muted);margin:0}
 .progress-text strong{color:var(--ink);font-weight:600}
+/* Phase 5: Consolidated layout, modal, and utility classes */
+.text-center{text-align:center}
+.text-muted{color:var(--muted)}
+.text-small{font-size:14px}
+.text-smaller{font-size:13px}
+.text-xsmall{font-size:12px}
+.mt-sm{margin-top:12px}
+.mt-md{margin-top:20px}
+.mx-auto{margin-left:auto;margin-right:auto}
+.p-auto{padding:14px 18px}
+.max-w-narrow{max-width:640px}
+.max-w-wide{max-width:280px}
+.block{display:block}
+.inline{display:inline}
+.relative{position:relative}
+.absolute{position:absolute}
+.link-unstyled{text-decoration:none;color:inherit}
+.link-overlay{display:block;text-decoration:none;color:inherit;position:relative}
+.support-note{max-width:640px;margin:0 auto 24px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 32px;text-align:center}
+.support-note h3{font-size:18px;margin-bottom:10px}
+.support-note p{font-size:15px;margin-bottom:16px}
+.support-note .text-xsmall{margin-top:12px}
+.modal-dialog{border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);width:min(480px,calc(100% - 32px));padding:28px;position:relative}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;line-height:1;color:var(--muted);cursor:pointer;padding:4px;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.modal-title{font-size:22px;margin-bottom:8px;padding-right:24px}
+.modal-description{font-size:14px;color:var(--muted);margin-bottom:16px}
+.modal-textarea{width:100%;height:150px;resize:vertical;border:1px solid var(--line);border-radius:4px;padding:12px;font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--ink);background:var(--bg)}
+.share-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:min(600px,calc(100% - 32px));background:var(--ink);color:#fff;border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 28px rgba(16,43,50,0.3);z-index:50;font-size:14px}
+.share-bar > div{flex:1}
+.share-bar .button{padding:10px 18px;font-size:14px}
+.share-bar button{min-width:44px;min-height:44px}
+/* Touch target sizing: min 44x44px for mobile accessibility */
+.button,.text-link,.modal-close,button,a[role="button"]{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
 @media(max-width:1000px){.wrap{padding:0 30px}.cta{padding:34px}}
 @media(max-width:740px){
   .wrap{padding:0 22px}

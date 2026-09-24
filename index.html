@@ -182,7 +182,7 @@ h1 span{color:var(--green)}
         ? "This campaign hasn't received its first donation yet — which is exactly why it's featured today."
         : "Today's featured campaign has some real momentum already.";
       visual.innerHTML = `
-        <a href="${spotlight.link}" target="_blank" rel="noopener noreferrer" style="display:block; text-decoration:none; color:inherit; position:relative;">
+        <a href="${spotlight.link}" target="_blank" rel="noopener noreferrer" class="link-overlay">
           <img class="spotlight-image" src="${spotlight.imageUrl || './standin-image.jpg'}" alt="${spotlight.name}" onerror="this.src='./standin-image.jpg'">
           <div class="image-note" id="spotlightImageNote">
             <div class="eyebrow">Today's featured campaign</div>
@@ -190,7 +190,7 @@ h1 span{color:var(--green)}
             <p>${noteText}</p>
           </div>
         </a>
-        <a class="button" id="spotlightViewBtn" href="${spotlight.link}" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="button block text-center" id="spotlightViewBtn" href="${spotlight.link}" target="_blank" rel="noopener noreferrer" style="margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       `;
     // The "Today's Featured Campaign" card floats over the image via
     // position:absolute, with a height that varies by campaign name
