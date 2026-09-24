@@ -170,26 +170,28 @@ h1 span{color:var(--green)}
 
 <script src="./board-data.js"></script>
 <script>
-  const { spotlight } = computeToday();
-  const visual = document.getElementById('spotlightVisual');
-  if (!spotlight) {
-    visual.innerHTML = '<div class="spotlight-empty">No campaigns on the board right now — check back soon, or <a href="./submit.html">submit one</a>.</div>';
-  } else {
-    const isSeed = tierOf(spotlight) === 'seed';
-    const noteText = isSeed
-      ? "This campaign hasn't received its first donation yet — which is exactly why it's featured today."
-      : "Today's featured campaign has some real momentum already.";
-    visual.innerHTML = `
-      <a href="${spotlight.link}" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; position:relative;">
-        <img class="spotlight-image" src="${spotlight.imageUrl || './standin-image.jpg'}" alt="${spotlight.name}" onerror="this.src='./standin-image.jpg'">
-        <div class="image-note" id="spotlightImageNote">
-          <div class="eyebrow">Today's featured campaign</div>
-          <strong>${spotlight.name}</strong>
-          <p>${noteText}</p>
-        </div>
-      </a>
-      <a class="button" id="spotlightViewBtn" href="${spotlight.link}" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-    `;
+  (async () => {
+    await loadCampaigns();
+    const { spotlight } = computeToday();
+    const visual = document.getElementById('spotlightVisual');
+    if (!spotlight) {
+      visual.innerHTML = '<div class="spotlight-empty">No campaigns on the board right now — check back soon, or <a href="./submit.html">submit one</a>.</div>';
+    } else {
+      const isSeed = tierOf(spotlight) === 'seed';
+      const noteText = isSeed
+        ? "This campaign hasn't received its first donation yet — which is exactly why it's featured today."
+        : "Today's featured campaign has some real momentum already.";
+      visual.innerHTML = `
+        <a href="${spotlight.link}" target="_blank" rel="noopener noreferrer" style="display:block; text-decoration:none; color:inherit; position:relative;">
+          <img class="spotlight-image" src="${spotlight.imageUrl || './standin-image.jpg'}" alt="${spotlight.name}" onerror="this.src='./standin-image.jpg'">
+          <div class="image-note" id="spotlightImageNote">
+            <div class="eyebrow">Today's featured campaign</div>
+            <strong>${spotlight.name}</strong>
+            <p>${noteText}</p>
+          </div>
+        </a>
+        <a class="button" id="spotlightViewBtn" href="${spotlight.link}" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; margin-top:14px;">View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      `;
     // The "Today's Featured Campaign" card floats over the image via
     // position:absolute, with a height that varies by campaign name
     // length -- a long name can make the card tall enough to cover the
@@ -209,16 +211,17 @@ h1 span{color:var(--green)}
     // itself (a very long campaign name), in which case the note would
     // push above the image's top edge, and the button needs the
     // difference added to clear it.
-    requestAnimationFrame(() => {
-      const note = document.getElementById('spotlightImageNote');
-      const btn = document.getElementById('spotlightViewBtn');
-      const img = document.querySelector('.spotlight-image');
-      if (note && btn && img) {
-        const overflow = Math.max(0, note.offsetHeight - img.offsetHeight);
-        btn.style.marginTop = (overflow + 14) + 'px';
-      }
-    });
-  }
+      requestAnimationFrame(() => {
+        const note = document.getElementById('spotlightImageNote');
+        const btn = document.getElementById('spotlightViewBtn');
+        const img = document.querySelector('.spotlight-image');
+        if (note && btn && img) {
+          const overflow = Math.max(0, note.offsetHeight - img.offsetHeight);
+          btn.style.marginTop = (overflow + 14) + 'px';
+        }
+      });
+    }
+  })();
 </script>
 </body>
 </html>

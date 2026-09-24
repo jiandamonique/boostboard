@@ -164,10 +164,12 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 
 <script src="./board-data.js"></script>
 <script>
-  const { eligible } = (function() {
-    const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c)));
-    return { eligible: el };
-  })();
+  (async () => {
+    await loadCampaigns();
+    const { eligible } = (function() {
+      const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c)));
+      return { eligible: el };
+    })();
 
   const TIER_LABELS = { seed: 'No donations yet', first_five: '1–4 donors', first_ten: '5–9 donors' };
   const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, graduated: 3 };
@@ -406,6 +408,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
       }
     });
   }
+  })();
 </script>
 </body>
 </html>
