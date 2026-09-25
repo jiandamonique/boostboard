@@ -76,6 +76,14 @@ details p{padding:0 30px 22px 0;font-size:16px}
 .tag{font-family:var(--heading);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:999px;background:#e3f0eb;color:var(--deep);display:inline-block}
 .tag.seed{background:#f0e3ee;color:#7a3d73}
 .tag.pinned{background:#fbeedc;color:#8a5a17}
+/* Tier badges — campaign momentum labels */
+.tier-badge{font-family:var(--heading);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:6px 12px;border-radius:4px;display:inline-flex;align-items:center;white-space:nowrap}
+.tier-badge.tier-seed{background:#FCA5A5;color:white}
+.tier-badge.tier-first-five{background:#DC2626;color:white}
+.tier-badge.tier-first-ten{background:#991B1B;color:white}
+.tier-badge.tier-rising{background:#7C2D12;color:white}
+.tier-badge.tier-wellonway{background:#10B981;color:white}
+.tier-badge.tier-successful{background:#065F46;color:white}
 .progress{display:flex;flex-direction:column;gap:6px}
 .progress-track{height:8px;border-radius:999px;background:#dce7e6;overflow:hidden}
 .progress-fill{height:100%;border-radius:999px;background:var(--green)}

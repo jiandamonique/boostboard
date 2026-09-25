@@ -658,5 +658,107 @@
       "Technology",
       "Community"
     ]
+  },
+  {
+    "id": "c035",
+    "name": "Raising Funds for Kiva's Entrepreneurs",
+    "communities": [],
+    "description": "Nishanth Yeddula's team is fundraising for Kiva, a nonprofit that provides microloans to entrepreneurs worldwide who lack access to fair capital. Contributions fuel revolving loans that support multiple business owners over time.",
+    "link": "https://www.gofundme.com/f/raising-funds-for-kivas-entrepreneurs",
+    "donationCount": 12,
+    "submittedDate": "2026-09-23",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-raising-funds-for-kivas-entrepreneurs.png",
+    "pinReason": "",
+    "amountRaised": 190,
+    "goalAmount": 350,
+    "lowEngagementFlag": false,
+    "category": [
+      "Community",
+      "International Aid"
+    ]
+  },
+  {
+    "id": "c036",
+    "name": "Help Desmon Keep Serving the Community",
+    "communities": [],
+    "description": "Desmon Connie has been feeding his community for years and is raising funds to secure a food truck or lease a building to keep the business going. Every contribution helps cover the truck, equipment, permits, and startup costs.",
+    "link": "https://www.gofundme.com/f/help-desmon-keep-serving-the-community",
+    "donationCount": 18,
+    "submittedDate": "2026-09-23",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-help-desmon-keep-serving-the-community.png",
+    "pinReason": "",
+    "amountRaised": 525,
+    "goalAmount": 2000,
+    "lowEngagementFlag": false,
+    "category": [
+      "Community",
+      "Financial Hardship"
+    ]
+  },
+  {
+    "id": "c037",
+    "name": "Help Michael and Fianc\u00e9e Begin Married Life",
+    "communities": [],
+    "description": "Michael and his fianc\u00e9e are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fianc\u00e9e works as a cashier. The campaign also covers legal documents his fianc\u00e9e needs.",
+    "link": "https://www.gofundme.com/f/help-michael-and-fiancee-begin-married-life",
+    "donationCount": 8,
+    "submittedDate": "2026-09-23",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-help-michael-and-fiancee-begin-married-life.png",
+    "pinReason": "",
+    "amountRaised": 320,
+    "goalAmount": 1600,
+    "lowEngagementFlag": false,
+    "category": [
+      "Family Support"
+    ]
+  },
+  {
+    "id": "c038",
+    "name": "Amanda's Fines and License Reinstatement Fund",
+    "communities": [],
+    "description": "Amanda is a single mother of two daughters raising funds to pay off remaining fines so her driver's license can be reinstated. Organized by her daughter Savannah Rife.",
+    "link": "https://www.gofundme.com/f/amandas-license-reinstatement-fund-kzyxt",
+    "donationCount": 4,
+    "submittedDate": "2026-09-23",
+    "lastFeatured": null,
+    "pinned": false,
+    "reported": false,
+    "imageUrl": "./campaigns/campaign-amandas-fines-and-license-reinstatement-fund.webp",
+    "pinReason": "",
+    "amountRaised": 50,
+    "goalAmount": 500,
+    "lowEngagementFlag": false,
+    "category": [
+      "Family Support",
+      "Financial Hardship"
+    ]
+  },
+  {
+    "id": "c039",
+    "name": "Help Jonathan Get Life-Changing Jaw Surgery",
+    "link": "https://www.gofundme.com/f/help-jonathan-get-life-changing-jaw-surgery",
+    "description": "Jonathan has been suffering from debilitating sleep apnea and upper airway resistance syndrome for years, slowly stealing his life from him. He deserves to have the energy to leave his house, meet up with friends, and visit his family. Help him get the double jaw surgery he needs to return to a full life.",
+    "imageUrl": "./campaigns/campaign-help-jonathan-get-life-changing-jaw-surgery.webp",
+    "submittedDate": "2026-09-25",
+    "donationCount": 71,
+    "amountRaised": 3053,
+    "goalAmount": 10000,
+    "communities": [
+      "health",
+      "medical"
+    ],
+    "organizer": "Jennifer Nasman",
+    "location": "Salt Lake City, UT",
+    "wellOnTheirWay": true,
+    "lastDonationDate": "2026-09-25"
   }
 ]

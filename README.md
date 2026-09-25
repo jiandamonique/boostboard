@@ -1,21 +1,21 @@
 # Boost Board
 
-**Live site: [jiandamonique.github.io/boostboard](https://jiandamonique.github.io/boostboard/)**
+**[jiandamonique.github.io/boostboard](https://jiandamonique.github.io/boostboard/)**
 
-A small tool that helps volunteer moderators give visibility to
-fundraising campaigns that haven't gotten much traction yet.
+Crowdfunding platforms bury campaigns that haven't gotten traction yet. Zero donors means invisible — even if the need is real.
 
-Run by volunteers, with various availabilities — if a campaign hasn't
-been featured yet, please keep reaching out to your own community too,
-and feel free to refer to our [tips for spreading the
-word](https://jiandamonique.github.io/boostboard/helpful-fundraising-ideas.html).
+Boost Board keeps those campaigns in front of people. Every day, one zero-donor campaign gets featured. Visitors can share it, donate, or just see that it exists. That's the whole idea.
+
+---
+
+## For campaign organizers
+
+If you submitted a campaign and it hasn't appeared yet, we're a small volunteer operation and reviews take time. Keep sharing with your own community in the meantime — [here are some tips](https://jiandamonique.github.io/boostboard/helpful-fundraising-ideas.html) if you're not sure where to start.
 
 ## Reporting a concern
 
-Every listed campaign has a Report link. Reports are reviewed by a human
-moderator, not automatically resolved.
+Every campaign card has a **Report / Update** link. Reports go to a human moderator — nothing is resolved automatically.
 
 ## Questions
 
-Questions about Boost Board can be submitted as an [issue](../../issues)
-on this repo.
+Open an [issue](../../issues) on this repo, or visit the [how it works page](https://jiandamonique.github.io/boostboard/how-it-works.html) on the site.

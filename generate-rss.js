@@ -15,7 +15,7 @@ function tierOf(c) {
   if (n === 0) return 'seed';
   if (n <= 4) return 'first_five';
   if (n <= 9) return 'first_ten';
-  return 'graduated';
+  return 'rising';
 }
 
 // Kept identical to board-data.js's selectSection() -- ordering by
@@ -45,7 +45,7 @@ function escapeXml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
+const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'rising');
 const pinnedSeed = eligible.filter(c => c.pinned && tierOf(c) === 'seed');
 const seedPool = eligible.filter(c => tierOf(c) === 'seed');
 const spotlight = selectSection(pinnedSeed.length ? pinnedSeed : seedPool, 1)[0]

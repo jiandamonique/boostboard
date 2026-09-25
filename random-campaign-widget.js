@@ -3,10 +3,11 @@
 // -- unlike the spotlight/board rotation, which is deliberately deterministic
 // for fairness, this one is just for incidental exposure, so pure
 // Math.random() is fine here. Requires board-data.js to be loaded first.
-(function () {
-  if (typeof campaigns === 'undefined') return; // board-data.js not loaded on this page
+(async function () {
+  if (typeof loadCampaigns !== 'function') return; // board-data.js not loaded on this page
 
-  const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
+  await loadCampaigns();
+  const eligible = campaigns.filter(c => !c.reported && tierOf(c) !== 'rising');
   if (eligible.length === 0) return;
 
   const pick = eligible[Math.floor(Math.random() * eligible.length)];
@@ -35,7 +36,7 @@
   widget.innerHTML = `
     <div class="rw-eyebrow">Also on the board</div>
     <div class="rw-name">${pick.name}</div>
-    <a class="rw-link" href="${pick.link}" target="_blank" rel="noopener">View campaign →</a>
+    <a class="rw-link" href="${pick.link}" target="_blank" rel="noopener noreferrer">View campaign →</a>
   `;
 
   document.body.appendChild(widget);

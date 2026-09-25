@@ -116,6 +116,8 @@
 
 <script src="./board-data.js"></script>
 <script>
+(async () => {
+  await loadCampaigns();
   const params = new URLSearchParams(window.location.search);
   const mode   = params.get('mode') || 'spotlight';
   const root   = document.getElementById('root');
@@ -128,7 +130,7 @@
   // ── helpers ──────────────────────────────────────────────────────────────
 
   function eligibleCampaigns() {
-    return campaigns.filter(c => !c.reported && tierOf(c) !== 'graduated');
+    return campaigns.filter(c => !c.reported && tierOf(c) !== 'rising');
   }
 
   function rotationSorted(pool) {
@@ -242,6 +244,7 @@
   } else {
     renderSingle();
   }
+})();
 </script>
 </body>
 </html>

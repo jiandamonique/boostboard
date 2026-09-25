@@ -47,7 +47,7 @@ function tierOf(c) {
   if (n === 0) return 'seed';
   if (n <= 4) return 'first_five';
   if (n <= 9) return 'first_ten';
-  return 'graduated';
+  return 'rising';
 }
 
 function percentOfGoal(c) {
@@ -89,7 +89,7 @@ function tierOf_local(c) {
   if (n === 0) return 'seed';
   if (n <= 4) return 'first_five';
   if (n <= 9) return 'first_ten';
-  return 'graduated';
+  return 'rising';
 }
 
 // Load or create the metrics log. Structure:
@@ -135,7 +135,7 @@ function detectAndLogMilestones(campaigns, metricsLog) {
     }
 
     // Graduated: 10+ donors and not yet logged.
-    if (tier === 'graduated' && !loggedGraduation.has(c.id)) {
+    if (tier === 'rising' && !loggedGraduation.has(c.id)) {
       metricsLog.graduationEvents.push({
         date: today,
         campaignId: c.id,
@@ -155,7 +155,7 @@ function main() {
   const campaigns = JSON.parse(fs.readFileSync(CAMPAIGNS_FILE, 'utf8'));
 
   const eligible = campaigns.filter(c =>
-    !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c))
+    !c.reported && (tierOf(c) !== 'rising' || qualifiesAsFallback(c))
   );
   const pinnedAny = eligible.filter(c => isPinned(c));
   const seedPool = eligible.filter(c => tierOf(c) === 'seed');

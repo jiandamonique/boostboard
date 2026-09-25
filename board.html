@@ -102,11 +102,12 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 <div class="tools">
 <div class="search-row">
 <div><label for="search">Find a campaign</label><div class="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" id="search" placeholder="Search by cause, name, or story"></div></div>
-<div><label for="funding">Funding stage</label><select id="funding">
+<div><label for="funding">Campaign stage</label><select id="funding">
 <option value="">All campaigns</option>
-<option value="seed">No donations yet</option>
-<option value="first_five">A small start (1–4 donors)</option>
-<option value="first_ten">Building momentum (5–9 donors)</option>
+<option value="seed">No donors yet</option>
+<option value="first_five">First supporters (1–4 donors)</option>
+<option value="first_ten">Getting momentum (5–9 donors)</option>
+<option value="rising">Active support (10+ donors)</option>
 </select></div>
 </div>
 <fieldset class="categories" id="categoryPills"><legend>What matters to you?</legend></fieldset>
@@ -168,12 +169,11 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
   (async () => {
     await loadCampaigns();
     const { eligible } = (function() {
-      const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c)));
+      const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'rising' || qualifiesAsFallback(c) || qualifiesAsWellOnWay(c)));
       return { eligible: el };
     })();
 
-  const TIER_LABELS = { seed: 'No donations yet', first_five: '1–4 donors', first_ten: '5–9 donors' };
-  const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, graduated: 3 };
+  const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, rising: 3 };
 
   // Campaign data is typed in by hand (and may come from submissions
   // later), so every value is escaped before it goes into the page, and
@@ -236,8 +236,9 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 
   function cardHtml(c) {
     const tier = tierOf(c);
-    const tierLabel = tier === 'graduated' ? fallbackLabel(c) : TIER_LABELS[tier];
-    const tagClass = tier === 'seed' ? 'seed' : '';
+    const tierBadgeClass = `tier-${tier.replace(/_/g, '-')}`;
+    const tierBadgeText = tierLabel(tier);
+    const tierStatusLabel = qualifiesAsWellOnWay(c) ? 'Strong momentum' : '';
     const name = escapeHtml(c.name);
     const link = safeLink(c.link);
     const href = link ? escapeHtml(link) : '';
@@ -248,7 +249,8 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
         ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}
         <div class="result-tags">
           <div class="tags">
-            <span class="tag ${tagClass}">${escapeHtml(tierLabel)}</span>
+            <span class="tier-badge ${tierBadgeClass}">${escapeHtml(tierBadgeText)}</span>
+            ${tierStatusLabel ? `<span class="tier-badge tier-wellonway">${escapeHtml(tierStatusLabel)}</span>` : ''}
             ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${escapeHtml(cat)}</span>`).join('')}
           </div>
           <label class="select-label">

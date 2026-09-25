@@ -52,7 +52,7 @@
 <section class="page-intro" aria-labelledby="page-title">
   <div class="eyebrow">Boost Board</div>
   <h1 id="page-title">Well on their way</h1>
-  <p>These campaigns have found real support — ten or more donors, with strong progress toward their goal. They've moved off the active board, but sharing them still matters.</p>
+  <p>These campaigns show genuine momentum. Most have ten or more donors with recent support, or they're close to their goal. Some appear here while rotating off the active board, but all of them deserve continued attention and shares.</p>
 </section>
 
 <div id="campaignGrid" class="campaign-grid" aria-live="polite">
@@ -64,7 +64,8 @@
 
 <script src="./board-data.js"></script>
 <script>
-(function () {
+(async () => {
+  await loadCampaigns();
   const grid = document.getElementById('campaignGrid');
 
   const qualifying = campaigns.filter(c =>

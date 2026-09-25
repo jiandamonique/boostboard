@@ -11,18 +11,20 @@ async function loadCampaigns() {
     campaigns.forEach(c => {
       if (!c.currency) {
         const text = (c.name + ' ' + (c.description || '')).toLowerCase();
-        // Detect currency from location/language clues
-        if (/liverpool|uk|pound|£|gbp|england|scotland|wales|british/.test(text)) {
+        // Detect currency from location/language clues.
+        // Use country names and explicit currency codes only -- city names
+        // are too ambiguous (e.g. "Sydney" in a Jamaican rugby campaign).
+        if (/england|scotland|wales|\buk\b|britain|british|pound|£|\bgbp\b/.test(text)) {
           c.currency = 'GBP';
-        } else if (/australia|au\$|aud|sydney|melbourne|brisbane/.test(text)) {
+        } else if (/\baustralia\b|\baud\b/.test(text)) {
           c.currency = 'AUD';
-        } else if (/canada|ca\$|cad|toronto|vancouver/.test(text)) {
+        } else if (/\bcanada\b|\bcad\b/.test(text)) {
           c.currency = 'CAD';
-        } else if (/philippines|philippine|peso/.test(text)) {
+        } else if (/philippines|philippine|\bpeso\b/.test(text)) {
           c.currency = 'PHP';
-        } else if (/jamaica|caribbean|jmd/.test(text)) {
+        } else if (/\bjamaica\b|caribbean|\bjmd\b/.test(text)) {
           c.currency = 'JMD';
-        } else if (/cameroon|cameroun|franc|cfa/.test(text)) {
+        } else if (/cameroon|cameroun|\bcfa\b/.test(text)) {
           c.currency = 'XAF';
         }
         // Default: USD (no currency field)
@@ -40,7 +42,7 @@ function tierOf(c) {
   if (n === 0) return 'seed';
   if (n <= 4) return 'first_five';
   if (n <= 9) return 'first_ten';
-  return 'graduated';
+  return 'rising'; // 10+ donors = sustained momentum
 }
 
 function percentOfGoal(c) {
@@ -49,7 +51,7 @@ function percentOfGoal(c) {
 }
 
 const LOW_PERCENTAGE_THRESHOLD = 10;
-const HIGH_PERCENTAGE_THRESHOLD = 85;
+// HIGH_PERCENTAGE_THRESHOLD removed: "well on their way" is now editor discretion OR 95-100%.
 
 function qualifiesAsFallback(c) {
   const pct = percentOfGoal(c);
@@ -57,12 +59,30 @@ function qualifiesAsFallback(c) {
 }
 
 function qualifiesAsWellOnWay(c) {
+  // Well on their way: three pathways.
+  // 1. Editor override: explicit flag (e.g., strong donor momentum despite funding uncertainty)
+  if (c.wellOnTheirWay === true) return true;
+
+  // 2. Auto-detect: Rising tier + recent donor activity within 7 days
+  if ((tierOf(c) === 'rising' || tierOf(c) === 'first_ten') && c.lastDonationDate) {
+    const lastDonationDate = new Date(c.lastDonationDate);
+    const daysSinceDonation = (Date.now() - lastDonationDate) / (1000 * 60 * 60 * 24);
+    if (daysSinceDonation <= 7) return true;
+  }
+
+  // 3. Objectively successful: 95-100% of goal
   const pct = percentOfGoal(c);
-  return pct !== null && pct >= HIGH_PERCENTAGE_THRESHOLD;
+  return pct !== null && pct >= 95 && pct <= 100;
 }
 
 function tierLabel(key) {
-  return { seed: 'Seed', first_five: 'First Five', first_ten: 'First Ten', graduated: 'Graduated' }[key] || '';
+  // Public-facing labels for tier badges
+  return {
+    seed: 'No donors yet',
+    first_five: 'First supporters arriving',
+    first_ten: 'Getting momentum',
+    rising: 'Active support'
+  }[key] || '';
 }
 
 function fallbackLabel(c) {
@@ -106,7 +126,7 @@ function selectSection(pool, size) {
 
 function computeToday() {
   const eligible = campaigns.filter(c =>
-    !c.reported && (tierOf(c) !== 'graduated' || qualifiesAsFallback(c) || qualifiesAsWellOnWay(c))
+    !c.reported && (tierOf(c) !== 'rising' || qualifiesAsFallback(c) || qualifiesAsWellOnWay(c))
   );
   const pinnedAny = eligible.filter(c => isPinned(c));
   const seedPool = eligible.filter(c => tierOf(c) === 'seed');

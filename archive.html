@@ -44,8 +44,8 @@ h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
 <main id="main" class="wrap">
 <div class="intro">
   <h1>Campaigns with momentum</h1>
-  <p>These campaigns have reached 10 or more donors. That's the system working. They've moved off the active board, but every one of them may still need support — and a share still matters.</p>
-  <p class="hint">For hand-picked stories with more context, see <a class="text-link" href="./success-stories.html" style="display:inline;">Success Stories</a>.</p>
+  <p>These campaigns have reached 10 or more donors — they've built real support. Some are featured on the main board, others are resting between rotations. Every one of them may still need support — and a share still matters.</p>
+  <p class="hint">Campaigns at 95%+ of goal or with very recent activity get a "Strong momentum" badge on the main board.</p>
 </div>
 <div class="grid" id="archiveGrid"></div>
 </main>
@@ -53,7 +53,9 @@ h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
 <script src="./board-data.js"></script>
 <script src="./random-campaign-widget.js"></script>
 <script>
-  const moved = campaigns.filter(c => tierOf(c) === 'graduated' && !qualifiesAsFallback(c) && !c.reported);
+(async () => {
+  await loadCampaigns();
+  const moved = campaigns.filter(c => tierOf(c) === 'rising' && !qualifiesAsFallback(c) && !c.reported);
   const grid = document.getElementById('archiveGrid');
   if (moved.length === 0) {
     grid.innerHTML = `<p class="empty">No campaigns have hit 10 donors yet — the first one will show up here.</p>`;
@@ -66,17 +68,18 @@ h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
       const pctText = pct !== null ? ` · ${Math.round(pct)}% of goal` : '';
       return `
         <div class="archive-card">
-          <a href="${c.link}" target="_blank" rel="noopener">
+          <a href="${c.link}" target="_blank" rel="noopener noreferrer">
             <img src="${c.imageUrl || './standin-image.jpg'}" alt="" onerror="this.src='./standin-image.jpg'">
           </a>
           <span class="donor-note">${c.donationCount}+ donors${pctText}</span>
           ${pctBar}
-          <h3><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></h3>
+          <h3><a href="${c.link}" target="_blank" rel="noopener noreferrer">${c.name}</a></h3>
           <p>${c.description}</p>
         </div>
       `;
     }).join('');
   }
+})();
 </script>
 </body>
 </html>
