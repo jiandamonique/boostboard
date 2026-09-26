@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/archive.html">
 <meta property="og:title" content="Campaigns with momentum — Boost Board">
 <meta property="og:description" content="Campaigns that have reached 10 or more donors on Boost Board — a record of what momentum looks like when it builds.">
-<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/og-image.png">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/archive.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
@@ -69,7 +69,7 @@ h1{font-size:clamp(32px,4vw,42px);letter-spacing:-1.8px}
       return `
         <div class="archive-card">
           <a href="${c.link}" target="_blank" rel="noopener noreferrer">
-            <img src="${c.imageUrl || './standin-image.jpg'}" alt="" onerror="this.src='./standin-image.jpg'">
+            <img src="${c.imageUrl || './og-image.png'}" alt="" onerror="this.src='./og-image.png'">
           </a>
           <span class="donor-note">${c.donationCount}+ donors${pctText}</span>
           ${pctBar}

@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/all-campaigns.html">
 <meta property="og:title" content="All active campaigns — Boost Board">
 <meta property="og:description" content="Every active campaign on Boost Board, regardless of tier or stage — if it's here, it's open and being supported.">
-<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/og-image.png">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/all-campaigns.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
@@ -152,7 +152,7 @@ h2#resultCount{font-size:18px;font-weight:600;margin:0}
     }
 
     function safeImage(url) {
-      const fallback = './standin-image.jpg';
+      const fallback = './og-image.png';
       if (!url) return fallback;
       try {
         const u = new URL(url, location.href);
@@ -212,7 +212,7 @@ h2#resultCount{font-size:18px;font-weight:600;margin:0}
       const link = safeLink(c.link);
       const href = link ? escapeHtml(link) : '';
       const ext = 'target="_blank" rel="noopener noreferrer"';
-      const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
+      const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./og-image.png'">`;
       return `
         <div class="result-card">
           ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}

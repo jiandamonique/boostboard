@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/">
 <meta property="og:title" content="Boost Board">
 <meta property="og:description" content="Boost Board features one overlooked fundraising campaign every day, reviewed by volunteers, so it doesn't stay stuck at zero donations.">
-<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/og-image.png">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Boost Board">
@@ -115,15 +115,15 @@ h1 span{color:var(--green)}
 </div>
 <div class="paths">
 <a class="card" href="./board.html?category=Medical">
-<img class="card-photo" src="./standin-image.jpg" alt="" loading="lazy">
+<img class="card-photo" src="./og-image.png" alt="" loading="lazy">
 <div class="card-body"><h3>People helping people</h3><p>Medical expenses, emergency bills, and everyday needs that can't always wait.</p><span class="text-link">Explore personal causes <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div>
 </a>
 <a class="card" href="./board.html?category=Community">
-<img class="card-photo" src="./standin-image.jpg" alt="" loading="lazy">
+<img class="card-photo" src="./og-image.png" alt="" loading="lazy">
 <div class="card-body"><h3>Stronger communities</h3><p>Shared projects, neighborhood efforts, and local causes that bring people together.</p><span class="text-link">Explore community projects <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div>
 </a>
 <a class="card" href="./board.html?category=Education">
-<img class="card-photo" src="./standin-image.jpg" alt="" loading="lazy">
+<img class="card-photo" src="./og-image.png" alt="" loading="lazy">
 <div class="card-body"><h3>Ideas worth a chance</h3><p>Education, creative projects, and small ventures looking for a first believer.</p><span class="text-link">Explore these campaigns <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div>
 </a>
 </div>
@@ -184,7 +184,7 @@ h1 span{color:var(--green)}
         : "Today's featured campaign has some real momentum already.";
       visual.innerHTML = `
         <a href="${spotlight.link}" target="_blank" rel="noopener noreferrer" class="link-overlay">
-          <img class="spotlight-image" src="${spotlight.imageUrl || './standin-image.jpg'}" alt="${spotlight.name}" onerror="this.src='./standin-image.jpg'">
+          <img class="spotlight-image" src="${spotlight.imageUrl || './og-image.png'}" alt="${spotlight.name}" onerror="this.src='./og-image.png'">
           <div class="image-note" id="spotlightImageNote">
             <div class="eyebrow">Today's featured campaign</div>
             <strong>${spotlight.name}</strong>
