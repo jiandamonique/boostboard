@@ -219,27 +219,43 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     }
   }
 
-  // Progress toward the goal, shown only when both numbers are known.
+  // Progress toward the goal. When dollar data is available, shows a bar + text.
+  // When it's missing, shows donor count as the fallback signal (no gap in layout).
   function progressHtml(c) {
     const pct = percentOfGoal(c);
-    if (pct === null) return '';
-    const shown = Math.min(Math.max(pct, 0), 100);
-    const raised = formatMoney(c.amountRaised, c.currency);
-    const goal = formatMoney(c.goalAmount, c.currency);
-    // At $0, an empty bar and an invitation read better than "0%".
-    const text = c.amountRaised > 0
-      ? `<strong>${escapeHtml(raised)}</strong> raised of ${escapeHtml(goal)} goal · ${pct < 1 ? '&lt;1' : Math.round(pct)}%`
-      : `<strong>${escapeHtml(goal)}</strong> goal · be the first to give`;
-    return `
-      <div class="progress">
-        <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width:${shown.toFixed(1)}%"></div></div>
-        <p class="progress-text">${text}</p>
-      </div>`;
+    if (pct !== null) {
+      // Full bar + text
+      const shown = Math.min(Math.max(pct, 0), 100);
+      const raised = formatMoney(c.amountRaised, c.currency);
+      const goal = formatMoney(c.goalAmount, c.currency);
+      const text = c.amountRaised > 0
+        ? `<strong>${escapeHtml(raised)}</strong> raised of ${escapeHtml(goal)} goal · ${pct < 1 ? '&lt;1' : Math.round(pct)}%`
+        : `<strong>${escapeHtml(goal)}</strong> goal · be the first to give`;
+      return `
+        <div class="progress">
+          <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width:${shown.toFixed(1)}%"></div></div>
+          <p class="progress-text">${text}</p>
+        </div>`;
+    }
+    // No dollar data — show donor count so the card slot isn't empty.
+    const n = c.donationCount ?? 0;
+    const donorText = n === 0
+      ? 'No donors yet — be the first'
+      : n === 1
+        ? '<strong>1 donor</strong> so far'
+        : `<strong>${n} donors</strong> so far`;
+    return `<p class="progress-donors">${donorText}</p>`;
+  }
+
+  // Returns extra CSS class for the tier badge when no progress bar is available,
+  // so the badge carries more visual weight as the primary progress signal.
+  function tierBadgeExtra(c) {
+    return percentOfGoal(c) === null ? ' no-bar-signal' : '';
   }
 
   function cardHtml(c) {
     const tier = tierOf(c);
-    const tierBadgeClass = `tier-${tier.replace(/_/g, '-')}`;
+    const tierBadgeClass = `tier-${tier.replace(/_/g, '-')}${tierBadgeExtra(c)}`;
     const tierBadgeText = tierLabel(tier);
     const tierStatusLabel = qualifiesAsWellOnWay(c) ? 'Strong momentum' : '';
     const name = escapeHtml(c.name);

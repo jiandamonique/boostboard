@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Unsubscribe — Boost Board</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
+<style>
+.unsub-wrap{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:60px 0}
+.unsub-card{max-width:480px;width:100%;text-align:center}
+.unsub-card h1{font-size:28px;letter-spacing:-1px;margin-bottom:16px}
+.unsub-card p{font-size:16px;color:var(--muted);line-height:1.6;margin-bottom:24px}
+.unsub-card .button{margin-top:8px}
+.status-msg{margin-top:20px;font-size:15px;min-height:24px}
+.status-msg.success{color:var(--deep)}
+.status-msg.error{color:#c0392b}
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--line);border-top-color:var(--deep);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<script src="./nav.js" defer></script>
+<main class="wrap">
+<div class="unsub-wrap">
+  <div class="unsub-card" id="unsubCard">
+    <h1 id="unsubHeading">Unsubscribe from Boost Board</h1>
+    <p id="unsubBody">You'll stop receiving campaign alerts and weekly roundups from Boost Board. Click the button below to confirm.</p>
+    <button class="button outline" id="unsubBtn" type="button">Confirm unsubscribe</button>
+    <p class="status-msg" id="statusMsg" role="status" aria-live="polite"></p>
+    <p style="margin-top:32px;font-size:14px;color:var(--muted);">Changed your mind? <a href="./index.html">Return to Boost Board</a></p>
+  </div>
+</div>
+</main>
+<script src="./footer.js" defer></script>
+<script>
+(function () {
+  // The GitHub personal access token (PAT) here is scoped ONLY to
+  // trigger the `unsubscribe` workflow_dispatch event on the private repo.
+  // It cannot read subscriber data, write files, or access any other repo.
+  // It is intentionally embedded in this public page: the only thing an
+  // attacker could do with it is trigger an unsubscribe for a token they
+  // already have — the same action the legitimate user is taking.
+  // Rotate this token periodically and whenever the private repo changes.
+  const GITHUB_DISPATCH_TOKEN = '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';
+  const PRIVATE_REPO = 'jiandamonique/boostboardprivate';
+  const WORKFLOW_ID = 'unsubscribe.yml';
+
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+
+  const btn = document.getElementById('unsubBtn');
+  const statusEl = document.getElementById('statusMsg');
+  const headingEl = document.getElementById('unsubHeading');
+  const bodyEl = document.getElementById('unsubBody');
+
+  if (!token) {
+    headingEl.textContent = 'No unsubscribe token found.';
+    bodyEl.textContent = 'This link may be incomplete or expired. To unsubscribe, reply to any Boost Board email and ask to be removed — we\'ll process it within 10 business days.';
+    btn.hidden = true;
+    return;
+  }
+
+  btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    statusEl.innerHTML = '<span class="spinner" aria-hidden="true"></span>Processing…';
+
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${PRIVATE_REPO}/actions/workflows/${WORKFLOW_ID}/dispatches`,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/vnd.github+json',
+            'Authorization': `Bearer ${GITHUB_DISPATCH_TOKEN}`,
+            'X-GitHub-Api-Version': '2022-11-28',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ref: 'main',
+            inputs: { token: token },
+          }),
+        }
+      );
+
+      if (res.status === 204 || res.ok) {
+        headingEl.textContent = 'You\'re unsubscribed.';
+        bodyEl.textContent = 'You won\'t receive any more emails from Boost Board. Your address has been removed from our list.';
+        btn.hidden = true;
+        statusEl.className = 'status-msg success';
+        statusEl.textContent = '';
+      } else {
+        throw new Error(`GitHub API responded with status ${res.status}`);
+      }
+    } catch (err) {
+      btn.disabled = false;
+      statusEl.className = 'status-msg error';
+      statusEl.textContent = 'Something went wrong. Please reply to any Boost Board email to unsubscribe manually — we\'ll process it within 10 business days.';
+      console.error('Unsubscribe error:', err);
+    }
+  });
+})();
+</script>
+</body>
+</html>

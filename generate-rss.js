@@ -18,17 +18,26 @@ function tierOf(c) {
   return 'rising';
 }
 
-// Kept identical to board-data.js's selectSection() -- ordering by
-// lastFeatured (not a pool-size-dependent index) so this always agrees
-// with what index.html actually shows, regardless of how the pool's
-// size has changed since yesterday. See board-data.js for the full
-// reasoning; this file and notify-subscribers.js (private repo) both
-// need to stay in lockstep with it since they're all picking "today's
-// hero" independently from the same data.
+// Kept in lockstep with board-data.js's selectSection() and
+// notify-subscribers.js so all three always pick the same spotlight.
+// Uses the same deterministic daily-offset rotation so the RSS item
+// agrees with what index.html shows even when lastFeatured dates tie.
+function todayOffset() {
+  const epoch = new Date('2026-01-01T00:00:00Z');
+  return Math.floor((Date.now() - epoch) / 86400000);
+}
+
+function isPinned(c) {
+  if (!c.pinned) return false;
+  if (!c.pinnedUntil) return true;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  return todayStr <= c.pinnedUntil;
+}
+
 function selectSection(pool, size) {
-  const pinned = pool.filter(c => c.pinned);
+  const pinned = pool.filter(c => isPinned(c));
   const rotatable = pool
-    .filter(c => !c.pinned)
+    .filter(c => !isPinned(c))
     .slice()
     .sort((a, b) => {
       const aKey = a.lastFeatured || '';
@@ -37,7 +46,9 @@ function selectSection(pool, size) {
       return (a.submittedDate || '').localeCompare(b.submittedDate || '');
     });
   const remainingSlots = Math.max(size - pinned.length, 0);
-  const picks = rotatable.slice(0, remainingSlots);
+  const offset = rotatable.length > 0 ? todayOffset() % rotatable.length : 0;
+  const rotated = [...rotatable.slice(offset), ...rotatable.slice(0, offset)];
+  const picks = rotated.slice(0, remainingSlots);
   return [...pinned, ...picks].slice(0, size);
 }
 
@@ -65,9 +76,9 @@ const item = spotlight ? `
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Boost Board — Today's Zero</title>
-    <link>https://example.org/index.html</link>
-    <description>One email whenever a campaign at zero donations gets featured. Nothing else.</description>
+    <title>Boost Board — Early-stage campaigns. Be their first yes.</title>
+    <link>https://jiandamonique.github.io/boostboard/</link>
+    <description>One spotlight per day: a campaign still finding its people. No donors yet, or not many. Be the first one.</description>
     <lastBuildDate>${today}</lastBuildDate>${item}
   </channel>
 </rss>

@@ -89,6 +89,12 @@ details p{padding:0 30px 22px 0;font-size:16px}
 .progress-fill{height:100%;border-radius:999px;background:var(--green)}
 .progress-text{font-size:13px;color:var(--muted);margin:0}
 .progress-text strong{color:var(--ink);font-weight:600}
+/* Fallback state: no dollar data — show donor count inline, no bar */
+.progress-donors{font-size:13px;color:var(--muted);margin:0;padding:4px 0}
+.progress-donors strong{color:var(--ink);font-weight:600}
+/* Tier badge prominence: seed badge gets a dot indicator when no bar is shown */
+.tier-badge.tier-seed.no-bar-signal{padding-left:9px;gap:6px}
+.tier-badge.tier-seed.no-bar-signal::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.7);flex-shrink:0}
 /* Phase 5: Consolidated layout, modal, and utility classes */
 .text-center{text-align:center}
 .text-muted{color:var(--muted)}

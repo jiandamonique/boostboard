@@ -66,6 +66,22 @@
   .check-item:last-of-type { border-bottom: none; }
   .check-item input { accent-color: var(--accent); width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; }
   .check-status { font-size: 0.78rem; color: var(--accent); margin-top: 0.6rem; }
+  /* Organizer message section */
+  .organizer-section { margin: 2.2rem 0 1.4rem; }
+  .organizer-intro { font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem; }
+  .msg-tabs { display: flex; gap: 0; margin-bottom: 0; border-radius: 10px 10px 0 0; overflow: hidden; border: 1px solid var(--border); border-bottom: none; }
+  .msg-tab { flex: 1; padding: 0.7rem 1rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem;
+    font-weight: 600; background: var(--warm); color: var(--muted); border: none; cursor: pointer;
+    text-align: center; line-height: 1.3; transition: background 0.15s, color 0.15s; }
+  .msg-tab:first-child { border-right: 1px solid var(--border); }
+  .msg-tab[aria-selected="true"] { background: #fff; color: var(--deep); }
+  .msg-panel { display: none; background: #fff; border: 1px solid var(--border); border-radius: 0 0 10px 10px;
+    padding: 1rem 1.1rem 1rem; }
+  .msg-panel[aria-hidden="false"] { display: block; }
+  .org-textarea { width: 100%; height: 150px; resize: vertical; border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.8rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.88rem;
+    color: var(--deep); background: #fafcfc; line-height: 1.6; margin-bottom: 0.6rem; }
+  .org-note { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.6rem; font-style: italic; }
 </style>
 </head>
 <body>
@@ -147,6 +163,44 @@ If this speaks to you, consider supporting it or passing it along. No pressure �
     <span class="tag">#CommunitySupport</span>
   </div>
 
+  <div class="organizer-section">
+    <h2>If you want to let the organizer know</h2>
+    <p class="organizer-intro">Sometimes it's worth sending a quick note directly to the person running the campaign — to let them know a stranger saw them, added them somewhere, or took a small action on their behalf. These are editable starting points.</p>
+
+    <div class="msg-tabs" role="tablist" aria-label="Message type">
+      <button class="msg-tab" role="tab" aria-selected="true" aria-controls="orgPanel1" id="orgTab1">I couldn't donate, but I added you</button>
+      <button class="msg-tab" role="tab" aria-selected="false" aria-controls="orgPanel2" id="orgTab2">I donated and made sure you're seen</button>
+    </div>
+
+    <div class="msg-panel" role="tabpanel" id="orgPanel1" aria-labelledby="orgTab1" aria-hidden="false">
+      <p class="org-note">Replace the bracketed details, then copy or paste wherever you're in touch with the organizer.</p>
+      <textarea class="org-textarea" id="orgMsg1">Hi [name] — I came across your campaign and wanted to let you know I added it to Boost Board, a small volunteer app that surfaces fundraisers still looking for their first supporters.
+
+Here's your listing: https://jiandamonique.github.io/boostboard/
+
+I couldn't give right now, but I wanted you to know someone saw it — and I hope it finds the people who can. Rooting for you.</textarea>
+      <div class="msg-actions">
+        <button class="dialog-btn" id="orgCopy1">Copy message</button>
+        <button class="msg-reset" id="orgReset1">Reset wording</button>
+      </div>
+      <p class="msg-status" id="orgStatus1" role="status"></p>
+    </div>
+
+    <div class="msg-panel" role="tabpanel" id="orgPanel2" aria-labelledby="orgTab2" aria-hidden="true">
+      <p class="org-note">Replace the bracketed details, then copy or paste wherever you're in touch with the organizer.</p>
+      <textarea class="org-textarea" id="orgMsg2">Hi [name] — I just donated to your campaign and wanted you to know I also made sure Boost Board has you listed. It's a small volunteer app that puts early-stage fundraisers in front of people who look for campaigns to support.
+
+Here's your listing: https://jiandamonique.github.io/boostboard/
+
+I hope it brings a few more people your way. Wishing you all the best with this.</textarea>
+      <div class="msg-actions">
+        <button class="dialog-btn" id="orgCopy2">Copy message</button>
+        <button class="msg-reset" id="orgReset2">Reset wording</button>
+      </div>
+      <p class="msg-status" id="orgStatus2" role="status"></p>
+    </div>
+  </div>
+
   <h2>Other ways to help</h2>
   <p>Money and sharing aren't the only two options. Submitting a campaign you know about that
   hasn't gotten traction, or supporting the app itself so it can keep running, both genuinely
@@ -185,6 +239,42 @@ If this speaks to you, consider supporting it or passing it along. No pressure �
       ? `${n} of ${checkBoxes.length} checked. Thank you for sharing with care.`
       : `${n} of ${checkBoxes.length} checked. Take your time.`;
   }));
+
+  // Organizer message tabs
+  const orgTabs = [document.getElementById('orgTab1'), document.getElementById('orgTab2')];
+  const orgPanels = [document.getElementById('orgPanel1'), document.getElementById('orgPanel2')];
+  orgTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      orgTabs.forEach((t, j) => {
+        t.setAttribute('aria-selected', i === j ? 'true' : 'false');
+        orgPanels[j].setAttribute('aria-hidden', i === j ? 'false' : 'true');
+      });
+    });
+  });
+
+  // Organizer message copy + reset
+  function setupOrgMsg(id) {
+    const ta = document.getElementById(`orgMsg${id}`);
+    const original = ta.value;
+    const statusEl = document.getElementById(`orgStatus${id}`);
+    document.getElementById(`orgCopy${id}`).addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(ta.value);
+        statusEl.textContent = /\[[^\]]+\]/.test(ta.value)
+          ? 'Copied — fill in the bracketed parts before sending.'
+          : 'Copied — ready to send.';
+      } catch {
+        ta.focus(); ta.select();
+        statusEl.textContent = 'Select and copy the message above.';
+      }
+    });
+    document.getElementById(`orgReset${id}`).addEventListener('click', () => {
+      ta.value = original;
+      statusEl.textContent = 'Starting wording restored.';
+    });
+  }
+  setupOrgMsg(1);
+  setupOrgMsg(2);
 </script>
 </body>
 </html>

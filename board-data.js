@@ -108,19 +108,35 @@ function isPinned(c) {
   return todayStr <= c.pinnedUntil;
 }
 
+// Deterministic daily rotation — picks a different offset into the pool
+// each day using today's date as a seed, so the spotlight advances without
+// requiring any JSON field to be updated. Pinned campaigns always come first.
+function todayOffset() {
+  const today = new Date();
+  // Days since 2026-01-01 as a stable, human-readable epoch
+  const epoch = new Date('2026-01-01T00:00:00Z');
+  return Math.floor((today - epoch) / 86400000);
+}
+
 function selectSection(pool, size) {
   const pinned = pool.filter(c => isPinned(c));
   const rotatable = pool
     .filter(c => !isPinned(c))
     .slice()
     .sort((a, b) => {
+      // Stable sort: prefer campaigns that haven't been featured recently,
+      // then by submittedDate so older campaigns don't get buried forever.
       const aKey = a.lastFeatured || '';
       const bKey = b.lastFeatured || '';
       if (aKey !== bKey) return aKey.localeCompare(bKey);
       return (a.submittedDate || '').localeCompare(b.submittedDate || '');
     });
+  // Rotate the starting position daily so we never pick the same front-of-list
+  // campaign two days in a row, even when lastFeatured dates are all equal.
   const remainingSlots = Math.max(size - pinned.length, 0);
-  const picks = rotatable.slice(0, remainingSlots);
+  const offset = rotatable.length > 0 ? todayOffset() % rotatable.length : 0;
+  const rotated = [...rotatable.slice(offset), ...rotatable.slice(0, offset)];
+  const picks = rotated.slice(0, remainingSlots);
   return [...pinned, ...picks].slice(0, size);
 }
 
