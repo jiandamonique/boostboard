@@ -47,6 +47,9 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 .results-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:32px;margin-top:28px}
 .results-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
 .results-top h2{font-family:var(--font);font-size:17px;font-weight:600;color:var(--ink)}
+.see-all-link{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap;flex-shrink:0}
+.see-all-link:visited{color:var(--muted)}
+.see-all-link:hover{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
 .results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .result-card{background:#fff;border:1px solid var(--line);border-radius:5px;padding:20px;display:flex;flex-direction:column;gap:10px}
 .result-card img{width:100%;height:140px;border-radius:4px;object-fit:cover;display:block}
@@ -114,7 +117,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 </div>
 <div class="results-layout">
 <div>
-<div class="results-top"><h2 id="resultCount" role="status" aria-live="polite">Loading…</h2></div>
+<div class="results-top"><h2 id="resultCount" role="status" aria-live="polite">Loading…</h2><a id="seeAllLink" href="./all-campaigns.html" class="see-all-link">See all campaigns →</a></div>
 <div id="resultsArea"></div>
 </div>
 <aside class="aside" aria-labelledby="directory-note">
@@ -312,6 +315,14 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
     const countEl = document.getElementById('resultCount');
     const area = document.getElementById('resultsArea');
     countEl.textContent = results.length + (results.length === 1 ? ' campaign' : ' campaigns');
+
+    // "See all N campaigns" link — shows total across all tiers, not just eligible.
+    // Gray always (including visited state) so it's subtle, not competing with content.
+    const totalActive = campaigns.filter(c => !c.reported).length;
+    const seeAllLink = document.getElementById('seeAllLink');
+    if (seeAllLink) {
+      seeAllLink.textContent = `See all ${totalActive} campaigns →`;
+    }
 
     if (results.length === 0) {
       area.innerHTML = `

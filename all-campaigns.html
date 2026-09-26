@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EDF2F2">
+<meta name="description" content="Every active campaign on Boost Board, regardless of tier or stage — if it's here, it's open and being supported.">
+<link rel="canonical" href="https://jiandamonique.github.io/boostboard/all-campaigns.html">
+<meta property="og:title" content="All active campaigns — Boost Board">
+<meta property="og:description" content="Every active campaign on Boost Board, regardless of tier or stage — if it's here, it's open and being supported.">
+<meta property="og:image" content="https://jiandamonique.github.io/boostboard/standin-image.jpg">
+<meta property="og:url" content="https://jiandamonique.github.io/boostboard/all-campaigns.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boost Board">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>All active campaigns — Boost Board</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'none'; object-src 'none'; upgrade-insecure-requests;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./design.css">
+<script src="./nav.js" defer></script>
+<script src="./footer.js" defer></script>
+<style>
+body{padding-bottom:80px}
+.intro{padding:50px 0 32px;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
+h1{font-size:clamp(36px,4vw,51px);letter-spacing:-2px;line-height:1.14}
+.intro p{font-size:19px;max-width:435px}
+.note-bar{border-top:1px solid var(--line);padding:14px 0 20px;font-size:14px;color:var(--muted);display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.note-bar a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.note-bar a:hover{color:var(--deep)}
+.browse{padding-bottom:60px}
+.tools{padding:20px 0 0;display:flex;flex-direction:column;gap:14px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px}
+.search-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end}
+.search-row>div{display:flex;flex-direction:column;gap:5px}
+label{font-size:13px;font-weight:600;color:var(--deep);text-transform:uppercase;letter-spacing:.7px}
+.search-input{position:relative;display:flex;align-items:center}
+.search-input svg{position:absolute;left:12px;width:17px;height:17px;stroke:var(--muted);fill:none;stroke-width:2.2;stroke-linecap:round;pointer-events:none}
+input[type=search]{width:100%;padding:10px 14px 10px 38px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);font-size:15px;color:var(--deep);font-family:inherit}
+input[type=search]:focus{outline:2px solid var(--accent);outline-offset:2px;border-color:transparent}
+select{padding:10px 14px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);font-size:14px;color:var(--deep);font-family:inherit;min-width:220px}
+select:focus{outline:2px solid var(--accent);outline-offset:2px}
+.categories{border:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.categories legend{font-size:13px;font-weight:600;color:var(--deep);text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;float:left;width:100%}
+.category-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--deep);font-size:13px;font-family:inherit;cursor:pointer;transition:background .15s,border-color .15s}
+.category-btn[aria-pressed=true],.category-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.results-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+h2#resultCount{font-size:18px;font-weight:600;margin:0}
+.back-link{font-size:13px;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--deep)}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.result-card{background:var(--surface);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.result-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.result-tags{padding:14px 16px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{background:var(--bg);color:var(--muted);font-size:11px;padding:3px 9px;border-radius:20px;font-weight:500}
+.tier-badge{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:600}
+.tier-badge.tier-seed{background:#f3f0ff;color:#5b21b6}
+.tier-badge.tier-first-five{background:#eff6ff;color:#1d4ed8}
+.tier-badge.tier-first-ten{background:#ecfdf5;color:#065f46}
+.tier-badge.tier-rising{background:#fff7ed;color:#9a3412}
+.tier-badge.tier-wellonway{background:#fefce8;color:#854d0e}
+.select-label{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;padding-top:2px}
+.result-card h3{font-size:16px;line-height:1.35;margin:10px 16px 6px}
+.title-link{text-decoration:none;color:inherit}
+.title-link:hover h3{text-decoration:underline;text-underline-offset:2px}
+.result-card p{font-size:14px;color:var(--text);margin:0 16px 10px;line-height:1.55}
+.progress{margin:0 16px 12px}
+.progress-track{height:5px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.progress-fill{height:100%;background:var(--accent);border-radius:3px}
+.progress-text{font-size:12px;color:var(--muted);margin:0}
+.card-actions{margin-top:auto;padding:12px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.text-link{font-size:13px;color:var(--accent);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.text-link:hover{text-decoration:underline;text-underline-offset:2px}
+.text-link .arrow{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.report-link{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
+.report-link:hover{text-decoration:underline;color:var(--deep)}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty h3{margin-bottom:10px}
+@media(max-width:680px){
+  .intro{grid-template-columns:1fr;gap:20px;padding:32px 0 24px}
+  .search-row{grid-template-columns:1fr}
+  select{min-width:0;width:100%}
+  .results-top{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="intro">
+  <div>
+    <h1>All active campaigns</h1>
+    <p>Every campaign currently on Boost Board — no matter how much support it's received so far. If it's on this page, it's open and being supported.</p>
+  </div>
+  <div>
+    <p style="font-size:15px;color:var(--muted)">The main board focuses on campaigns still early in their journey. This page shows everything — including campaigns that have already built real momentum.</p>
+    <a class="text-link" href="./board.html" style="margin-top:10px;display:inline-flex">← Back to main board <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  </div>
+</div>
+
+<div class="note-bar">
+  <span>Every campaign is reviewed by hand before it appears here.</span>
+  <span>Boost Board never collects donations — you give directly on the campaign's page.</span>
+  <a href="./how-it-works.html">How Boost Board works</a>
+</div>
+
+<section class="browse" aria-label="All campaign directory">
+<div class="tools">
+<div class="search-row">
+<div><label for="search">Find a campaign</label><div class="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" id="search" placeholder="Search by cause, name, or story"></div></div>
+<div><label for="funding">Campaign stage</label><select id="funding">
+<option value="">All stages</option>
+<option value="seed">No donors yet</option>
+<option value="first_five">First supporters (1–4 donors)</option>
+<option value="first_ten">Getting momentum (5–9 donors)</option>
+<option value="rising">Active support (10+ donors)</option>
+</select></div>
+</div>
+<fieldset class="categories" id="categoryPills"><legend>What matters to you?</legend></fieldset>
+</div>
+<div class="results-top">
+  <h2 id="resultCount" role="status" aria-live="polite">Loading…</h2>
+</div>
+<div id="resultsArea"></div>
+</section>
+
+<section class="cta" aria-labelledby="cta-title"><div><h2 id="cta-title">Know a campaign that needs a boost?</h2><p>Your own fundraiser or a cause you care about — submit the original link for consideration.</p></div><a class="button" href="./submit.html">Submit a campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
+</main>
+
+<script src="./board-data.js"></script>
+<script>
+  (async () => {
+    await loadCampaigns();
+
+    // All campaigns page shows EVERY non-reported campaign regardless of tier.
+    const allActive = campaigns.filter(c => !c.reported);
+
+    const TIER_ORDER = { seed: 0, first_five: 1, first_ten: 2, rising: 3 };
+
+    function escapeHtml(s) {
+      return String(s ?? '').replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[ch]);
+    }
+
+    function safeLink(url) {
+      try {
+        const u = new URL(url);
+        return u.protocol === 'https:' ? u.href : null;
+      } catch { return null; }
+    }
+
+    function safeImage(url) {
+      const fallback = './standin-image.jpg';
+      if (!url) return fallback;
+      try {
+        const u = new URL(url, location.href);
+        if (u.protocol === 'https:' || u.origin === location.origin) return url;
+      } catch {}
+      return fallback;
+    }
+
+    function formatMoney(amount, currency) {
+      try {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency', currency: currency || 'USD', maximumFractionDigits: 0
+        }).format(amount);
+      } catch {
+        return Math.round(amount).toLocaleString('en-US');
+      }
+    }
+
+    function progressHtml(c) {
+      const pct = percentOfGoal(c);
+      if (pct === null) return '';
+      const shown = Math.min(Math.max(pct, 0), 100);
+      const raised = formatMoney(c.amountRaised, c.currency);
+      const goal = formatMoney(c.goalAmount, c.currency);
+      const text = c.amountRaised > 0
+        ? `<strong>${escapeHtml(raised)}</strong> raised of ${escapeHtml(goal)} goal · ${pct < 1 ? '&lt;1' : Math.round(pct)}%`
+        : `<strong>${escapeHtml(goal)}</strong> goal · be the first to give`;
+      return `
+        <div class="progress">
+          <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width:${shown.toFixed(1)}%"></div></div>
+          <p class="progress-text">${text}</p>
+        </div>`;
+    }
+
+    function cardHtml(c) {
+      const tier = tierOf(c);
+      const tierBadgeClass = `tier-${tier.replace(/_/g, '-')}`;
+      const tierBadgeText = tierLabel(tier);
+      const tierStatusLabel = qualifiesAsWellOnWay(c) ? 'Strong momentum' : '';
+      const name = escapeHtml(c.name);
+      const link = safeLink(c.link);
+      const href = link ? escapeHtml(link) : '';
+      const ext = 'target="_blank" rel="noopener noreferrer"';
+      const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
+      return `
+        <div class="result-card">
+          ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}
+          <div class="result-tags">
+            <div class="tags">
+              <span class="tier-badge ${tierBadgeClass}">${escapeHtml(tierBadgeText)}</span>
+              ${tierStatusLabel ? `<span class="tier-badge tier-wellonway">${escapeHtml(tierStatusLabel)}</span>` : ''}
+              ${(c.category || []).slice(0,2).map(cat => `<span class="tag">${escapeHtml(cat)}</span>`).join('')}
+            </div>
+          </div>
+          ${link ? `<a class="title-link" href="${href}" ${ext}><h3>${name}</h3></a>` : `<h3>${name}</h3>`}
+          <p>${escapeHtml(c.description)}</p>
+          ${progressHtml(c)}
+          <div class="card-actions">
+            ${link ? `<a class="text-link" href="${href}" ${ext}>View campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>` : '<span></span>'}
+            <button class="report-link" data-id="${escapeHtml(c.id)}" data-name="${name}" title="Report a concern, or let us know this campaign already has donations">Report / Update</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Category pills — built from all active campaigns, not just board-eligible ones
+    const allCategories = [...new Set(allActive.flatMap(c => c.category || []))].sort();
+    const pillsWrap = document.getElementById('categoryPills');
+    let activeCategory = new URLSearchParams(location.search).get('category') || '';
+
+    function renderPills() {
+      const pills = [{ value: '', label: 'All causes' }, ...allCategories.map(c => ({ value: c, label: c }))];
+      pillsWrap.innerHTML = pills.map(p =>
+        `<button type="button" class="category-btn" data-value="${escapeHtml(p.value)}" aria-pressed="${p.value === activeCategory}">${escapeHtml(p.label)}</button>`
+      ).join('');
+      pillsWrap.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => { activeCategory = btn.dataset.value; render(); });
+      });
+    }
+
+    function render() {
+      renderPills();
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const fundingFilter = document.getElementById('funding').value;
+
+      let results = allActive.filter(c => {
+        if (fundingFilter && tierOf(c) !== fundingFilter) return false;
+        if (activeCategory && !(c.category || []).includes(activeCategory)) return false;
+        if (q && !(c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q))) return false;
+        return true;
+      });
+
+      results.sort((a, b) => TIER_ORDER[tierOf(a)] - TIER_ORDER[tierOf(b)]);
+
+      const countEl = document.getElementById('resultCount');
+      const area = document.getElementById('resultsArea');
+      countEl.textContent = results.length + (results.length === 1 ? ' campaign' : ' campaigns');
+
+      if (results.length === 0) {
+        area.innerHTML = `
+          <div class="empty">
+            <h3>No campaigns match that search.</h3>
+            <p>Try a different search term, or clear your filters to see everything on the board.</p>
+            <button class="text-link" id="resetBtn" type="button">Clear search and filters</button>
+          </div>
+        `;
+        document.getElementById('resetBtn').addEventListener('click', () => {
+          document.getElementById('search').value = '';
+          document.getElementById('funding').value = '';
+          activeCategory = '';
+          render();
+        });
+      } else {
+        area.innerHTML = `<div class="results-grid">${results.map(cardHtml).join('')}</div>`;
+        area.querySelectorAll('.report-link').forEach(btn => {
+          btn.addEventListener('click', () => {
+            window.location.href = `./submit.html?report=${encodeURIComponent(btn.dataset.id)}&name=${encodeURIComponent(btn.dataset.name)}`;
+          });
+        });
+      }
+    }
+
+    document.getElementById('search').addEventListener('input', render);
+    document.getElementById('funding').addEventListener('change', render);
+    render();
+  })();
+</script>
+</body>
+</html>
