@@ -760,5 +760,19 @@
     "location": "Salt Lake City, UT",
     "wellOnTheirWay": true,
     "lastDonationDate": "2026-09-25"
+  },
+  {
+    "id": "c040",
+    "name": "Help Us Build a Community Coffee House",
+    "link": "https://www.gofundme.com/f/royal-t-coffee-house",
+    "goal": 4500,
+    "raised": 870,
+    "donors": 22,
+    "category": "community",
+    "image": "campaigns/campaign-royal-t-coffee-house.webp",
+    "reported": false,
+    "pinned": false,
+    "pinnedUntil": null,
+    "featured": false
   }
 ]
