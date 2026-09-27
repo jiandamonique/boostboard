@@ -18,8 +18,7 @@
     "category": [
       "Housing",
       "Financial Hardship"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c002",
@@ -40,8 +39,7 @@
     "category": [
       "Animals",
       "Medical"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c003",
@@ -61,8 +59,7 @@
     "imageUrl": "./campaigns/campaign-jimmy.webp",
     "category": [
       "Sports"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c004",
@@ -82,8 +79,7 @@
     "imageUrl": "./campaigns/campaign-liverpool.webp",
     "category": [
       "Community"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c005",
@@ -104,8 +100,7 @@
     "category": [
       "Crisis",
       "Medical"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c006",
@@ -126,8 +121,7 @@
     "category": [
       "Animals",
       "Medical"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c007",
@@ -147,8 +141,7 @@
     "imageUrl": "./campaigns/campaign-dog.webp",
     "category": [
       "Animals"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c008",
@@ -169,8 +162,7 @@
     "category": [
       "Education",
       "International Aid"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c009",
@@ -191,8 +183,7 @@
     "category": [
       "Housing",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c010",
@@ -234,8 +225,7 @@
     "category": [
       "International Aid",
       "Community"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c012",
@@ -256,8 +246,7 @@
     "category": [
       "Family Support",
       "Financial Hardship"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c013",
@@ -278,8 +267,7 @@
     "category": [
       "Legal",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c014",
@@ -300,8 +288,7 @@
     "category": [
       "Housing",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c015",
@@ -322,8 +309,7 @@
     "category": [
       "Housing",
       "Financial Hardship"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c016",
@@ -343,8 +329,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Community"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c017",
@@ -365,8 +350,7 @@
     "category": [
       "Medical",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c018",
@@ -386,8 +370,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Financial Hardship"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c019",
@@ -407,8 +390,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Education"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c020",
@@ -428,8 +410,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Financial Hardship"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c021",
@@ -450,8 +431,7 @@
     "category": [
       "Medical",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c022",
@@ -471,8 +451,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Medical"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c025",
@@ -492,8 +471,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Housing"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c026",
@@ -514,8 +492,7 @@
     "category": [
       "Community",
       "Crisis"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c027",
@@ -535,8 +512,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Education"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c028",
@@ -557,8 +533,7 @@
     "category": [
       "Housing",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c029",
@@ -579,8 +554,7 @@
     "category": [
       "Community"
     ],
-    "pinnedUntil": "2026-09-26",
-    "wellOnTheirWay": true
+    "pinnedUntil": "2026-09-26"
   },
   {
     "id": "c030",
@@ -601,8 +575,7 @@
     "category": [
       "Financial Hardship",
       "Legal"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c031",
@@ -622,8 +595,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Education"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c032",
@@ -644,8 +616,7 @@
     "category": [
       "Animals",
       "Medical"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c033",
@@ -666,8 +637,7 @@
     "category": [
       "Medical",
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c034",
@@ -688,8 +658,7 @@
     "category": [
       "Technology",
       "Community"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c035",
@@ -737,9 +706,9 @@
   },
   {
     "id": "c037",
-    "name": "Help Michael and Fianc\u00e9e Begin Married Life",
+    "name": "Help Michael and Fiancée Begin Married Life",
     "communities": [],
-    "description": "Michael and his fianc\u00e9e are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fianc\u00e9e works as a cashier. The campaign also covers legal documents his fianc\u00e9e needs.",
+    "description": "Michael and his fiancée are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fiancée works as a cashier. The campaign also covers legal documents his fiancée needs.",
     "link": "https://www.gofundme.com/f/help-michael-and-fiancee-begin-married-life",
     "donationCount": 8,
     "submittedDate": "2026-09-23",
@@ -753,8 +722,7 @@
     "lowEngagementFlag": false,
     "category": [
       "Family Support"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c038",
@@ -775,8 +743,7 @@
     "category": [
       "Family Support",
       "Financial Hardship"
-    ],
-    "wellOnTheirWay": true
+    ]
   },
   {
     "id": "c039",
@@ -809,7 +776,6 @@
     "reported": false,
     "pinned": false,
     "pinnedUntil": null,
-    "featured": false,
-    "wellOnTheirWay": true
+    "featured": false
   }
 ]
