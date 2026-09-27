@@ -18,7 +18,8 @@
     "category": [
       "Housing",
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c002",
@@ -39,7 +40,8 @@
     "category": [
       "Animals",
       "Medical"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c003",
@@ -59,7 +61,8 @@
     "imageUrl": "./campaigns/campaign-jimmy.webp",
     "category": [
       "Sports"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c004",
@@ -79,7 +82,8 @@
     "imageUrl": "./campaigns/campaign-liverpool.webp",
     "category": [
       "Community"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c005",
@@ -100,7 +104,8 @@
     "category": [
       "Crisis",
       "Medical"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c006",
@@ -121,7 +126,8 @@
     "category": [
       "Animals",
       "Medical"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c007",
@@ -141,7 +147,8 @@
     "imageUrl": "./campaigns/campaign-dog.webp",
     "category": [
       "Animals"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c008",
@@ -162,7 +169,8 @@
     "category": [
       "Education",
       "International Aid"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c009",
@@ -183,7 +191,8 @@
     "category": [
       "Housing",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c010",
@@ -203,7 +212,8 @@
     "imageUrl": "./campaigns/campaign-aubry.webp",
     "category": [
       "Education"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c011",
@@ -224,7 +234,8 @@
     "category": [
       "International Aid",
       "Community"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c012",
@@ -245,7 +256,8 @@
     "category": [
       "Family Support",
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c013",
@@ -266,7 +278,8 @@
     "category": [
       "Legal",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c014",
@@ -287,7 +300,8 @@
     "category": [
       "Housing",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c015",
@@ -308,7 +322,8 @@
     "category": [
       "Housing",
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c016",
@@ -328,7 +343,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Community"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c017",
@@ -349,7 +365,8 @@
     "category": [
       "Medical",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c018",
@@ -369,7 +386,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c019",
@@ -389,7 +407,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Education"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c020",
@@ -409,7 +428,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c021",
@@ -430,7 +450,8 @@
     "category": [
       "Medical",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c022",
@@ -450,7 +471,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Medical"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c025",
@@ -470,7 +492,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Housing"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c026",
@@ -491,7 +514,8 @@
     "category": [
       "Community",
       "Crisis"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c027",
@@ -511,7 +535,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Education"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c028",
@@ -532,7 +557,8 @@
     "category": [
       "Housing",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c029",
@@ -553,7 +579,8 @@
     "category": [
       "Community"
     ],
-    "pinnedUntil": "2026-09-26"
+    "pinnedUntil": "2026-09-26",
+    "wellOnTheirWay": true
   },
   {
     "id": "c030",
@@ -574,7 +601,8 @@
     "category": [
       "Financial Hardship",
       "Legal"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c031",
@@ -594,7 +622,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Education"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c032",
@@ -615,7 +644,8 @@
     "category": [
       "Animals",
       "Medical"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c033",
@@ -636,7 +666,8 @@
     "category": [
       "Medical",
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c034",
@@ -657,7 +688,8 @@
     "category": [
       "Technology",
       "Community"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c035",
@@ -678,7 +710,8 @@
     "category": [
       "Community",
       "International Aid"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c036",
@@ -699,7 +732,8 @@
     "category": [
       "Community",
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c037",
@@ -719,7 +753,8 @@
     "lowEngagementFlag": false,
     "category": [
       "Family Support"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c038",
@@ -740,17 +775,18 @@
     "category": [
       "Family Support",
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c039",
     "name": "Help Jonathan Get Life-Changing Jaw Surgery",
-    "link": "https://www.gofundme.com/f/help-jonathan-get-life-changing-jaw-surgery",
+    "link": "https://www.gofundme.com/f/jonathans-jaw-surgery",
     "description": "Jonathan has been suffering from debilitating sleep apnea and upper airway resistance syndrome for years, slowly stealing his life from him. He deserves to have the energy to leave his house, meet up with friends, and visit his family. Help him get the double jaw surgery he needs to return to a full life.",
     "imageUrl": "./campaigns/campaign-help-jonathan-get-life-changing-jaw-surgery.webp",
     "submittedDate": "2026-09-25",
-    "donationCount": 71,
-    "amountRaised": 3053,
+    "donationCount": 82,
+    "amountRaised": 3357,
     "goalAmount": 10000,
     "communities": [
       "health",
@@ -759,7 +795,7 @@
     "organizer": "Jennifer Nasman",
     "location": "Salt Lake City, UT",
     "wellOnTheirWay": true,
-    "lastDonationDate": "2026-09-25"
+    "lastDonationDate": "2026-09-26"
   },
   {
     "id": "c040",
@@ -773,6 +809,7 @@
     "reported": false,
     "pinned": false,
     "pinnedUntil": null,
-    "featured": false
+    "featured": false,
+    "wellOnTheirWay": true
   }
 ]
