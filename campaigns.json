@@ -203,7 +203,8 @@
     "imageUrl": "./campaigns/campaign-aubry.webp",
     "category": [
       "Education"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c011",
@@ -678,7 +679,8 @@
     "category": [
       "Community",
       "International Aid"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c036",
@@ -699,13 +701,14 @@
     "category": [
       "Community",
       "Financial Hardship"
-    ]
+    ],
+    "wellOnTheirWay": true
   },
   {
     "id": "c037",
-    "name": "Help Michael and Fianc\u00e9e Begin Married Life",
+    "name": "Help Michael and Fiancée Begin Married Life",
     "communities": [],
-    "description": "Michael and his fianc\u00e9e are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fianc\u00e9e works as a cashier. The campaign also covers legal documents his fianc\u00e9e needs.",
+    "description": "Michael and his fiancée are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fiancée works as a cashier. The campaign also covers legal documents his fiancée needs.",
     "link": "https://www.gofundme.com/f/help-michael-and-fiancee-begin-married-life",
     "donationCount": 8,
     "submittedDate": "2026-09-23",
@@ -745,12 +748,12 @@
   {
     "id": "c039",
     "name": "Help Jonathan Get Life-Changing Jaw Surgery",
-    "link": "https://www.gofundme.com/f/help-jonathan-get-life-changing-jaw-surgery",
+    "link": "https://www.gofundme.com/f/jonathans-jaw-surgery",
     "description": "Jonathan has been suffering from debilitating sleep apnea and upper airway resistance syndrome for years, slowly stealing his life from him. He deserves to have the energy to leave his house, meet up with friends, and visit his family. Help him get the double jaw surgery he needs to return to a full life.",
     "imageUrl": "./campaigns/campaign-help-jonathan-get-life-changing-jaw-surgery.webp",
     "submittedDate": "2026-09-25",
-    "donationCount": 71,
-    "amountRaised": 3053,
+    "donationCount": 82,
+    "amountRaised": 3357,
     "goalAmount": 10000,
     "communities": [
       "health",
@@ -759,7 +762,7 @@
     "organizer": "Jennifer Nasman",
     "location": "Salt Lake City, UT",
     "wellOnTheirWay": true,
-    "lastDonationDate": "2026-09-25"
+    "lastDonationDate": "2026-09-26"
   },
   {
     "id": "c040",

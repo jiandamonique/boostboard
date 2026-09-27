@@ -104,8 +104,8 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 <section class="browse" aria-label="Campaign directory">
 <div class="tools">
 <div class="search-row">
-<div><label for="search">Find a campaign</label><div class="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" id="search" placeholder="Search by cause, name, or story"></div></div>
-<div><label for="funding">Campaign stage</label><select id="funding">
+<div><label for="search">Find a campaign</label><div class="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" id="search" placeholder="Search by cause, name, or story" autocomplete="off"></div></div>
+<div><label for="funding">Campaign stage</label><select id="funding" autocomplete="off">
 <option value="">All campaigns</option>
 <option value="seed">No donors yet</option>
 <option value="first_five">First supporters (1–4 donors)</option>
@@ -131,6 +131,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 </section>
 
 <section class="support-note">
+  <p style="margin-bottom:14px;"><a class="text-link" href="./all-campaigns.html">View all active campaigns <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></p>
   <h3>Boost Board isn't a charity or nonprofit — it's just an app.</h3>
   <p>Volunteers run it, it isn't tax-deductible, and it only signal boosts donations randomly, as submitted or brought to our attention. If you'd like to support the effort, you've got two options: help keep the app itself running, or send your money straight to today's featured campaign instead.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
@@ -171,6 +172,10 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
 <script>
   (async () => {
     await loadCampaigns();
+    // Reset filter inputs on every load — prevents browsers from restoring
+    // a previously-selected filter value and making the board appear empty.
+    document.getElementById('search').value = '';
+    document.getElementById('funding').value = '';
     const { eligible } = (function() {
       const el = campaigns.filter(c => !c.reported && (tierOf(c) !== 'rising' || qualifiesAsFallback(c) || qualifiesAsWellOnWay(c)));
       return { eligible: el };

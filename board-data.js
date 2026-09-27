@@ -61,7 +61,8 @@ function qualifiesAsFallback(c) {
 function qualifiesAsWellOnWay(c) {
   // Well on their way: three pathways.
   // 1. Editor override: explicit flag (e.g., strong donor momentum despite funding uncertainty)
-  if (c.wellOnTheirWay === true) return true;
+  // Guard: only meaningful for rising-tier campaigns (10+ donors).
+  if (c.wellOnTheirWay === true && tierOf(c) === 'rising') return true;
 
   // 2. Auto-detect: Rising tier + recent donor activity within 7 days
   if ((tierOf(c) === 'rising' || tierOf(c) === 'first_ten') && c.lastDonationDate) {
