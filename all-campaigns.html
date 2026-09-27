@@ -152,7 +152,7 @@ h2#resultCount{font-size:18px;font-weight:600;margin:0}
     }
 
     function safeImage(url) {
-      const fallback = './og-image.png';
+      const fallback = './standin-image.jpg';
       if (!url) return fallback;
       try {
         const u = new URL(url, location.href);
@@ -212,7 +212,7 @@ h2#resultCount{font-size:18px;font-weight:600;margin:0}
       const link = safeLink(c.link);
       const href = link ? escapeHtml(link) : '';
       const ext = 'target="_blank" rel="noopener noreferrer"';
-      const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./og-image.png'">`;
+      const img = `<img src="${escapeHtml(safeImage(c.imageUrl))}" alt="${name}" onerror="this.onerror=null;this.src='./standin-image.jpg'">`;
       return `
         <div class="result-card">
           ${link ? `<a href="${href}" ${ext} aria-label="View ${name}">${img}</a>` : img}

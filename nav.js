@@ -63,7 +63,7 @@
   header.innerHTML = `
     <div class="nav">
       <a class="brand" href="./index.html" aria-label="Boost Board home">
-        <svg viewBox="0 0 32 36" fill="none" width="27" height="30" aria-hidden="true"><path d="M5 29V17M15 29V9M25 29V3" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="m19 8 6-6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(35, 16, 16)"><path d="M16 2 C14 6 11 11 11 19 L21 19 C21 11 18 6 16 2 Z" fill="#087F73"/><path d="M11 19 L7 27 L11 24 Z" fill="#06685f"/><path d="M21 19 L25 27 L21 24 Z" fill="#06685f"/><rect x="12" y="19" width="8" height="2.5" rx="0.5" fill="#055c54"/><circle cx="16" cy="13" r="2.8" fill="white" opacity="0.85"/><path d="M12.5 21.5 Q14 28.5 16 30.5 Q18 28.5 19.5 21.5" fill="#D5A643"/></g><circle cx="8" cy="26.5" r="1.5" fill="#D5A643" opacity="0.4"/></svg>
         Boost Board<span class="dot">.</span>
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="site-navigation">Menu</button>
