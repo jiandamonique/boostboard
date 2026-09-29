@@ -12,6 +12,23 @@
   // reaches it. Detected via .post-body, used only by actual posts.
   const postBody = document.querySelector('.post-body');
   if (postBody) {
+    // Support CTA — injected on every blog post, never touches individual post files
+    const supportBlock = document.createElement('div');
+    supportBlock.style.cssText = 'margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line);';
+    supportBlock.innerHTML = `
+      <p style="font-size:0.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem;">Support Boost Board</p>
+      <p style="font-size:0.95rem; margin-bottom:1rem;">Boost Board runs on volunteer time. If this was worth a few minutes of yours, a small contribution keeps the board running.</p>
+      <div class="gfm-embed" data-url="https://www.gofundme.com/f/amplify-campaigns-waiting-for-a-first-yes/widget/small?attribution_id=sl%3Af1927993-91dc-4438-9aa0-8a0e30c370e8"></div>`;
+    postBody.appendChild(supportBlock);
+
+    // Load GFM embed script once per page (guard against double-load)
+    if (!document.querySelector('script[src*="gofundme.com/static/js/embed"]')) {
+      const gfmScript = document.createElement('script');
+      gfmScript.src = 'https://www.gofundme.com/static/js/embed.js';
+      gfmScript.defer = true;
+      document.body.appendChild(gfmScript);
+    }
+
     const homeLink = document.createElement('p');
     homeLink.style.cssText = 'text-align:center; margin-top:32px; font-size:17px;';
     homeLink.innerHTML = '<a href="./index.html" style="font-weight:700; text-decoration:underline; color:var(--deep);">Boost Board</a>';

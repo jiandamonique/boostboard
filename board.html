@@ -310,7 +310,7 @@ input,select{width:100%;height:47px;border:1px solid #a8bbbc;border-radius:4px;c
   // automatically the next time a campaign uses it.
   const allCategories = [...new Set(eligible.flatMap(c => c.category || []))].sort();
   const pillsWrap = document.getElementById('categoryPills');
-  let activeCategory = new URLSearchParams(location.search).get('category') || '';
+  let activeCategory = '';
   function renderPills() {
     const pills = [{ value: '', label: 'All causes' }, ...allCategories.map(c => ({ value: c, label: c }))];
     pillsWrap.innerHTML = pills.map(p =>
