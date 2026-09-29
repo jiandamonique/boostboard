@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#EDF2F2">
-<meta name="description" content="Boost Board features one overlooked fundraising campaign every day, reviewed by volunteers, so it doesn't stay stuck at zero donations.">
+<meta name="description" content="Boost Board features one overlooked fundraising campaign every day — campaigns still looking for their first wave of support, reviewed by volunteers.">
 <link rel="canonical" href="https://jiandamonique.github.io/boostboard/">
 <meta property="og:title" content="Boost Board">
-<meta property="og:description" content="Boost Board features one overlooked fundraising campaign every day, reviewed by volunteers, so it doesn't stay stuck at zero donations.">
+<meta property="og:description" content="Boost Board features one overlooked fundraising campaign every day — campaigns still looking for their first wave of support, reviewed by volunteers.">
 <meta property="og:image" content="https://jiandamonique.github.io/boostboard/og-image.png">
 <meta property="og:url" content="https://jiandamonique.github.io/boostboard/">
 <meta property="og:type" content="website">
@@ -156,7 +156,7 @@ h1 span{color:var(--green)}
 </div>
 </section>
 <section class="cta" aria-labelledby="cta-title">
-<div><h2 id="cta-title">Still waiting for that first backer?</h2><p>You've put your story out there. Let's help more people find it. Submit your campaign for consideration.</p></div>
+<div><h2 id="cta-title">Still waiting on your first wave?</h2><p>Your campaign hasn't found its crowd yet. You've put your story out there — let's help more people find it. Submit your campaign for consideration.</p></div>
 <a class="button" href="./submit.html">Give your campaign a lift <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
 </section>
 <section class="section" aria-labelledby="self-support-title" style="text-align:center;">
@@ -184,7 +184,7 @@ h1 span{color:var(--green)}
         : "Today's featured campaign has some real momentum already.";
       visual.innerHTML = `
         <a href="${spotlight.link}" target="_blank" rel="noopener noreferrer" class="link-overlay">
-          <img class="spotlight-image" src="${spotlight.imageUrl || './standin-image.jpg'}" alt="${spotlight.name}" onerror="this.src='./standin-image.jpg'">
+          <img class="spotlight-image" src="${spotlight.imageUrl || './first-light.jpg'}" alt="${spotlight.name}" onerror="this.src='./first-light.jpg'">
           <div class="image-note" id="spotlightImageNote">
             <div class="eyebrow">Today's featured campaign</div>
             <strong>${spotlight.name}</strong>

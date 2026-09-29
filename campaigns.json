@@ -706,9 +706,9 @@
   },
   {
     "id": "c037",
-    "name": "Help Michael and Fiancée Begin Married Life",
+    "name": "Help Michael and Fianc\u00e9e Begin Married Life",
     "communities": [],
-    "description": "Michael and his fiancée are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fiancée works as a cashier. The campaign also covers legal documents his fiancée needs.",
+    "description": "Michael and his fianc\u00e9e are a young couple hoping for a traditional cathedral wedding and a honeymoon in Rome, but have no savings to make it happen. Michael is a future teacher; his fianc\u00e9e works as a cashier. The campaign also covers legal documents his fianc\u00e9e needs.",
     "link": "https://www.gofundme.com/f/help-michael-and-fiancee-begin-married-life",
     "donationCount": 8,
     "submittedDate": "2026-09-23",
@@ -767,15 +767,136 @@
   {
     "id": "c040",
     "name": "Help Us Build a Community Coffee House",
+    "communities": [],
+    "description": "Royal T Coffee House is building a community gathering space \u2014 a place for coffee, connection, and local support.",
     "link": "https://www.gofundme.com/f/royal-t-coffee-house",
-    "goal": 4500,
-    "raised": 870,
-    "donors": 22,
-    "category": "community",
-    "image": "campaigns/campaign-royal-t-coffee-house.webp",
-    "reported": false,
+    "donationCount": 22,
+    "amountRaised": 870,
+    "goalAmount": 4500,
+    "submittedDate": "2026-09-07",
     "pinned": false,
     "pinnedUntil": null,
-    "featured": false
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-royal-t-coffee-house.webp",
+    "category": [
+      "Community"
+    ]
+  },
+  {
+    "id": "c041",
+    "name": "Help a Maui Mom and Her Kids Get Back on Their Feet",
+    "description": "Nani is a mom on Maui navigating an unexpected housing transition. She works hard but is stretched thin \u2014 donations go toward lumber and building supplies to help her family rebuild.",
+    "link": "https://www.gofundme.com/f/help-a-maui-mom-and-her-kids-get-back-on-their-feet",
+    "imageUrl": "./campaigns/campaign-help-a-maui-mom-and-her-kids-get-back-on-their-feet.webp",
+    "donationCount": 0,
+    "category": [
+      "Housing",
+      "Family"
+    ],
+    "submittedDate": "2026-09-27"
+  },
+  {
+    "id": "c042",
+    "name": "Help Jackson Fund a New Car Before His Car Fails",
+    "description": "Jackson is 20 and working full time with his soon-to-be fianc\u00e9e. His car's transmission is failing and it keeps overheating \u2014 he needs help getting reliable transportation before it gives out entirely.",
+    "link": "https://www.gofundme.com/f/help-jackson-fund-a-new-car-before-his-car-fails",
+    "imageUrl": "./campaigns/campaign-help-jackson-fund-a-new-car-before-his-car-fails.webp",
+    "donationCount": 0,
+    "category": [
+      "Transportation"
+    ],
+    "submittedDate": "2026-09-27"
+  },
+  {
+    "id": "c043",
+    "name": "A Business Surprise for My Daughter \u2014 Br\u00e8lyn's Holistic Eats",
+    "description": "Victoria is raising startup funds to surprise her 13-year-old daughter with the chance to launch a holistic juicing and healthy snack business \u2014 covering branding, paperwork, and equipment to turn a passion into something real.",
+    "link": "https://www.gofundme.com/f/a-business-surprise-for-my-daughter",
+    "imageUrl": "./campaigns/campaign-a-business-surprise-for-my-daughter.webp",
+    "donationCount": 1,
+    "amountRaised": 5,
+    "goalAmount": 1600,
+    "category": [
+      "Business",
+      "Youth"
+    ],
+    "submittedDate": "2026-09-27"
+  },
+  {
+    "id": "c044",
+    "name": "Emergency for Miko: Exams and Care After a Stroke",
+    "description": "Miko, a 12-year-old cat, just had a stroke \u2014 he's losing balance, lost his hearing, and needs urgent diagnostics including blood work, MRI, and ultrasound, plus ongoing medication and follow-up care.",
+    "link": "https://www.gofundme.com/f/emergency-for-miko-exams-and-care-after-a-stroke",
+    "imageUrl": "./campaigns/campaign-emergency-for-miko-exams-and-care-after-a-stroke.webp",
+    "donationCount": 3,
+    "amountRaised": 120,
+    "goalAmount": 2800,
+    "currency": "CAD",
+    "category": [
+      "Animals",
+      "Medical"
+    ],
+    "submittedDate": "2026-09-27"
+  },
+  {
+    "id": "c045",
+    "name": "Help Tara Replace a Totaled Car",
+    "description": "Tara's car was totaled when someone pulled out in front of her \u2014 the latest hit in a year that already included a broken furnace and four car breakdowns. She needs help replacing her only vehicle.",
+    "link": "https://www.gofundme.com/f/help-tara-replace-a-totaled-car-6n7pg",
+    "imageUrl": "./campaigns/campaign-help-tara-replace-a-totaled-car.webp",
+    "donationCount": 2,
+    "amountRaised": 100,
+    "goalAmount": 1400,
+    "category": [
+      "Transportation",
+      "Emergencies"
+    ],
+    "submittedDate": "2026-09-27"
+  },
+  {
+    "id": "c046",
+    "name": "Pen y Fan Horseshoe Walk Pontnewydd United U8s",
+    "communities": [],
+    "description": "Lee Hopkins, coach of Pontnewydd United FC's Under-8s, is walking the Pen y Fan Horseshoe route in Wales to raise money for the team's Christmas party. A group of young players who give everything at training and on match days \u2014 this is their celebration.",
+    "link": "https://www.gofundme.com/f/pen-y-fan-horseshoe-walk-pontnewydd-united-u8s-u10s",
+    "donationCount": 14,
+    "amountRaised": 245,
+    "goalAmount": 600,
+    "currency": "GBP",
+    "submittedDate": "2026-09-27",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": true,
+    "imageUrl": "./campaigns/campaign-pen-y-fan-horseshoe-walk-pontnewydd-united.webp",
+    "category": [
+      "Youth",
+      "Community",
+      "Sports"
+    ]
+  },
+  {
+    "id": "c047",
+    "name": "David's Fight for Diagnosis",
+    "communities": [],
+    "description": "David spent over twenty years as a long-haul trucker before debilitating neurological symptoms \u2014 constant dizziness, balance problems, headaches, and double vision \u2014 forced him off the road. He's seen specialists across the board and still has no diagnosis. Raising funds for medical bills, food, and basic living expenses while he keeps searching for answers.",
+    "link": "https://www.gofundme.com/f/davids-fight-for-diagnosis",
+    "donationCount": 4,
+    "amountRaised": 340,
+    "goalAmount": 6000,
+    "submittedDate": "2026-09-27",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-davids-fight-for-diagnosis.webp",
+    "category": [
+      "Medical",
+      "Health"
+    ]
   }
 ]
