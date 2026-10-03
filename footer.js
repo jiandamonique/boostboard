@@ -18,16 +18,8 @@
     supportBlock.innerHTML = `
       <p style="font-size:0.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem;">Support Boost Board</p>
       <p style="font-size:0.95rem; margin-bottom:1rem;">Boost Board runs on volunteer time. If this was worth a few minutes of yours, a small contribution keeps the board running.</p>
-      <div class="gfm-embed" data-url="https://www.gofundme.com/f/amplify-campaigns-waiting-for-a-first-yes/widget/small?attribution_id=sl%3Af1927993-91dc-4438-9aa0-8a0e30c370e8"></div>`;
+      <a href="https://www.gofundme.com/f/amplify-campaigns-waiting-for-a-first-yes" target="_blank" rel="noopener" class="button" style="display:inline-flex;font-size:0.9rem;padding:10px 22px;gap:10px;">Support on GoFundMe <svg viewBox="0 0 24 24" aria-hidden="true" style="width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;flex-shrink:0;"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>`;
     postBody.appendChild(supportBlock);
-
-    // Load GFM embed script once per page (guard against double-load)
-    if (!document.querySelector('script[src*="gofundme.com/static/js/embed"]')) {
-      const gfmScript = document.createElement('script');
-      gfmScript.src = 'https://www.gofundme.com/static/js/embed.js';
-      gfmScript.defer = true;
-      document.body.appendChild(gfmScript);
-    }
 
     const homeLink = document.createElement('p');
     homeLink.style.cssText = 'text-align:center; margin-top:32px; font-size:17px;';

@@ -14,17 +14,22 @@
 <script src="./nav.js" defer></script>
 <script src="./footer.js" defer></script>
 <style>
-.notfound{max-width:480px;margin:0 auto;padding:70px 0;text-align:center}
+.notfound{max-width:480px;margin:0 auto;padding:60px 0 80px;text-align:center}
+.notfound img{width:80px;height:80px;object-fit:cover;border-radius:50%;margin:0 auto 24px;display:block;box-shadow:0 2px 12px rgba(8,127,115,0.15)}
 h1{font-size:clamp(28px,4vw,38px);letter-spacing:-1.4px;line-height:1.25;margin-bottom:16px}
 .notfound p{font-size:17px;margin-bottom:24px}
+.notfound .contact-line{margin-top:40px;padding-top:28px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.notfound .contact-line a{color:var(--deep);border-bottom:1px solid #a2c9c0}
 </style>
 </head>
 <body>
 <main id="main" class="wrap">
 <div class="notfound">
+  <img src="./first-light.jpg" alt="">
   <h1>This page doesn't exist — but plenty of campaigns still need a first "yes."</h1>
-  <p>Whatever you were looking for isn't here. It might have moved, or the link might just be wrong — either way, here's somewhere better to go instead.</p>
+  <p>Oops - Whatever you were looking for isn't here. It might have moved, or the link might just have changed or been deleted — either way, here's another page for you.</p>
   <a class="button" href="./index.html">Back to today's featured campaign <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  <p class="contact-line">Need further assistance? Email us at <a href="mailto:hello@curateindie.com">hello@curateindie.com</a></p>
 </div>
 </main>
 </body>

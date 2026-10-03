@@ -1,0 +1,4 @@
+*.zip
+*DO-NOT-COMMIT*
+*INTERNAL*
+internal-docs/
