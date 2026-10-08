@@ -46,6 +46,7 @@
       <div class="footer-bottom">
         <span>© <span id="footer-year"></span> Boost Board. A little attention tips the balance.</span>
         <p>Boost Board is a discovery tool, not a charity, nonprofit, or payment processor. It never touches donations or guarantees funding. Every campaign — including our volunteers' or their family's — is independent, with no funds ever delegated to us.</p>
+        <p style="margin-top:0.6rem;font-style:italic;font-size:0.75rem;color:#9ca3af;"><a href="https://jiandamonique.github.io/" target="_blank" rel="noopener" style="color:#9ca3af;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">(site editor: @jiandamonique)</a></p>
       </div>
     </div>
   `;

@@ -541,14 +541,14 @@
     "communities": [],
     "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
     "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
-    "donationCount": 8,
+    "donationCount": 9,
     "submittedDate": "2026-09-16",
     "lastFeatured": null,
     "pinned": true,
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
     "pinReason": "Manual spotlight: featured by moderator",
-    "amountRaised": 515,
+    "amountRaised": 815,
     "goalAmount": 2000,
     "lowEngagementFlag": false,
     "category": [
@@ -666,15 +666,15 @@
     "communities": [],
     "description": "Nishanth Yeddula's team is fundraising for Kiva, a nonprofit that provides microloans to entrepreneurs worldwide who lack access to fair capital. Contributions fuel revolving loans that support multiple business owners over time.",
     "link": "https://www.gofundme.com/f/raising-funds-for-kivas-entrepreneurs",
-    "donationCount": 19,
+    "donationCount": 22,
     "submittedDate": "2026-09-23",
     "lastFeatured": null,
     "pinned": false,
     "reported": false,
     "imageUrl": "./campaigns/campaign-raising-funds-for-kivas-entrepreneurs.png",
     "pinReason": "",
-    "amountRaised": 340,
-    "goalAmount": 350,
+    "amountRaised": 420,
+    "goalAmount": 500,
     "lowEngagementFlag": false,
     "category": [
       "Community",
@@ -752,8 +752,8 @@
     "description": "Jonathan has been suffering from debilitating sleep apnea and upper airway resistance syndrome for years, slowly stealing his life from him. He deserves to have the energy to leave his house, meet up with friends, and visit his family. Help him get the double jaw surgery he needs to return to a full life.",
     "imageUrl": "./campaigns/campaign-help-jonathan-get-life-changing-jaw-surgery.webp",
     "submittedDate": "2026-09-25",
-    "donationCount": 106,
-    "amountRaised": 4598,
+    "donationCount": 134,
+    "amountRaised": 10470,
     "goalAmount": 10000,
     "communities": [
       "health",
@@ -897,6 +897,69 @@
     "category": [
       "Medical",
       "Health"
+    ]
+  },
+  {
+    "id": "c048",
+    "name": "Please Help Me Bring My Father Home and Put Him to Rest",
+    "communities": [],
+    "description": "Tiffany's father passed away suddenly in Missouri. She's raising funds for funeral costs, cremation, and the transportation needed to bring his remains home to California.",
+    "link": "https://www.gofundme.com/f/bring-my-dad-home-to-california",
+    "donationCount": 6,
+    "amountRaised": 870,
+    "goalAmount": 3500,
+    "submittedDate": "2026-10-08",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-bring-my-dad-home-to-california.jpg",
+    "category": [
+      "Crisis",
+      "Family Support"
+    ]
+  },
+  {
+    "id": "c049",
+    "name": "Help JoAnna Gain Freedom and Reliable Transportation",
+    "communities": [],
+    "description": "JoAnna survived domestic violence and relocated to safety in a small, rural town. Without access to a vehicle or public transit, she can't reliably reach medical appointments or run essential errands.",
+    "link": "https://www.gofundme.com/f/help-joanna-gain-freedom-with-reliable-transportation",
+    "donationCount": 4,
+    "amountRaised": 0,
+    "goalAmount": null,
+    "submittedDate": "2026-10-08",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-help-joanna-gain-freedom-with-reliable-transportation.jpg",
+    "category": [
+      "Transportation",
+      "Crisis"
+    ]
+  },
+  {
+    "id": "c050",
+    "name": "Support Janet and Eric Through Hard Times",
+    "communities": [],
+    "description": "Daniella is raising money for her parents, Janet and Eric. Eric recently lost his job as an electrical engineer and is applying for work while doing DoorDash to help cover bills. The family is struggling to keep up with rent and basic expenses.",
+    "link": "https://www.gofundme.com/f/support-janet-and-eric-through-hard-times",
+    "donationCount": 8,
+    "amountRaised": 740,
+    "goalAmount": 5000,
+    "submittedDate": "2026-10-08",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-support-janet-and-eric-through-hard-times.webp",
+    "category": [
+      "Financial Hardship",
+      "Family Support"
     ]
   }
 ]
