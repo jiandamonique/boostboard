@@ -10,7 +10,7 @@
     "lastFeatured": "2026-09-21",
     "pinned": false,
     "reported": false,
-    "imageUrl": "./campaigns/campaign-jaye.webp",
+    "imageUrl": "./campaigns/campaign-jaye-yoga.webp",
     "pinReason": "",
     "amountRaised": 260,
     "goalAmount": 2400,
@@ -541,14 +541,14 @@
     "communities": [],
     "description": "Lisa Hartouni has spent decades using photography and community storytelling to document and support her community.",
     "link": "https://www.gofundme.com/f/help-sustain-lisa-hartounis-work",
-    "donationCount": 9,
+    "donationCount": 10,
     "submittedDate": "2026-09-16",
     "lastFeatured": null,
     "pinned": true,
     "reported": false,
     "imageUrl": "./campaigns/campaign-help-sustain-lisa-hartounis-work.webp",
     "pinReason": "Manual spotlight: featured by moderator",
-    "amountRaised": 815,
+    "amountRaised": 840,
     "goalAmount": 2000,
     "lowEngagementFlag": false,
     "category": [
@@ -611,7 +611,7 @@
     "imageUrl": "./campaigns/campaign-care-for-3-dogs-left-on-my-patio.webp",
     "pinReason": "",
     "amountRaised": 85,
-    "goalAmount": 1600,
+    "goalAmount": 2000,
     "lowEngagementFlag": false,
     "category": [
       "Animals",
@@ -752,9 +752,9 @@
     "description": "Jonathan has been suffering from debilitating sleep apnea and upper airway resistance syndrome for years, slowly stealing his life from him. He deserves to have the energy to leave his house, meet up with friends, and visit his family. Help him get the double jaw surgery he needs to return to a full life.",
     "imageUrl": "./campaigns/campaign-help-jonathan-get-life-changing-jaw-surgery.webp",
     "submittedDate": "2026-09-25",
-    "donationCount": 134,
-    "amountRaised": 10470,
-    "goalAmount": 10000,
+    "donationCount": 148,
+    "amountRaised": 10885,
+    "goalAmount": 16000,
     "communities": [
       "health",
       "medical"
@@ -922,13 +922,13 @@
   },
   {
     "id": "c049",
-    "name": "Help JoAnna Gain Freedom and Reliable Transportation",
+    "name": "Help JoAnna Get Stability By Gaining A Vehicle",
     "communities": [],
     "description": "JoAnna survived domestic violence and relocated to safety in a small, rural town. Without access to a vehicle or public transit, she can't reliably reach medical appointments or run essential errands.",
-    "link": "https://www.gofundme.com/f/help-joanna-gain-freedom-with-reliable-transportation",
-    "donationCount": 4,
-    "amountRaised": 0,
-    "goalAmount": null,
+    "link": "https://www.gofundme.com/f/help-joanna-gain-stability-with-reliable-transportation",
+    "donationCount": 2,
+    "amountRaised": 150,
+    "goalAmount": 2000,
     "submittedDate": "2026-10-08",
     "pinned": false,
     "pinnedUntil": null,
@@ -960,6 +960,91 @@
     "category": [
       "Financial Hardship",
       "Family Support"
+    ]
+  },
+  {
+    "id": "c051",
+    "name": "I Need Your Help To Get Through This Difficult Time",
+    "communities": [],
+    "description": "Melissa Saastad is navigating a serious personal health crisis and needs help covering essential expenses while she recovers.",
+    "link": "https://www.gofundme.com/f/restore-safe-walkways-for-kuna-methodist-church",
+    "donationCount": 11,
+    "amountRaised": 343,
+    "goalAmount": 5500,
+    "submittedDate": "2026-10-13",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-i-need-your-help-to-get-through-this.webp",
+    "category": [
+      "Medical",
+      "Financial Hardship"
+    ]
+  },
+  {
+    "id": "c052",
+    "name": "James Said We Can't—Buy Boo-Boo an RV",
+    "communities": [],
+    "description": "Melissa Barnes is raising money to buy a used RV for cross-country travel with her beloved chihuahua Boo-Boo, whose fans have followed their adventures for years.",
+    "link": "https://www.gofundme.com/f/james-said-we-cantbuy-booboo-an-rv",
+    "donationCount": 13,
+    "amountRaised": 180,
+    "goalAmount": 15000,
+    "submittedDate": "2026-10-13",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-james-said-we-cantbuy-booboo-an-rv.webp",
+    "category": [
+      "Animals",
+      "Financial Hardship"
+    ]
+  },
+  {
+    "id": "c053",
+    "name": "Help Margo Recover Financially and Get A Car",
+    "communities": [],
+    "description": "Margo DeVaughn is recovering from a serious health setback and needs help with urgent medical bills, dental care, debt, and a reliable vehicle to get her life back on track.",
+    "link": "https://www.gofundme.com/f/medical-bill-and-vehicle-fund-for-margo",
+    "donationCount": 16,
+    "amountRaised": 670,
+    "goalAmount": 2000,
+    "submittedDate": "2026-10-13",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-help-margo-recover-financially-and-get-a-car.webp",
+    "category": [
+      "Medical",
+      "Financial Hardship",
+      "Transportation"
+    ]
+  },
+  {
+    "id": "c054",
+    "name": "Donate for Sage's Medical Treatment",
+    "communities": [],
+    "description": "Sarah Makselan is raising funds for Sage's veterinary care and medical treatment.",
+    "link": "https://www.gofundme.com/f/donate-for-sages-medical-treatment",
+    "donationCount": 19,
+    "amountRaised": 889,
+    "goalAmount": 1700,
+    "submittedDate": "2026-10-13",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-donate-for-sages-medical-treatment.webp",
+    "category": [
+      "Animals",
+      "Medical"
     ]
   }
 ]
