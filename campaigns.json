@@ -985,7 +985,7 @@
   },
   {
     "id": "c052",
-    "name": "James Said We Can't—Buy Boo-Boo an RV",
+    "name": "James Said We Can't\u2014Buy Boo-Boo an RV",
     "communities": [],
     "description": "Melissa Barnes is raising money to buy a used RV for cross-country travel with her beloved chihuahua Boo-Boo, whose fans have followed their adventures for years.",
     "link": "https://www.gofundme.com/f/james-said-we-cantbuy-booboo-an-rv",
@@ -1046,5 +1046,27 @@
       "Animals",
       "Medical"
     ]
+  },
+  {
+    "id": "c055",
+    "name": "Care for Mr. Roy in His Time of Need",
+    "communities": [],
+    "description": "Jordan Hope is raising funds to support Mr. Roy, an elderly man who needs care and assistance during a difficult time in his life.",
+    "link": "https://www.gofundme.com/f/care-for-mr-roy-in-his-time-of-need",
+    "donationCount": 482,
+    "submittedDate": "2026-10-14",
+    "pinned": false,
+    "pinnedUntil": null,
+    "pinReason": "",
+    "reported": false,
+    "lowEngagementFlag": false,
+    "imageUrl": "./campaigns/campaign-care-for-mr-roy-in-his-time-of-need.webp",
+    "category": [
+      "Elderly Care",
+      "Medical"
+    ],
+    "amountRaised": 21312,
+    "goalAmount": 22000,
+    "wellOnTheirWay": true
   }
 ]
