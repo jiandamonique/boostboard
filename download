@@ -1,3 +1,4 @@
-# Force GitHub to detect and include every file in language statistics
-* linguist-detectable=true
-* -linguist-vendored
+*.zip
+*DO-NOT-COMMIT*
+*INTERNAL*
+internal-docs/
