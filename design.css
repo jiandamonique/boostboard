@@ -142,4 +142,14 @@ details p{padding:0 30px 22px 0;font-size:16px}
   .footer-bottom{display:block}
   .footer-bottom p{margin-top:12px}
 }
+/* Blog / long-form post layout */
+.post-body{max-width:640px;margin:0 auto;padding:2.5rem 1.5rem}
+.post-body h1{font-size:clamp(24px,3.5vw,38px);letter-spacing:-1.2px;line-height:1.2;margin-bottom:0.5rem}
+.post-body h2{font-size:clamp(19px,2.2vw,26px);letter-spacing:-0.6px;margin-top:2rem;margin-bottom:0.4rem}
+.post-body p{margin-top:1rem;color:var(--muted);line-height:1.7}
+.post-body p:first-of-type{margin-top:0}
+.post-body ul,.post-body ol{margin-top:1rem;padding-left:1.4rem;color:var(--muted);line-height:1.7}
+.post-body li+li{margin-top:0.4rem}
+.post-body a{color:var(--deep);border-bottom:1px solid #a2c9c0;padding-bottom:1px}
+.post-body a:hover{color:var(--green)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
