@@ -39,6 +39,7 @@ const path = require('path');
 const CAMPAIGNS_FILE = path.join(__dirname, 'campaigns.json');
 const BOARD_DATA_FILE = path.join(__dirname, 'board-data.js');
 const METRICS_LOG_FILE = path.join(__dirname, 'metrics-log.json');
+const SPOTLIGHT_FILE = path.join(__dirname, 'daily-spotlight.json');
 const ZERO_SECTION_SIZE = 15;
 const TLC_SECTION_SIZE = 10;
 
@@ -163,6 +164,23 @@ function main() {
     || selectSection(eligible, 1)[0]
     || null;
 
+  // Write daily-spotlight.json now so generate-rss.js always uses the same
+  // campaign -- even when no lastFeatured stamps are needed today.
+  const today_str = new Date().toISOString().slice(0, 10);
+  const spotlightData = spotlight ? {
+    id: spotlight.id,
+    name: spotlight.name,
+    link: spotlight.link || '',
+    description: spotlight.description || '',
+    date: today_str
+  } : null;
+  fs.writeFileSync(SPOTLIGHT_FILE, JSON.stringify(spotlightData, null, 2) + '\n');
+  if (spotlight) {
+    console.log(`Spotlight for RSS: ${spotlight.id} — ${spotlight.name}`);
+  } else {
+    console.log('No eligible spotlight found; daily-spotlight.json set to null.');
+  }
+
   const spotlightId = spotlight ? spotlight.id : null;
   const zeroPool = eligible.filter(c => tierOf(c) === 'seed' && c.id !== spotlightId);
   const zeroSection = selectSection(zeroPool, ZERO_SECTION_SIZE);
@@ -177,7 +195,7 @@ function main() {
     console.log(`Logged ${newMilestones} new milestone event(s) to metrics-log.json.`);
   }
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = today_str;
   const featuredIds = new Set([
     ...(spotlight ? [spotlight.id] : []),
     ...zeroSection.map(c => c.id),
